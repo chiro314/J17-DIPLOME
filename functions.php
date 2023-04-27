@@ -281,7 +281,7 @@ function testNotEmpty($operation, $strsTransmises){
 }
 
 function validerCaptcha(){
-    $url = "https://www.google.com/recaptcha/api/siteverify?secret=6Ldv5gAkAAAAAPFwjhV6iMKrQEbT_z3KliOPMNuB&response={$_POST['g-recaptcha-response']}";
+    $url = "https://www.google.com/recaptcha/api/siteverify?secret=6LfpDcElAAAAACcuM13fkgKOxuOIvV7EZpD6_Ycl&response={$_POST['g-recaptcha-response']}";
     
     $response = file_get_contents($url);
     
