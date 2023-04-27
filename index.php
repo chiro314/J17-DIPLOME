@@ -1,4 +1,5 @@
 <?php      //http://localhost/exo/J17-DIPLOME/index.php
+//http://quiztiti/index.php
 /*
 There are 3 main files : index.php, view/scriptv1.js, view/style.css.
 All other files are required by index.php when needed.
@@ -301,7 +302,8 @@ require "header.php";
                             //$_SESSION["mypassword"] = sha1($_POST['psw']);
                             $_SESSION["profile"] = $ctrl->getProfile();
                             $_SESSION["firstname"] = $ctrl->getFirstname();
-                            header("Location: http://localhost/exo/J17-DIPLOME/index.php");
+                            //header("Location: http://localhost/exo/J17-DIPLOME/index.php");
+                            header("Location: http://quiztiti/index.php");
                         break;
                     }
                 }
@@ -797,7 +799,7 @@ require "header.php";
                     $message = testNotEmpty("La mise à jour", $givenStrs);
                     if($message!="") {
                         //Display the update question screen :
-                        header("Location: http://localhost/exo/J17-DIPLOME/index.php?controller=question&action=update&id=".$_POST['updatedquestiondid']."&from=this");
+                        header("Location: http://quiztiti/index.php?controller=question&action=update&id=".$_POST['updatedquestiondid']."&from=this");
                         
                     }
                     else{ //Controls are over, continue the treatment :
@@ -1058,7 +1060,7 @@ require "header.php";
                     $message = testNotEmpty("La mise à jour", $givenStrs);
                     if($message!="") {
                         //Display the update quiz screen :
-                        header("Location: http://localhost/exo/J17-DIPLOME/index.php?controller=quiz&action=update&id=".$_POST['updatedquizdid']."&from=this");
+                        header("Location: http://quiztiti/index.php/index.php?controller=quiz&action=update&id=".$_POST['updatedquizdid']."&from=this");
                     }
                     else{ //Controls are over, continue the treatment :
 
@@ -1465,7 +1467,7 @@ require "header.php";
                     $message = testNotEmpty("La mise à jour", $givenStrs);
                     if($message!="") {
                         //Display the update quiz screen :
-                        header("Location: http://localhost/exo/J17-DIPLOME/index.php?controller=account&action=update&id=".$_POST['updatedaccountdid']."&from=this");
+                        header("Location: http://quiztiti/index.php?controller=account&action=update&id=".$_POST['updatedaccountdid']."&from=this");
                     }
                     else{ //Controls are over, continue the treatment :
 
@@ -1682,7 +1684,7 @@ require "header.php";
                     $message = testNotEmpty("La mise à jour", $givenStrs);
                     if($message!="") {
                         //Display the update session screen :
-                        header("Location: http://localhost/exo/J17-DIPLOME/index.php?controller=session&action=update&id=".$_POST['updatedsessiondid']."&from=this");
+                        header("Location: http://quiztiti/index.php?controller=session&action=update&id=".$_POST['updatedsessiondid']."&from=this");
                     }
                     else{ //Controls are over, continue the treatment :
                         $message = "";
