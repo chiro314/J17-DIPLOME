@@ -36,7 +36,7 @@
     <div class="row">
         <div class="col-12 offset-md-4 col-md-5 pl-1">
             <!--clé du site-->
-            <div class="g-recaptcha" data-sitekey="6Ldv5gAkAAAAAIRTSDJqz2RY-DqswWEkqJBYlTOE"></div>
+            <div class="g-recaptcha" data-sitekey="6LfpDcElAAAAAKPtFW3f12NIfxCRA9xZDwJ3ZntW"></div>
         </div>
     </div>
     <input type="hidden" name="form_password" value="1">
