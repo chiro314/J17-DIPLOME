@@ -206,7 +206,7 @@ function className($wording){
 
 function disconnect($message){
     session_destroy();
-    header("Location: http://localhost/exo/J17-DIPLOME/index.php?msghdr=".$message);
+    header("Location: http://quiztiti/index.php?msghdr=".$message);
 }
 
 //Control there is no html introduced, and if mandatory field are not empty :
