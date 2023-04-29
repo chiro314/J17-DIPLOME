@@ -1,5 +1,4 @@
-<?php      //http://localhost/exo/J17-DIPLOME/index.php
-//http://quiztiti/index.php
+<?php //http://quiztiti/index.php
 /*
 There are 3 main files : index.php, view/scriptv1.js, view/style.css.
 All other files are required by index.php when needed.
@@ -29,16 +28,10 @@ require "header.php";
 //<div id="container">
     //<header></header>
     ?>
-    
-    <main class="row">
-
-        <?php //require "help.php"; ?>
-    
+    <main class="row">    
         <div class="col-12 col-md-1">
         </div>
-
-        <div class="col-12 col-md-10">       
-            <?php 
+        <div class="col-12 col-md-10"><?php 
             //////////////////////////////////MENU or LINK INPUTS/////////////////////////////////////////////
 
             if (isset($_REQUEST['controller']) and isset($_REQUEST['action'])){ 
