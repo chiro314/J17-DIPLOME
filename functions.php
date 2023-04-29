@@ -211,73 +211,75 @@ function disconnect($message){
 
 //Control there is no html introduced, and if mandatory field are not empty :
 function testStrs($operation, $strsTransmises){
-    $strsTestees = [];
-    for($i=0;$i<count($strsTransmises);$i++) { 
-        array_push($strsTestees, strip_tags($strsTransmises[$i]));
-    }
-    //$adjOrdinal = [" 1ère", " 2e", " 3e", " 4e", " 5e", " 6e"] :
-    $adjOrdinal = [];
-    if(count($strsTransmises) ==1) $adjOrdinal[0] = "";
-    else $adjOrdinal[0] = " 1ère";
-    for($i=1;$i<count($strsTransmises);$i++) { 
-        array_push($adjOrdinal, " ".($i +1)."e");
-    }
-    //Contrôles de chaque zone de saisie : 
-    for($i=0;$i<count($strsTransmises);$i++) { 
-        if ($strsTestees[$i] != $strsTransmises[$i]) {
-            return "L'information de la".$adjOrdinal[$i]." zone n'était pas valide.<br>".$operation." n'a pas eu lieu.";
+    if(count($strsTransmises) == 0) return "";
+    else{
+        $strsTestees = [];
+        for($i=0;$i<count($strsTransmises);$i++) { 
+            array_push($strsTestees, strip_tags($strsTransmises[$i]));
         }
-    }
-    for($i=0;$i<count($strsTransmises);$i++) { 
-        if(empty($strsTransmises[$i])) {
-            return "La ".$adjOrdinal[$i]." zone était vide. ".$operation." n'a pas eu lieu.";
+        //$adjOrdinal = [" 1ère", " 2e", " 3e", " 4e", " 5e", " 6e"] :
+        $adjOrdinal[0] = "1ère";
+        for($i=1;$i<count($strsTransmises);$i++) { 
+            array_push($adjOrdinal, ($i +1)."e");
         }
+        //Contrôles de chaque zone de saisie : 
+        for($i=0;$i<count($strsTransmises);$i++) { 
+            if ($strsTestees[$i] != $strsTransmises[$i]) {
+                return "L'information de la ".$adjOrdinal[$i]." zone n'était pas valide.<br>".$operation." n'a pas eu lieu.";
+            }
+        }
+        for($i=0;$i<count($strsTransmises);$i++) { 
+            if(empty($strsTransmises[$i])) {
+                return "La ".$adjOrdinal[$i]." zone obligatoire était vide. ".$operation." n'a pas eu lieu.";
+            }
+        }
+        //Tous les contrôles sont négatif (= sont OK) :
+        return "";
     }
-    //Tous les contrôles sont négatif (= sont OK) :
-    return "";
 }
 
 //Control there is no html introduced :
 function testStrsOnly($operation, $strsTransmises){
-    $strsTestees = [];
-    for($i=0;$i<count($strsTransmises);$i++) { 
-        array_push($strsTestees, strip_tags($strsTransmises[$i]));
-    }
-    //$adjOrdinal = [" 1ère", " 2e", " 3e", " 4e", " 5e", " 6e"] :
-    $adjOrdinal = [];
-    if(count($strsTransmises) ==1) $adjOrdinal[0] = "";
-    else $adjOrdinal[0] = " 1ère";
-    for($i=1;$i<count($strsTransmises);$i++) { 
-        array_push($adjOrdinal, " ".($i +1)."e");
-    }
-    //Contrôles de chaque zone de saisie : 
-    for($i=0;$i<count($strsTransmises);$i++) { 
-        if ($strsTestees[$i] != $strsTransmises[$i]) {
-            return "L'information de la".$adjOrdinal[$i]." zone n'était pas valide.<br>".$operation." n'a pas eu lieu.";
+    if(count($strsTransmises) == 0) return "";
+    else{
+        $strsTestees = [];
+        for($i=0;$i<count($strsTransmises);$i++) { 
+            array_push($strsTestees, strip_tags($strsTransmises[$i]));
         }
+        //$adjOrdinal = [" 1ère", " 2e", " 3e", " 4e", " 5e", " 6e"] :
+        $adjOrdinal[0] = "1ère";
+        for($i=1;$i<count($strsTransmises);$i++) { 
+            array_push($adjOrdinal, ($i +1)."e");
+        }
+        //Contrôles de chaque zone de saisie : 
+        for($i=0;$i<count($strsTransmises);$i++) { 
+            if ($strsTestees[$i] != $strsTransmises[$i]) {
+                return "L'information de la ".$adjOrdinal[$i]." zone n'était pas valide.<br>".$operation." n'a pas eu lieu.";
+            }
+        }
+        //Tous les contrôles sont négatif (= sont OK) :
+        return "";
     }
-    //Tous les contrôles sont négatif (= sont OK) :
-    return "";
 }
 
 //Control mandatory field are not empty :
-function testNotEmpty($operation, $strsTransmises){
-    
+function testNotEmpty($operation, $strsTransmises){  
     //$adjOrdinal = [" 1ère", " 2e", " 3e", " 4e", " 5e", " 6e"] :
-    $adjOrdinal = [];
-    if(count($strsTransmises) ==1) $adjOrdinal[0] = "";
-    else $adjOrdinal[0] = " 1ère";
-    for($i=1;$i<count($strsTransmises);$i++) { 
-        array_push($adjOrdinal, " ".($i +1)."e");
-    }
-    //Contrôles de chaque zone de saisie : 
-    for($i=0;$i<count($strsTransmises);$i++) { 
-        if(empty($strsTransmises[$i])) {
-            return "La ".$adjOrdinal[$i]." zone obligatoire était vide. ".$operation." n'a pas eu lieu.";
+    if(count($strsTransmises) == 0) return "";
+    else{
+        $adjOrdinal[0]="1ère";
+        for($i=1;$i<count($strsTransmises);$i++) { 
+            array_push($adjOrdinal, ($i +1)."e");
         }
+        //Contrôles de chaque zone de saisie : 
+        for($i=0;$i<count($strsTransmises);$i++) { 
+            if(empty($strsTransmises[$i])) {
+                return "La ".$adjOrdinal[$i]." zone obligatoire était vide. ".$operation." n'a pas eu lieu.";
+            }
+        }
+        //Tous les contrôles sont négatif (= sont OK) :
+        return "";
     }
-    //Tous les contrôles sont négatif (= sont OK) :
-    return "";
 }
 
 function validerCaptcha(){
@@ -304,7 +306,9 @@ function minHoursMin($min){ //minutes into minutes or into hours + minutes
         $strDuration = intdiv($min, 60);   
         $strDuration = $strDuration > 1 ? strval($strDuration)." heures" : strval($strDuration)." heure";
         
-        $strDuration.= $min % 60 ? " et ".strval($min % 60)." minutes" : "";
+        //$strDuration.= $min % 60 ? " et ".strval($min % 60)." minutes" : "";
+        //$strDuration.= $min % 60 ? " et ".strval($min % 60).($min % 60 > 1 ? " minutes" : " minute") : "";
+        $strDuration.= $min % 60 ? " ".strval($min % 60).($min % 60 > 1 ? " minutes" : " minute") : "";
     }
     else $strDuration = $min." minute".($min > 1? "s" : "");
 
@@ -315,7 +319,8 @@ function secHoursMinSec($sec){ //secondes into secondes or into minutes + second
     if($sec > 59) {
         $strDuration = minHoursMin(intdiv($sec, 60));   // min       
         
-        $strDuration.= $sec % 60 ? " et ".strval($sec % 60)." secondes" : "";
+        //$strDuration.= $sec % 60 ? " et ".strval($sec % 60)." secondes" : "";
+        $strDuration.= $sec % 60 ? " et ".strval($sec % 60).($sec % 60 > 1 ? " secondes" : " seconde") : "";
     }
     else $strDuration = $sec." seconde".($sec <=1 ? "" : "s");
 
