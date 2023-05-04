@@ -1,9 +1,7 @@
 <?php
-//require "functions.php";
 require "../Users/chris/OneDrive/Documents/GitHub/J17-DIPLOME/functions.php";
 use PHPUnit\Framework\TestCase;
-class functionsTest extends TestCase{
-    
+class functionsTest extends TestCase{ 
     //1
     public function testTimeusedpercent(){
         //return (100 * round($durationInSec / (60 * $quizMaxDuration), 2));
