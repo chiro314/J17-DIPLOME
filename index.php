@@ -296,7 +296,8 @@ require "header.php";
                             $_SESSION["profile"] = $ctrl->getProfile();
                             $_SESSION["firstname"] = $ctrl->getFirstname();
                             //header("Location: http://localhost/exo/J17-DIPLOME/index.php");
-                            header("Location: http://quiztiti/index.php");
+                            //header("Location: http://quiztiti/index.php");
+                            echo '<meta http-equiv="refresh" content="0">';
                         break;
                     }
                 }
@@ -1935,5 +1936,10 @@ require "header.php";
 <script src="https://code.jquery.com/jquery-3.6.3.slim.min.js" integrity="sha256-ZwqZIVdD3iXNyGHbSYdsmWP//UBokj2FHAxKuSBKDSo=" crossorigin="anonymous">
 </script>
 <script type="text/javascript" src="view/scriptv1.js"></script>
+
+<!--Added for the carousel :-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+</script>
+
 </body>
 </html>
