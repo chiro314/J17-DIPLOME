@@ -1,3 +1,24 @@
+/*Carousel ('démo')*/
+
+.bg-carousel{
+  background-color: rgb(232, 180, 151);
+}
+.bt_takenquiz{
+  margin: auto;
+  padding: 10px;
+  border-radius: 20px;
+  background-color:#5389ee;
+  border: 3px outset lightblue;
+
+  text-decoration: none !important;
+  color : white !important;
+  text-shadow: 2px 2px black !important;
+}
+.bt_takenquiz:hover{
+  background-color:#063227;
+}
+
+/*/////////////*/
 #container{
   background-color: lightgrey;
 }
@@ -10,7 +31,7 @@
 
 #div-h1{
 /* L'image est positionnée en fond et est centrée */
-background: url("pictures/rireetecrire2.png") ; /*no-repeat center center fixed*/
+background: url("pictures/quiztiti.png") ; /*no-repeat center center fixed*/
 /* Ajout de la propriété avec les préfixes pour tous les moteurs de rendu */
 -webkit-background-size: cover;
 -moz-background-size: cover;
@@ -55,7 +76,7 @@ h2{
 }
 
 .button{
-  width: 8em;
+  width: 7.4em;
   margin: auto;
   margin-top: 0.2em;
 
@@ -199,15 +220,16 @@ h2{
 /*@media(min-width:766px){.responsive-hide{display : inline !important;}}*/
 @media(max-width:765px){
   .responsive-hide{display : none !important;}
-  .responsive-show{display : block !important;}
+  .responsive-show{display : block !important; padding-left: 0.35em;}
 }
 @media(min-width:766px){
   .responsive-show{display : none !important;}
 }
 
 .help{
-  max-height: 15em;
+  /*max-height: 20em;
   overflow-y : auto;
+  overflow-y:scroll !important;*/
   background-color:bisque;
 }
 
