@@ -4,7 +4,7 @@
 
         <div id="div-help-connection" class="row help">
             <div id="bt-leave-help-connection" class="col-12 text-center">
-                <button class="button" type="button" onclick="showDiv('div-help-connection')">Quitter l'Aide</button>
+                <button class="button my-3" type="button" onclick="showDiv('div-help-connection')">Quitter l'Aide</button>
             </div>
             <br>
             <div class="col-12 col-md-1">
@@ -32,22 +32,24 @@
                         <button class="button button-superwide" type="button">Créer un compte administrateur</button>
                     </div>
                 </div>
+                <br>
                 <div class="row">
                     <div class="col-12 col-md-9">
                         Puis connectez-vous en utilisant le login et le mot de passe que vous avez créés :
                     </div>
-                    <div class="col-12 col-md-3">
+                    <div class="col-12 col-md-3 mb-3">
                         <button class="button button-superwide" type="button">Se connecter</button>
                     </div>
                 </div>
             </div>
+            
         </div>
         <br><br>
 
         <!-------------------USER--------------------------------------------------------->
         
         <div id="div-help-user" class="row help">
-            <div id="bt-leave-help-user" class="col-12 text-center my-2">
+            <div id="bt-leave-help-user1" class="col-12 text-center my-2">
                 <button class="button" type="button" onclick="showDiv('div-help-user')">Quitter l'Aide</button>
             </div>
             <div class="col-12 col-md-1">
@@ -215,7 +217,7 @@
                 </div>
 
             </div>
-            <div id="bt-leave-help-user" class="col-12 text-center my-2">
+            <div id="bt-leave-help-user2" class="col-12 text-center my-2">
                 <button class="button" type="button" onclick="showDiv('div-help-user')">Quitter l'Aide</button>
             </div>
         </div>
@@ -223,7 +225,7 @@
         <!---------------ADMIN--------------------------------------------------------->
 
         <div id="div-help-admin" class="row help">
-            <div id="bt-leave-help-admin" class="col-12 text-center my-2">
+            <div id="bt-leave-help-admin1" class="col-12 text-center my-2">
                 <button class="button" type="button" onclick="showDiv('div-help-admin')">Quitter l'Aide</button>
             </div>
             <div class="col-12 col-md-1">
@@ -678,7 +680,7 @@
                     </div>
                 </div>
             </div>
-            <div id="bt-leave-help-admin" class="col-12 text-center my-2">
+            <div id="bt-leave-help-admin2" class="col-12 text-center my-2">
                 <button class="button" type="button" onclick="showDiv('div-help-admin')">Quitter l'Aide</button>
             </div>
         </div>
