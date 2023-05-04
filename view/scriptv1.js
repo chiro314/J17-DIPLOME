@@ -1,5 +1,58 @@
 const NBRESPONSESMAX = 20, NBQUESTIONSMAX = 100, NBQUIZMAX = 30, NBACCOUNTSMAX= 50 ; 
 
+///////////////////////////////header.php : help////////////////////////////////////////////////////
+
+$("#div-help-user").prop('hidden', true);
+$("#div-help-admin").prop('hidden', true);
+$("#div-help-connection").prop('hidden', true);
+$('#div-demo').prop('hidden', true);
+
+function showDivHelpConnection(){
+    $('#div-demo').prop('hidden', true);
+    $('#form_login').prop('hidden', true);
+    $('#form_createadmin').prop('hidden', true);
+    showDiv('div-help-connection');
+}
+function showCarouselDemo(){
+    if($('#div-demo').prop('hidden')==true) {
+
+        $('#form_login').prop('hidden', true);
+        $('#form_createadmin').prop('hidden', true);
+        $("#div-help-connection").prop('hidden', true);
+
+        $('#div-demo').prop('hidden', false);
+    }
+    else $('#div-demo').prop('hidden', true);
+}
+
+/////////////////////////////// Carousel ////////////////////////////////////////////////////
+
+if($('#form_login').is(":visible") ||
+   $('#form_createadmin').is(":visible")  ) {
+
+    //$('#div-demo').remove();
+    $('#div-demo').prop('hidden', true);
+}
+
+function onclickbtshowtimers(divTimer, btShowTimer){
+    if($("#"+divTimer).prop('hidden')==true) {
+        $("#"+divTimer).prop('hidden', false);
+        $("#"+btShowTimer).html("Masquer l'avancement")
+    }
+    else{
+        $("#"+divTimer).prop('hidden', true);
+        $("#"+btShowTimer).html("Afficher l'avancement");
+    }
+}
+/*
+$('#carousel-index').on('slid', function() {
+    $(".bt_takenquiz").click();
+});​
+*/
+//const carouselIndex = document.getElementById('carousel-index');
+
+
+
 ///////////////////////////////form_password.php : change password////////////////////////////////////////////////////
 //https://forum.alsacreations.com/topic-1-41199-1-Interdire-le-copier--coller-dans-un-input.html
 
@@ -1559,11 +1612,11 @@ $("#div-timer").prop('hidden', false);
 function onclickbtshowtimer(){
     if($("#div-timer").prop('hidden')==true) {
         $("#div-timer").prop('hidden', false); //show the progress
-        $("#bt-show-timer").html("Masquer l'avancement")
+        $("#bt-show-timer").html("Masquer l'avancement");
     }
     else{
         $("#div-timer").prop('hidden', true); //hide the progress
-        $("#bt-show-timer").html("Afficher l'avancement")
+        $("#bt-show-timer").html("Afficher l'avancement");
     }
 }
 
@@ -1631,12 +1684,6 @@ function showDiv(div){
         $("#"+div).prop('hidden', true);
     }
 }
-
-///////////////////////////////header.php : help////////////////////////////////////////////////////
-
-$("#div-help-user").prop('hidden', true);
-$("#div-help-admin").prop('hidden', true);
-$("#div-help-connection").prop('hidden', true);
 
 
 ///////////////////////////////div_stat_account_session_quiz.php////////////////////////////////////////////////////
