@@ -62,8 +62,8 @@ require "model/modelfunctions.php";
                     <a class="button" type="button" href="index.php?controller=account&action=disconnection">Quitter Quiztiti</a>
                     <a class="button" type="button" href="index.php?controller=account&action=password">Mot de passe</a>
                     <a class="button" type="button" href="index.php?controller=quiz&action=userList">Vos quiz</a> <!--Quiz list for 'user'-->                   
-                    <button class="button" type="button" onclick="showDiv('div-help-user')"><a class="text-white text-decoration-none" href="#div-hello-footer">Aide</a></button>
-            <?php }
+                    <button class="button" type="button" onclick="showDiv('div-help-user')"><a class="text-white text-decoration-none" href="#bt-leave-help-user1">Aide</a></button>
+                <?php }
                 else{ // "admin" ?> 
                     <a class="button" type="button" href="index.php?controller=account&action=disconnection">Quitter Quiztiti</a>
                     <a class="button" type="button" href="index.php?controller=account&action=password">Mot de passe</a>
@@ -72,19 +72,24 @@ require "model/modelfunctions.php";
                     <a class="button" type="button" href="index.php?controller=quiz&action=list">Vos quiz</a>
                     <a class="button" type="button" href="index.php?controller=question&action=list">Vos questions</a>
                     <a class="button" type="button" href="index.php?controller=keyword&action=list">Vos mots clés</a>
-                    <button class="button" type="button" onclick="showDiv('div-help-admin')"><a class="text-white text-decoration-none" href="#div-hello-footer">Aide</a></button>
+                    <button class="button" type="button" onclick="showDiv('div-help-admin')"><a class="text-white text-decoration-none" href="#bt-leave-help-admin1">Aide</a></button>
                 <?php }
             }
             else { // $loggedin == false ?>
                 <br>
-                <p class="h4">Retrouvez vos résultats ou démarrez un quiz qui est ouvert</p>
-                <p class="h4">Ou bien connectez-vous en tant qu'administrateur pour créer vos propres quiz</p>
+                <p class="h4">Utilisez le login fourni par votre administrateur, pour retrouver vos résultats ou démarrer un quiz qui est ouvert.</p>
+                <p class="h4">Ou bien connectez-vous en tant qu'administrateur pour créer vos propres quiz et sessions d'utilisateurs.</p>
                 <br>
                 <a class="button button-superwide" type="button" href="index.php?controller=account&action=createadmin">Créer un compte administrateur</a>
                 <a class="button button-superwide" type="button" href="index.php?controller=account&action=connection">Se connecter</a>
-                <button class="button" type="button" onclick="showDiv('div-help-connection')"><a class="text-white text-decoration-none" href="#div-hello-footer">Aide</a></button>
+                <button class="button" type="button" onclick="showDivHelpConnection()"><a class="text-white text-decoration-none" href="#div-hello-footer">Aide</a></button>
+                <button class="button" type="button" onclick="showCarouselDemo()" id="bt-demo"><a class="text-white text-decoration-none" href="#div-hello-footer">Démo</a></button>
                 <br>
                 <p class="text-center h5 mt-2 text-danger"><?php echo $messageHeader ?></p>
-            <?php } ?>
+                <?php
+                // Carousel :
+                include 'view/carousel_demo.php'; 
+                
+            } ?>
         </div>
     </header>
