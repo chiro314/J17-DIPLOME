@@ -94,7 +94,7 @@ global $message;
     const SUBTITLE = 4, NUMOK = 5, NUM = 6;
 -->
 
-<div class="row center mb-2" id="div-form-update-question">
+<div class="row center mb-2 px-2" id="div-form-update-question">
     <div class="col-12 bg-warning rounded border border-primary" >
         <br>
         <p id="up_p-question-maj" class="text-center h5"><span class="font-weight-bold"><?php echo $question[QUESTION] ?></span></p>
@@ -180,7 +180,7 @@ global $message;
             <!--Question : ///////////////////-->
             <div class="row mb-2 mt-3">
                 <div class="col-12 col-md-2">
-                    <p><span class="font-weight-bold">Question</span></p>
+                    <p><span class="font-weight-bold text-uppercase">Question</span></p>
                 </div>
                 <div class="col-12 col-md-3">   
                     <button class="button button-max" type="button" id="up_question-restor" onclick="up_questionRestor('<?php echo $question[WIDGETID] ?>','<?php echo $question[STATUS] ?>')">Rétablir la question d'origine</button>
@@ -189,51 +189,51 @@ global $message;
             <!--data-->
 
             <div onchange="onChangeDivQuestionData()">
-            <div class="row">
-                <div class="col-12" id="div-question-data" >
-                    <div class="row">
-                        <div class="col-12 col-md-2">
-                            <label class="label" for="up_question_question">Question*</label>
-                        </div>
-                        <div class="col-12 col-md-10">
-                            <input class="input" id="up_question_question" name="question_question" type="text" value="<?php echo $question[QUESTION] ?>" required>
-                            <input id="up_question_question_old" name="question_question_old" type="hidden" value="<?php echo $question[QUESTION] ?>">                    
+                <div class="row mt-3">
+                    <div class="col-12" id="div-question-data" >
+                        <div class="row">
+                            <div class="col-12 col-md-2">
+                                <label class="label" for="up_question_question">Question*</label>
+                            </div>
+                            <div class="col-12 col-md-10">
+                                <input class="input" id="up_question_question" name="question_question" type="text" value="<?php echo $question[QUESTION] ?>" required>
+                                <input id="up_question_question_old" name="question_question_old" type="hidden" value="<?php echo $question[QUESTION] ?>">                    
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-12 col-md-2"><label class="label" for="up_question_guideline">Instructions</label></div>
-                <div class="col-12 col-md-10"><input class="input" id="up_question_guideline" name="question_guideline" type="text" value="<?php echo $question[GUIDELINE] ?>"></div>
-                <input id="up_question_guideline_old" name="question_guideline_old" type="hidden" value="<?php echo $question[GUIDELINE] ?>"> 
-            </div>
-            <div class="row">    
-                <div class="col-12 col-md-2"><label class="label" for="up_question_explanationtitle">Titre des explications</label></div>
-                <div class="col-12 col-md-10"><input class="input" id="up_question_explanationtitle" name="question_explanationtitle" type="text" value="<?php echo $question[qEXPLANATIONTITLE] ?>"></div>
-                <input id="up_question_explanationtitle_old" name="question_explanationtitle_old" type="hidden" value="<?php echo $question[qEXPLANATIONTITLE] ?>"> 
-            </div>
-            <div class="row">        
-                <div class="col-12 col-md-2"><label class="label" for="up_question_explanation">Correction/explications</label></div>
-                <div class="col-12 col-md-10"><textarea class="input" id="up_question_explanation" name="question_explanation" placeholder="<?php echo TEXTAREA." caractères maximum" ?>" maxlength="<?php echo TEXTAREA ?>"><?php echo $question[qEXPLANATION] ?></textarea></div>
-                <input id="up_question_explanation_old" name="question_explanation_old" type="hidden" value="<?php echo $question[qEXPLANATION] ?>">
-            </div>
-            
-            <div class="row">
-                <div class="col-12 col-md-2">
-                    <label class="label" for="up_question_idwidget">Widget</label>
+                <div class="row mt-3">
+                    <div class="col-12 col-md-2"><label class="label" for="up_question_guideline">Instructions</label></div>
+                    <div class="col-12 col-md-10"><input class="input" id="up_question_guideline" name="question_guideline" type="text" value="<?php echo $question[GUIDELINE] ?>"></div>
+                    <input id="up_question_guideline_old" name="question_guideline_old" type="hidden" value="<?php echo $question[GUIDELINE] ?>"> 
                 </div>
-                <div class="col-12 col-md-5 ml-md-1">
-                    <select class="select-basic" name="question_idwidget" id="up_question_idwidget-select">
-                        <option value="radio" <?php echo ($question[WIDGETID] == 'radio' ? ' selected' : '') ?>>Radio bouton</option>
-                        <option value="checkbox" <?php echo ($question[WIDGETID] == 'checkbox' ? ' selected' : '') ?> >Boîte à cocher</option>
-                    </select>
-                    <input id="question_idwidget_old" name="question_idwidget_old" type="hidden" value="<?php echo $question[WIDGETID] ?>">
+                <div class="row mt-3">    
+                    <div class="col-12 col-md-2"><label class="label" for="up_question_explanationtitle">Titre des explications</label></div>
+                    <div class="col-12 col-md-10"><input class="input" id="up_question_explanationtitle" name="question_explanationtitle" type="text" value="<?php echo $question[qEXPLANATIONTITLE] ?>"></div>
+                    <input id="up_question_explanationtitle_old" name="question_explanationtitle_old" type="hidden" value="<?php echo $question[qEXPLANATIONTITLE] ?>"> 
                 </div>
-                <div class="col-12 col-md-1 "><label id="l-question_status" for="up_question_status">Publier</label></div>
-                <div class="col-12 col-md-1 text-left"><input id="up_question_status" name="question_status" type="checkbox" <?php echo ($question[STATUS] == 'inline' ? ' checked' : '') ?>></div>
-                <input id="question_status_old" name="question_status_old" type="hidden" value="<?php echo $question[STATUS] ?>"> 
-            </div>
-            
+                <div class="row mt-3">        
+                    <div class="col-12 col-md-2"><label class="label" for="up_question_explanation">Explications</label></div>
+                    <div class="col-12 col-md-10"><textarea class="input" id="up_question_explanation" name="question_explanation" placeholder="<?php echo TEXTAREA." caractères maximum" ?>" maxlength="<?php echo TEXTAREA ?>"><?php echo $question[qEXPLANATION] ?></textarea></div>
+                    <input id="up_question_explanation_old" name="question_explanation_old" type="hidden" value="<?php echo $question[qEXPLANATION] ?>">
+                </div>
+                
+                <div class="row mt-3">
+                    <div class="col-12 col-md-2">
+                        <label class="label" for="up_question_idwidget">Widget</label>
+                    </div>
+                    <div class="col-12 col-md-5 ml-md-1">
+                        <select class="select-basic" name="question_idwidget" id="up_question_idwidget-select">
+                            <option value="radio" <?php echo ($question[WIDGETID] == 'radio' ? ' selected' : '') ?>>Radio bouton</option>
+                            <option value="checkbox" <?php echo ($question[WIDGETID] == 'checkbox' ? ' selected' : '') ?> >Boîte à cocher</option>
+                        </select>
+                        <input id="question_idwidget_old" name="question_idwidget_old" type="hidden" value="<?php echo $question[WIDGETID] ?>">
+                    </div>
+
+                    <div class="col-12 col-md-1"><label id="l-question_status" for="up_question_status">Publier</label></div>
+                    <div class="col-12 col-md-1 text-left"><input id="up_question_status" name="question_status" type="checkbox" <?php echo ($question[STATUS] == 'inline' ? ' checked' : '') ?>></div>
+                    <input id="question_status_old" name="question_status_old" type="hidden" value="<?php echo $question[STATUS] ?>"> 
+                </div>
             </div> 
             <!--Keywords : //////////////////-->
             <?php 
@@ -241,7 +241,7 @@ global $message;
             ?>
             <div class="row mt-4">
                 <div class="col-0 col-md-2">
-                    <p><span class="font-weight-bold">Mots clés</p>
+                    <p><span class="font-weight-bold text-uppercase">Mots clés</p>
                 </div>
                 <div class="col-12 col-md-3 ">
                     <button class="button button-max" type="button" id="up_question-keywords-restor" onclick="up_questionKeywordsRestor('<?php echo $keywordsList ? implode(' ', $keywordsList) : ''; ?>')">Rétablir les mots clés d'origine</button>
@@ -270,8 +270,7 @@ global $message;
                         //Get the values : https://forum.phpfrance.com/php-debutant/recuperer-valeurs-select-multiple-t4448.html#:~:text=%24keywords%20%3D%20%24_POST%5B'keywords'%5D%3B
                         ?>
                     </select>  
-                </div>
-                
+                </div>   
             </div>
 
             <!--Answers : //////////////////-->
@@ -280,7 +279,7 @@ global $message;
             <!--Button "Ajouter une Réponse"-->
             <div class="row mb-2 mt-3" id="div-addUpdateQuestionCreateAnswer">
                 <div class="col-0 col-md-2">
-                    <p><span class="font-weight-bold">Réponses</p>
+                    <p><span class="font-weight-bold text-uppercase">Réponses</p>
                 </div>
                 <div class="col-12 col-md-3">
                     <button class="button button-max" id="button-answer" type="button" onclick="up_questionAnswersRestor()">Rétablir les réponses d'origine</button>
@@ -339,30 +338,20 @@ global $message;
             else { ?>
                 <div class="row" id="answer_0_new">            
                     <div class="col-12 col-md-2">
-                        <div class="row">
-                            <div class="col-12 col-md-3">
-                                <button class="border-0 bg-danger text-white rounded-circle" type="button" onclick="crea_supUpdateQuestionCreateAnswer('answer_0_new');">X</button>
-                            </div>
-                            <div class="col-12 col-md-9">
-                                <label class="label" for="answer_answer_0_new">Réponse</label>
-                            </div>
-                        </div>               
+                        <button class="mr-1 border-0 bg-danger text-white rounded-circle" type="button" onclick="crea_supUpdateQuestionCreateAnswer('answer_0_new');">X</button>
+                        Réponse              
                     </div>
                     <div class="col-12 col-md-10">
                         <div class="row">
                             <div class="col-12 col-md-7">
                                 <input class="input-answer" id="answer_answer_0_new" name="answer_answer_0_new" type="text" value="" required>
                             </div>
-                            <div class="col-12 col-md-2">
-                                <label for="answer_ok_0_new">Bonne réponse</label>
-                            </div>
-                            <div class="col-12 col-md-1">   
+                            <div class="col-12 col-md-3">
+                                <label for="answer_ok_0_new">Bonne réponse</label>  
                                 <input id="answer_ok_0_new" name="answer_ok_0_new" type="checkbox">
                             </div>
-                            <div class="col-12 col-md-1">
+                            <div class="col-12 col-md-2">
                                 <label for="answer_status_0_new">Publier</label>
-                            </div>
-                            <div class="col-12 col-md-1">
                                 <input id="answer_status_0_new" name="answer_status_0_new" type="checkbox">
                             </div>
                         </div>
