@@ -83,7 +83,7 @@ global $message;
         <br>
         <p class="text-center h5">Créer un quiz</p>
 
-        <form  id="form_create_quiz" name="form_create_quiz" action="index.php" method="POST">
+        <form class="pl-2" id="form_create_quiz" name="form_create_quiz" action="index.php" method="POST">
             
             <!--Quiz-->
             <div class="row">
@@ -143,7 +143,7 @@ global $message;
 
 <!--window to delete a quiz ://////////////////////////////////////////////////////////////////////-->
 
-<div class="row center mb-2" id="div-form-delete-quiz">
+<div class="row center mb-2 px-2" id="div-form-delete-quiz">
     <div class="col-12 offset-md-4 col-md-4 bg-warning rounded border border-primary" >
         <br>
         <p class="text-center h5">Supprimer le quiz</p>  
@@ -185,39 +185,42 @@ global $message;
                 <div id="<?php echo 'div-quiz-list-'.$i ?>" class="row">
                     <!--link 'delete'-->
                     <div class="col-12 col-md-1">
-                        <a class="text-danger a-supp" onclick="deleteQuiz(<?php echo $quiz[QUIZID] ?>, '<?php echo $quiz[TITLE] ?>', '<?php echo $quiz[STATUS] ?>')">Supp.</a>      
+                        <div class="px-2 px-md-0">
+                            <a class="text-danger a-supp" onclick="deleteQuiz(<?php echo $quiz[QUIZID] ?>, '<?php echo $quiz[TITLE] ?>', '<?php echo $quiz[STATUS] ?>')">Supp.</a>      
+                        </div>
                     </div>
                     <!--link 'update'-->
                     <div class="col-12 col-md-1">
-                        <a class="text-info a-update" href="<?php echo 'index.php?controller=quiz&action=update&id='.$quiz[QUIZID] ?>">Maj</a>       
+                        <div class="px-2 px-md-0">
+                            <a class="text-info a-update" href="<?php echo 'index.php?controller=quiz&action=update&id='.$quiz[QUIZID] ?>">Maj</a>       
+                        </div>
                     </div>
                     <!--Status-->
                     <div class="col-12 col-md-1">
-                        <span class="font-weight-bold responsive-show">Statut<br></span><?php 
-                        echo $quiz[STATUS] ?>
+                        <span class="px-2 font-weight-bold responsive-show">Statut<br></span>
+                        <div class="px-2 px-md-0"><?php echo $quiz[STATUS] ?></div>
                     </div>
                     <!--LMDATE-->
                     <div class="col-12 col-md-1">
-                        <span class="font-weight-bold responsive-show">Mis à jour le<br></span><?php 
-                        echo date('d/m/y', $quiz[LMDATE]) ?>
+                        <span class="px-2 font-weight-bold responsive-show">Mis à jour le<br></span>
+                        <div class="px-2 px-md-0"><?php echo date('d/m/y', $quiz[LMDATE]) ?></div>
                     </div>
                     <!--Quiz title-subtitle-->
                     <div class="col-12 col-md-6">
-                        <span class="font-weight-bold responsive-show">Quiz<br></span><?php 
-                        echo $quiz[TITLE].($quiz[SUBTITLE] == "" ? "" : " - ".$quiz[SUBTITLE]) ?>
+                        <span class="px-2 font-weight-bold responsive-show">Quiz<br></span> 
+                        <div class="px-2 px-md-0"><?php echo $quiz[TITLE].($quiz[SUBTITLE] == "" ? "" : " - ".$quiz[SUBTITLE]) ?></div>
                     </div>
 
                     <!--Number of questions-->
                     <div class="col-12 col-md-1 text-md-center">
-                        <span class="font-weight-bold responsive-show">Nombre de questions<br></span><?php 
-                        echo $quiz[NBQUESTIONS] ? $quiz[NBQUESTIONS] : "-" ?>
+                        <span class="px-2 font-weight-bold responsive-show">Nombre de questions<br></span>
+                        <div class="px-2 px-md-0"><?php echo $quiz[NBQUESTIONS] ? $quiz[NBQUESTIONS] : "-" ?></div>
                     </div>
                     <!--Number of ongoing sessions (without an end date or with an end date in the future)-->
                     <div class="col-12 col-md-1 text-md-center">
-                        <span class="font-weight-bold responsive-show">Sessions en cours<br></span><?php 
-                        echo $quiz[NBONGOINGSESSIONS] ? $quiz[NBONGOINGSESSIONS] : "-" ?>
+                        <span class="px-2 font-weight-bold responsive-show">Sessions en cours<br></span>
+                        <div class="px-2 px-md-0"><?php echo $quiz[NBONGOINGSESSIONS] ? $quiz[NBONGOINGSESSIONS] : "-" ?></div>
                     </div>
-            
                 </div><?php 
                 $i++;
             }
