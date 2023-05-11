@@ -287,7 +287,6 @@ global $message;
                 <div class="col-12 col-md-3">
                     <button class="button button-max" type="button" onclick="addUpdateQuestionCreateAnswer();">Ajouter une réponse</button>
                 </div>
-                
             </div>
 
             <!--Existing answers"--> <?php
@@ -296,14 +295,8 @@ global $message;
                 foreach($answers as $answer){  ?>  
                     <div class="row" id="up_answer_<?php echo $i ?>">            
                         <div class="col-12 col-md-2">
-                            <div class="row">
-                                <div class="col-12 col-md-3">
-                                    <button class="border-0 bg-danger text-white rounded-circle" type="button" onclick="up_supUpdateQuestionCreateAnswer('<?php echo $i ?>');">X</button>
-                                </div>
-                                <div class="col-12 col-md-9">
-                                    <label class="label" for="answer_answer_<?php echo $i ?>">Réponse</label>
-                                </div>
-                            </div>               
+                            <button class="mr-1 border-0 bg-danger text-white rounded-circle" type="button" onclick="up_supUpdateQuestionCreateAnswer('<?php echo $i ?>');">X</button>
+                            Réponse</label>             
                         </div>
                         <div class="col-12 col-md-10">
                             <div class="row" onchange="updateQuestionUpdateAnswer(<?php echo $i ?>);">
@@ -314,17 +307,13 @@ global $message;
                                     <input id="up_answer_action_<?php echo $i ?>" name="up_answer_action_<?php echo $i ?>" type="hidden" value="">
                                 
                                 </div>
-                                <div class="col-12 col-md-2">
-                                    <label for="answer_ok_<?php echo $i ?>">Bonne réponse</label>
-                                </div>
-                                <div class="col-12 col-md-1">   
+                                <div class="col-12 col-md-3">
+                                    <label for="answer_ok_<?php echo $i ?>">Bonne réponse</label>  
                                     <input id="answer_ok_<?php echo $i ?>" name="answer_ok_<?php echo $i ?>" type="checkbox" <?php echo ($answers[$i][aANSWEROK] == '1' ? ' checked' : '') ?>>  <!--onclick="up_questionAnswerAnswerok(<?php /* echo $i */ ?>)"-->
                                     <input id="answer_ok_<?php echo $i ?>_old" name="answer_ok_<?php echo $i ?>_old" type="hidden" value="<?php echo $answers[$i][aANSWEROK] ?>">
                                 </div>
-                                <div class="col-12 col-md-1">
+                                <div class="col-12 col-md-2">
                                     <label for="answer_status_<?php echo $i ?>">Publier</label>
-                                </div>
-                                <div class="col-12 col-md-1">
                                     <input id="answer_status_<?php echo $i ?>" name="answer_status_<?php echo $i ?>" type="checkbox" <?php echo ($answers[$i][STATUS] == 'inline' ? ' checked' : '') ?>>
                                     <input id="answer_status_<?php echo $i ?>_old" name="answer_status_<?php echo $i ?>_old" type="hidden" value="<?php echo $answers[$i][STATUS] ?>">
                                 </div>
