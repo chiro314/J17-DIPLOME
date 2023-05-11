@@ -30,10 +30,10 @@ if(!$messageHeader or $messageHeader == "A bientôt"){ ?>
                             <p class="text-center h5 mt-2">Démonstration</p>
                             <p class="text-center h5 mt-2">Les Pourquoi</p>
                         </div>
-                        <div class="row">
-                            <div class="col-12 col-md-8 div-order text-left" id="div-taken-quiz-order">                
+                        <div class="row px-2">
+                            <div class="col-12 col-md-8 div-order text-left " id="div-taken-quiz-order">                
                                 Pour réaliser ce quiz, vous disposez de <span class='font-weight-bold'>3 minutes.</span><br>Le décompte a commencé à "."22/12/2022"." (heure serveur).     
-                                <br><span class='font-weight-bold'><br>ATTENTION</span> : l'utilisation de la flèche 'retour arrière' (<-), en haut à gauche sur votre écran,<br>équivaut à ABANDONNER le quiz qui sera verrouillé.<br>Vos données seront perdues et vous ne pourrez pas relancer le quiz.
+                                <br><span class='font-weight-bold'><br>ATTENTION</span> : l'utilisation de la flèche 'retour arrière' (<-), en haut à gauche sur votre écran, équivaut à ABANDONNER le quiz qui sera verrouillé.<br>Vos données seront perdues et vous ne pourrez pas relancer le quiz.
                             </div>
                             <div class="col-12 col-md-4">
                                 <div row>
@@ -44,24 +44,24 @@ if(!$messageHeader or $messageHeader == "A bientôt"){ ?>
                                 <div row>
                                     <div class="col-12" id="div-timer">
                                         <div class="row">
-                                            <div class="col-3 text-left">
+                                            <div class="col-12 col-md-3 text-left">
                                                 <div>
                                                     <label>Temps écoulé</label>
                                                 </div>
                                             </div>
-                                            <div class="col-9 pt-1">
+                                            <div class="col-12 col-md-9 pt-md-3">
                                                 <div class="progress">
                                                     <div id="div-progress-time" class="bg-danger progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-3 text-left">
+                                            <div class="col-12 col-md-3 text-left">
                                                 <div>
                                                     <label>Questions traitées</label>
                                                 </div>
                                             </div>
-                                            <div class="col-9 pt-1">
+                                            <div class="col-12 col-md-9 pt-md-3">
                                                 <div class="progress">
                                                     <div id="div-progress-questions" class="bg-success progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                                                 </div>
@@ -70,7 +70,7 @@ if(!$messageHeader or $messageHeader == "A bientôt"){ ?>
                                     </div>
                                 </div>
                                 <div row>
-                                    <div class="col-12">
+                                    <div class="col-12 mt-2 mt-md-0">
                                         <button id="bt-show-timer" type="button" onclick="onclickbtshowtimer()">Masquer l'avancement</button>
                                     </div>
                                 </div>
@@ -87,10 +87,10 @@ if(!$messageHeader or $messageHeader == "A bientôt"){ ?>
                             <p class="text-center h5 mt-2">Démonstration</p>
                             <p class="text-center h5 mt-2">Les Pourquoi</p>
                         </div>
-                        <div class="row">
+                        <div class="row px-2">
                             <div class="col-12 col-md-8 div-order text-left" id="div-taken-quiz-order">                
                                 Pour réaliser ce quiz, vous disposez de <span class='font-weight-bold'>3 minutes.</span><br>Le décompte a commencé à "."22/12/2022"." (heure serveur).     
-                                <br><span class='font-weight-bold'><br>ATTENTION</span> : l'utilisation de la flèche 'retour arrière' (<-), en haut à gauche sur votre écran,<br>équivaut à ABANDONNER le quiz qui sera verrouillé.<br>Vos données seront perdues et vous ne pourrez pas relancer le quiz.
+                                <br><span class='font-weight-bold'><br>ATTENTION</span> : l'utilisation de la flèche 'retour arrière' (<-), en haut à gauche sur votre écran, équivaut à ABANDONNER le quiz qui sera verrouillé.<br>Vos données seront perdues et vous ne pourrez pas relancer le quiz.
                             </div>
                             <div class="col-12 col-md-4">
                                 <div row>
@@ -101,24 +101,24 @@ if(!$messageHeader or $messageHeader == "A bientôt"){ ?>
                                 <div row>
                                     <div class="col-12" id="div-timer1">
                                         <div class="row">
-                                            <div class="col-3 text-left">
+                                            <div class="col-12 col-md-3 text-left">
                                                 <div>
                                                     <label>Temps écoulé</label>
                                                 </div>
                                             </div>
-                                            <div class="col-9 pt-1">
+                                            <div class="col-12 col-md-9 pt-md-3">
                                                 <div class="progress">
                                                     <div id="div-progress-time" class="bg-danger progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-3 text-left">
+                                            <div class="col-12 col-md-3 text-left">
                                                 <div>
                                                     <label>Questions traitées</label>
                                                 </div>
                                             </div>
-                                            <div class="col-9 pt-1">
+                                            <div class="col-12 col-md-9 pt-md-3">
                                                 <div class="progress">
                                                     <div id="div-progress-questions" class="bg-success progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                                                 </div>
@@ -127,16 +127,16 @@ if(!$messageHeader or $messageHeader == "A bientôt"){ ?>
                                     </div>
                                 </div>
                                 <div row>
-                                    <div class="col-12">
+                                    <div class="col-12 mt-2 mt-md-0">
                                         <button id="bt-show-timer1" type="button" onclick="onclickbtshowtimers('div-timer1', 'bt-show-timer1')">Masquer l'avancement</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="text-center">
+                        <div class="text-center px-2">
                             <br><a type="button" class="bt_takenquiz" href="#footer">Question suivante (2/3)</a><br><br>  
                         </div>
-                        <div id="div-quiz" class="row text-left">
+                        <div id="div-quiz" class="row text-left px-2">
                             <div class="col-0 col-md-2"></div>
                             <div class="col-12 col-md-10">
                                 <p class="font-weight-bold">Pourquoi les numéros des modèles Peugeot ont-ils un zéro au milieu ?</p>
@@ -154,10 +154,10 @@ if(!$messageHeader or $messageHeader == "A bientôt"){ ?>
                             <p class="text-center h5 mt-2">Démonstration</p>
                             <p class="text-center h5 mt-2">Les Pourquoi</p>
                         </div>
-                        <div class="row">
+                        <div class="row px-2">
                             <div class="col-12 col-md-8 div-order text-left" id="div-taken-quiz-order">                
                                 Pour réaliser ce quiz, vous disposez de <span class='font-weight-bold'>3 minutes.</span><br>Le décompte a commencé à "."22/12/2022"." (heure serveur).     
-                                <br><span class='font-weight-bold'><br>ATTENTION</span> : l'utilisation de la flèche 'retour arrière' (<-), en haut à gauche sur votre écran,<br>équivaut à ABANDONNER le quiz qui sera verrouillé.<br>Vos données seront perdues et vous ne pourrez pas relancer le quiz.
+                                <br><span class='font-weight-bold'><br>ATTENTION</span> : l'utilisation de la flèche 'retour arrière' (<-), en haut à gauche sur votre écran, équivaut à ABANDONNER le quiz qui sera verrouillé.<br>Vos données seront perdues et vous ne pourrez pas relancer le quiz.
                             </div>
                             <div class="col-12 col-md-4">
                                 <div row>
@@ -168,24 +168,24 @@ if(!$messageHeader or $messageHeader == "A bientôt"){ ?>
                                 <div row>
                                     <div class="col-12" id="div-timer2">
                                         <div class="row">
-                                            <div class="col-3 text-left">
+                                            <div class="col-12 col-md-3 text-left">
                                                 <div>
                                                     <label>Temps écoulé</label>
                                                 </div>
                                             </div>
-                                            <div class="col-9 pt-1">
+                                            <div class="col-12 col-md-9 pt-md-3">
                                                 <div class="progress">
                                                     <div id="div-progress-time" class="bg-danger progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-3 text-left">
+                                            <div class="col-12 col-md-3 text-left">
                                                 <div>
                                                     <label>Questions traitées</label>
                                                 </div>
                                             </div>
-                                            <div class="col-9 pt-1">
+                                            <div class="col-12 col-md-9 pt-md-3">
                                                 <div class="progress">
                                                     <div id="div-progress-questions" class="bg-success progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 33.33%" aria-valuenow="33.33" aria-valuemin="0" aria-valuemax="100"></div>
                                                 </div>
@@ -194,16 +194,16 @@ if(!$messageHeader or $messageHeader == "A bientôt"){ ?>
                                     </div>
                                 </div>
                                 <div row>
-                                    <div class="col-12">
+                                    <div class="col-12 mt-2 mt-md-0">
                                         <button id="bt-show-timer2" type="button" onclick="onclickbtshowtimers('div-timer2', 'bt-show-timer2')">Masquer l'avancement</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="text-center">
+                        <div class="text-center px-2">
                             <br><a type="button" class="bt_takenquiz" href="#footer">Question suivante (3/3)</a><br><br>  
                         </div>
-                        <div id="div-quiz" class="row text-left">
+                        <div id="div-quiz" class="row text-left px-2">
                             <div class="col-0 col-md-2"></div>
                             <div class="col-12 col-md-10">
                                 <p class="font-weight-bold">Pourquoi les aiguilles d'une montre tournent-elle dans le sens des aiguilles d'une montre ?</p>
@@ -221,10 +221,10 @@ if(!$messageHeader or $messageHeader == "A bientôt"){ ?>
                             <p class="text-center h5 mt-2">Démonstration</p>
                             <p class="text-center h5 mt-2">Les Pourquoi</p>
                         </div>
-                        <div class="row">
+                        <div class="row px-2">
                             <div class="col-12 col-md-8 div-order text-left" id="div-taken-quiz-order">                
                                 Pour réaliser ce quiz, vous disposez de <span class='font-weight-bold'>3 minutes.</span><br>Le décompte a commencé à "."22/12/2022"." (heure serveur).     
-                                <br><span class='font-weight-bold'><br>ATTENTION</span> : l'utilisation de la flèche 'retour arrière' (<-), en haut à gauche sur votre écran,<br>équivaut à ABANDONNER le quiz qui sera verrouillé.<br>Vos données seront perdues et vous ne pourrez pas relancer le quiz.
+                                <br><span class='font-weight-bold'><br>ATTENTION</span> : l'utilisation de la flèche 'retour arrière' (<-), en haut à gauche sur votre écran, équivaut à ABANDONNER le quiz qui sera verrouillé.<br>Vos données seront perdues et vous ne pourrez pas relancer le quiz.
                             </div>
                             <div class="col-12 col-md-4">
                                 <div row>
@@ -235,24 +235,24 @@ if(!$messageHeader or $messageHeader == "A bientôt"){ ?>
                                 <div row>
                                     <div class="col-12" id="div-timer3">
                                         <div class="row">
-                                            <div class="col-3 text-left">
+                                            <div class="col-12 col-md-3 text-left">
                                                 <div>
                                                     <label>Temps écoulé</label>
                                                 </div>
                                             </div>
-                                            <div class="col-9 pt-1">
+                                            <div class="col-12 col-md-9 pt-md-3">
                                                 <div class="progress">
                                                     <div id="div-progress-time" class="bg-danger progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-3 text-left">
+                                            <div class="col-12 col-md-3 text-left">
                                                 <div>
                                                     <label>Questions traitées</label>
                                                 </div>
                                             </div>
-                                            <div class="col-9 pt-1">
+                                            <div class="col-12 col-md-9 pt-md-3">
                                                 <div class="progress">
                                                     <div id="div-progress-questions" class="bg-success progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 66.66%" aria-valuenow="66.66" aria-valuemin="0" aria-valuemax="100"></div>
                                                 </div>
@@ -261,16 +261,16 @@ if(!$messageHeader or $messageHeader == "A bientôt"){ ?>
                                     </div>
                                 </div>
                                 <div row>
-                                    <div class="col-12">
+                                    <div class="col-12 mt-2 mt-md-0">
                                         <button id="bt-show-timer3" type="button" onclick="onclickbtshowtimers('div-timer3', 'bt-show-timer3')">Masquer l'avancement</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="text-center">
+                        <div class="text-center px-2">
                             <br><a type="button" class="bt_takenquiz" href="#footer">Répondre à la dernière question ci-dessous puis cliquer pour valider</a><br><br>  
                         </div>
-                        <div id="div-quiz" class="row text-left">
+                        <div id="div-quiz" class="row text-left px-2">
                             <div class="col-0 col-md-2"></div>
                             <div class="col-12 col-md-10">
                                 <p class="font-weight-bold">Pourquoi les nus du Radeau de la Méduse portent-ils des chausses ?</p>
@@ -286,55 +286,56 @@ if(!$messageHeader or $messageHeader == "A bientôt"){ ?>
                         <div> 
                             <br>
                             <p class="text-center h5 mt-2">Démonstration</p>
-                            <p class="text-center h5 mt-2 font-weight-bold">RÉSULTAT DE VOTRE QUIZ du 05/12/22 16:35</p>
+                            <p class="text-center h5 mt-2 font-weight-bold px-2">RÉSULTAT DE VOTRE QUIZ du 05/12/22 16:35</p>
                             <p class="text-center h5 mt-2">Les Pourquoi</p>
                         </div>
-
-                        Pour réaliser ce quiz, vous disposiez de <span class='font-weight-bold'>3 minutes</span>.   
-                        <br>Vous avez réalisé ce quiz en <span class='font-weight-bold'>27 secondes</span>, soit <span class='font-weight-bold'>15 %</span> du temps imposé.
-                        <br>Vous avez répondu à <span class='font-weight-bold'>3 questions</span> sur les <span class='font-weight-bold'>3</span> prévues, soit <span class='font-weight-bold'>100 %</span> des questions.
-                        <br>
-                        <br>Vos bonnes réponses vous ont permis de récolter <span class='font-weight-bold'>1 point</span>.
-                        <br>Rapporté aux <span class='font-weight-bold'>4 points</span> mis en jeu par les questions du quiz,
-                        <br>cela fait un taux de réussite de <span class='font-weight-bold'>25 %</span>, soit une note de <span class='font-weight-bold'>5/20</span>.
+                        <div class="px-2 text-left"> 
+                            Pour réaliser ce quiz, vous disposiez de <span class='font-weight-bold'>3 minutes</span>.   
+                            <br>Vous avez réalisé ce quiz en <span class='font-weight-bold'>27 secondes</span>, soit <span class='font-weight-bold'>15 %</span> du temps imposé.
+                            <br>Vous avez répondu à <span class='font-weight-bold'>3 questions</span> sur les <span class='font-weight-bold'>3</span> prévues, soit <span class='font-weight-bold'>100 %</span> des questions.
+                            <br>
+                            <br>Vos bonnes réponses vous ont permis de récolter <span class='font-weight-bold'>1 point</span>.
+                            <br>Rapporté aux <span class='font-weight-bold'>4 points</span> mis en jeu par les questions du quiz,
+                            <br>cela fait un taux de réussite de <span class='font-weight-bold'>25 %</span>, soit une note de <span class='font-weight-bold'>5/20</span>.
+                        </div>
                         <br><br>
                         <div class="text-center font-weight-bold h5 text-uppercase">
                             Points à réviser
                         </div>
                         <div class="div-of-rows text-left"> 
                             <div class="row font-weight-bold responsive-hide">
-                                <div class="col-12 col-md-3">Question (réponse erronée)</div>
-                                <div class="col-12 col-md-3">Titre des explications</div>
-                                <div class="col-12 col-md-6">Explications</div> 
+                                <div class="col-12 col-md-3 pl-2"><div class="pl-3">Question (réponse erronée)</div></div>
+                                <div class="col-12 col-md-3"><div class="px-2">Titre des explications</div></div>
+                                <div class="col-12 col-md-6"><div class="pr-2">Explications</div></div> 
                             </div>
                 
                             <div class="row">
                                 <div class="col-12 col-md-3">
-                                    <span class="font-weight-bold responsive-show">Question (réponse erronée)<br></span>
-                                    Pourquoi les nus du Radeau de la Méduse portent-ils des chausses ?
+                                    <span class="px-2 font-weight-bold responsive-show">Question (réponse erronée)<br></span>
+                                    <div class="px-2 pr-md-0">Pourquoi les nus du Radeau de la Méduse portent-ils des chausses ?</div>
                                 </div>
                                 <div class="col-12 col-md-3">
-                                    <span class="font-weight-bold responsive-show">Titre de l'explication<br></span>
-                                    Shoes must go on
+                                    <span class="px-2 font-weight-bold responsive-show">Titre de l'explication<br></span>
+                                    <div class="px-2">Shoes must go on</div>
                                 </div>
                                 <div class="col-12 col-md-6">
-                                    <span class="font-weight-bold responsive-show">Explication<br></span> 
-                                    Consultez votre cours, vos notes ou internet.
+                                    <span class="px-2 font-weight-bold responsive-show">Explication<br></span> 
+                                    <div class="px-2 pl-md-0">Consultez votre cours, vos notes ou internet.</div>
                                 </div> 
                             </div>
 
                             <div class="row">
                                 <div class="col-12 col-md-3">
-                                    <span class="font-weight-bold responsive-show">Question (réponse erronée)<br></span>
-                                    Pourquoi les aiguilles d'une montre tournent-elle dans le sens des aiguilles d'une montre ?
+                                    <span class="px-2 font-weight-bold responsive-show">Question (réponse erronée)<br></span>
+                                    <div class="px-2 pr-md-0">Pourquoi les aiguilles d'une montre tournent-elle dans le sens des aiguilles d'une montre ?</div>
                                 </div>
                                 <div class="col-12 col-md-3">
-                                    <span class="font-weight-bold responsive-show">Titre des explications<br></span>
-                                    Hémisphère et boule de gomme
+                                    <span class="px-2 font-weight-bold responsive-show">Titre des explications<br></span>
+                                    <div class="px-2">Hémisphère et boule de gomme</div>
                                 </div>
                                 <div class="col-12 col-md-6">
-                                    <span class="font-weight-bold responsive-show">Explication<br></span> 
-                                    Dans l'hémisphère nord, l'ombre tourne dans le sens des aiguilles d'une montre, là où celle-ci fut inventée. L'hémisphère droit, quant à lui, dirige la main des gauchers.
+                                    <span class="px-2 font-weight-bold responsive-show">Explication<br></span> 
+                                    <div class="px-2 pl-md-0">Dans l'hémisphère nord, l'ombre tourne dans le sens des aiguilles d'une montre, là où celle-ci fut inventée. L'hémisphère droit, quant à lui, dirige la main des gauchers.</div>
                                 </div> 
                             </div>
                         </div>
