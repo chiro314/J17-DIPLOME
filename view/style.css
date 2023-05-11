@@ -95,11 +95,15 @@ h2{
   text-decoration: none;
 }
 .button-small{width: 6em !important;}
+.button.compfort{width: 11em !important; padding-left: 0.1em !important; padding-right: 0.1em !important;}
 .button-wide{width: 12em !important;}
 .button-superwide{width: 15em !important;}
 .button-max{width: 100% ;}
+.button-free{width:auto; padding-left: 0.3em; padding-right: 0.3em;}
 
-/* Supp. button on the question creation window */
+@media(max-width:260px){.button-superwide{width: 7.4em !important;}}
+
+/* Supp. button on the question creation window (demo) */
 .supCreateQuestionCreateAnswer{
   color: white;
   background-color: red;
@@ -207,6 +211,8 @@ h2{
   min-height: 2em;
 }
 
+/*Responsive :*/
+
 #div-majquiz-sessions > div:nth-of-type(2n+1)
 {
   background-color: grey !important;
@@ -217,20 +223,33 @@ h2{
   background-color: lightgrey !important;
 }
 
-/*@media(min-width:766px){.responsive-hide{display : inline !important;}}*/
 @media(max-width:765px){
   .responsive-hide{display : none !important;}
-  .responsive-show{display : block !important; padding-left: 0.35em;}
+  .responsive-show{display : block !important; } /*padding-left: 0.35em;}*/
 }
 @media(min-width:766px){
   .responsive-show{display : none !important;}
+  /*.responsive-hide{display : inline !important;}*/
 }
 
+@media (max-width: 765px) {.h4-responsive {font-size: 1em !important;}}
+
+.g-recaptcha{ 
+	max-width: 305px; 
+	margin: 0 auto; 
+} 
+
+/*Help :*/
 .help{
   /*max-height: 20em;
   overflow-y : auto;
   overflow-y:scroll !important;*/
   background-color:bisque;
+}
+.help-instructions{
+  background-color: #c0c0c0;
+  padding-top: 0.3em;
+  padding-bottom: 0.3em;
 }
 
 
