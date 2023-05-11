@@ -2,7 +2,6 @@
 
 session_start();
 $login = "";
-//$mypassword = "";
 $profile = ""; //(admin, user)
 $firstname = ""; 
 $loggedin = false;
@@ -11,7 +10,6 @@ $helloFooter="Bienvenue, connectez-vous !";
 
 if(isset($_SESSION["login"])){
     $login = $_SESSION["login"];
-    //$mypassword = $_SESSION["mypassword"];
     $profile = $_SESSION["profile"]; //(admin, user)
     $firstname = $_SESSION["firstname"];
     $loggedin = true;
@@ -36,7 +34,6 @@ if(isset($_SESSION["questionid"])){
 //functions :
 require "functions.php";
 require "model/modelfunctions.php";
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -77,11 +74,13 @@ require "model/modelfunctions.php";
             }
             else { // $loggedin == false ?>
                 <br>
-                <p class="h4">Utilisez le login fourni par votre administrateur, pour retrouver vos résultats ou démarrer un quiz qui est ouvert.</p>
-                <p class="h4">Ou bien connectez-vous en tant qu'administrateur pour créer vos propres quiz et sessions d'utilisateurs.</p>
+                <div class="px-2">
+                    <p class="h4 h4-responsive">Utilisez le login fourni par votre administrateur, pour retrouver vos résultats ou démarrer un quiz qui est ouvert.</p>
+                    <p class="h4 h4-responsive">Ou bien connectez-vous en tant qu'administrateur pour créer vos propres quiz et sessions d'utilisateurs.</p>
+                </div>
                 <br>
-                <a class="button button-superwide" type="button" href="index.php?controller=account&action=createadmin">Créer un compte administrateur</a>
-                <a class="button button-superwide" type="button" href="index.php?controller=account&action=connection">Se connecter</a>
+                <a class="button button-superwide" type="button" href="index.php?controller=account&action=createadmin">Créer un compte admin</a>
+                <a class="button" type="button" href="index.php?controller=account&action=connection">Se connecter</a>
                 <button class="button" type="button" onclick="showDivHelpConnection()"><a class="text-white text-decoration-none" href="#div-hello-footer">Aide</a></button>
                 <button class="button" type="button" onclick="showCarouselDemo()" id="bt-demo"><a class="text-white text-decoration-none" href="#div-hello-footer">Démo</a></button>
                 <br>
@@ -89,7 +88,6 @@ require "model/modelfunctions.php";
                 <?php
                 // Carousel :
                 include 'view/carousel_demo.php'; 
-                
             } ?>
         </div>
     </header>
