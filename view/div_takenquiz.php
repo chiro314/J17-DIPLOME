@@ -56,7 +56,7 @@
 */               
 global $login, $quizlock_datetime;
 ?>
-<div id="div-quiz-title"> <?php 
+<div id="div-quiz-title px-2"> <?php 
     if ($quiz == null) echo "Ce quiz n'est pas opérationnel.<br>Consultez votre formateur.";
     else {
         $duration = $quiz['quizDuration']; ?>
@@ -68,9 +68,10 @@ global $login, $quizlock_datetime;
         <?php
     } ?>
 </div>
-<div class="div-alert"><?php
+<div class="div-alert px-2"><?php
     if ($quiz != null and $questions == null) echo "Les questions de ce quiz ne sont pas opérationnelles.<br>Consultez votre formateur."; ?>
-</div> <?php
+</div> 
+<div class="px-2"><?php
 if ($quiz != null and $questions != null){ 
     if(!$quiz['quizDuration']){ //without timer ?>
         <div id="div-taken-quiz-order" class="div-order text-center"> 
@@ -231,3 +232,4 @@ if ($quiz != null and $questions != null){
         </div>
     </form> <?php
 } ?>
+</div>
