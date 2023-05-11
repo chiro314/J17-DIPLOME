@@ -2,7 +2,7 @@
 ?>
         <!-------------- CONNECTION----------------------------------------------------->
 
-        <div id="div-help-connection" class="row help">
+        <div id="div-help-connection" class="row help px-2">
             <div id="bt-leave-help-connection" class="col-12 text-center">
                 <button class="button my-3" type="button" onclick="showDiv('div-help-connection')">Quitter l'Aide</button>
             </div>
@@ -48,7 +48,7 @@
 
         <!-------------------USER--------------------------------------------------------->
         
-        <div id="div-help-user" class="row help">
+        <div id="div-help-user" class="row help px-2">
             <div id="bt-leave-help-user1" class="col-12 text-center my-2">
                 <button class="button" type="button" onclick="showDiv('div-help-user')">Quitter l'Aide</button>
             </div>
@@ -58,11 +58,15 @@
                 <h3 class="h4">Mot de passe</h3>            
                 <div class="row">
                     <div class="col-12 col-md-9">
-                    Pour <span class="font-weight-bold">changer de mot de passe</span>, utilisez le bouton suivant :
-                        <br>Il vous sera demandé de saisir votre mot de passe actuel : si vous ne vous en souvenez plus, demandez à l'organisateur de le réinitialiser à "quiztiti".
+                        Pour <span class="font-weight-bold">changer de mot de passe</span>, utilisez le bouton suivant :
                     </div>
                     <div class="col-12 col-md-3">
                         <button class="button button-superwide" type="button">Mot de passe</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-md-9">
+                        Il vous sera demandé de saisir votre mot de passe actuel : si vous ne vous en souvenez plus, demandez à l'organisateur de le réinitialiser à "quiztiti".
                     </div>
                 </div>
                 <br>
@@ -70,10 +74,14 @@
                 <div class="row">
                     <div class="col-12 col-md-9">
                         Pour <span class="font-weight-bold">afficher votre tableau de bord</span>, utilisez le bouton suivant :
-                        <br>Vos quiz sont regroupés par sessions.
                     </div>
                     <div class="col-12 col-md-3">
                         <button class="button button-superwide" type="button">Vos quiz</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-md-9">
+                        Vos quiz sont regroupés par sessions.
                     </div>
                 </div>
                 <br>
@@ -166,7 +174,7 @@
                 </div>
                 <div class="row">    
                     <div class="col-12 col-md-9">
-                        Lorsque la dernière question sera affichée, répondez-y et validez votre réponse en cliquant sur le bouton suivant qui indiquera les instructions suivantes : 
+                        <br>Lorsque la dernière question sera affichée, répondez-y et validez votre réponse en cliquant sur le bouton suivant qui indiquera les instructions suivantes : 
                     </div>
                     <div class="col-12 col-md-3 mt-md-2">
                         <button><a >Répondez à la dernière question ci-dessous puis cliquez ici pour valider</a></button>
@@ -189,7 +197,7 @@
                 <h3 class="h4">Consultez votre résultat</h3>
                 <div class="row">    
                     <div class="col-12 col-md-9">
-                        Le détail de vos résultats est consultable en cliquant dans la colonne <span class="font-weight-bold">Note</span> de votre tableau de bord, sur la note qui figure en %, au bout de la ligne du quiz.
+                        Le détail de vos résultats est consultable en cliquant dans la colonne <span class="font-weight-bold">Note</span> de votre <span class="font-weight-bold">tableau de bord</span>, sur la note qui figure en %, au bout de la ligne du quiz.
                         <br>Dans la colonne <span class="font-weight-bold">Démarré le</span> figure maintenant la date et l’heure auxquelles vous avez démarré le quiz.
                         <br>Les informations disponibles sont les suivantes :
                         <ul>
@@ -213,7 +221,8 @@
                         Des explications sont fournies pour vous faciliter ces révisions.    
                     </div>
                     <div class="col-12 col-md-3 mt-md-2">
-                    </div>                           
+                    </div>  
+                    <br><br>                         
                 </div>
 
             </div>
@@ -224,14 +233,15 @@
         
         <!---------------ADMIN--------------------------------------------------------->
 
-        <div id="div-help-admin" class="row help">
+        <div id="div-help-admin" class="row help px-2 text-justify">
             <div id="bt-leave-help-admin1" class="col-12 text-center my-2">
                 <button class="button" type="button" onclick="showDiv('div-help-admin')">Quitter l'Aide</button>
             </div>
             <div class="col-12 col-md-1">
             </div>
             <div class="col-12 col-md-10">
-
+                <div class="row">
+                <div class="col-12 col-md-9 bg-light">
                 <h3 class="h4">Sommaire</h3>
                 <ul>
                     <li><a href="#h3-quiztiti" class="font-weight-bold">Présentation de Quiztiti</a></li>
@@ -251,9 +261,10 @@
                             <li><a href="#h4-delete-quiz">La vie des quiz</a></li>
                             <li><a href="#h4-delete-question">La vie des questions et des mots clés</a></li> 
                         </ul>   
-                
                 </ul>
-
+                </div>
+                </div>
+                <br>
                 <h3 id="h3-quiztiti" class="h4">Présentation de Quiztiti</h3>            
                 <div class="row">
                     <div class="col-12 col-md-9">
@@ -267,8 +278,7 @@
                     </div>
                 </div>
                 <br>
-                <h3 id="h3-quiz" class="h4">Mise en place et exploitation d’un quiz en 7 étapes</h3>
-
+                <h3 id="h3-quiz" class="h4 mb-3">Mise en place et exploitation d’un quiz en 7 étapes</h3>
                 <h4 id="h4-create-keyword" class="h5">1. Créez un mot clé de travail</h4>           
                 <div class="row">
                     <div class="col-12 col-md-9">
@@ -279,13 +289,15 @@
                 </div>
                 <div class="row">
                     <div class="col-12 col-md-9">
-                        Pour <span class="font-weight-bold">créer un mot clé</span> procédez de la façon suivante :
+                        Pour <span class="font-weight-bold">créer un mot clé</span>, utilisez ce bouton :
                     </div>
-                    <div class="col-12 col-md-3">
-                        <button class="button button-superwide" type="button">Vos mots clés</button>
-                        <br><button class="button button-superwide" type="button">Envoyer</button>
+                    <div class="col-12 col-md-3 help-instructions">
+                        <button class="button" type="button">Vos mots clés</button>
+                        <br>Puis ce bouton pour valider votre action :
+                        <br><button class="button" type="button">Envoyer</button>
                     </div>
-                </div>           
+                </div> 
+                <br>          
                 <div class="row">
                     <div class="col-12 col-md-9">
                         Un <span class="font-weight-bold">mot clé</span> peut être associé à plusieurs questions, et une question admet plusieurs mots clés.
@@ -298,12 +310,14 @@
                     <div class="col-12 col-md-9">
                         Quoi qu’il en soit vous pouvez supprimer ou renommer un mot clé à votre guise :
                     </div>
-                    <div class="col-12 col-md-3">
-                        <button class="button button-superwide" type="button">Vos mots clés</button>
+                    <div class="col-12 col-md-3 help-instructions">
+                        <button class="button" type="button">Vos mots clés</button>
                         <br>Puis lien <span class="font-weight-bold">Supp.</span> ou <span class="font-weight-bold">Maj</span> de la ligne du mot clé
-                        <br><button class="button button-superwide" type="button">Envoyer</button>
+                        <br>Puis ce bouton pour valider votre action :
+                        <br><button class="button" type="button">Envoyer</button>
                     </div>
                 </div>
+                <br>
                 <h4 id="h4-create-question" class="h5">2. Créez des questions</h4>
                 <div class="row">
                     <div class="col-12 col-md-9">
@@ -318,11 +332,12 @@
                     <div class="col-12 col-md-9">
                         Pour faire tout cela, cliquez successivement sur les boutons suivants :                        
                     </div>
-                    <div class="col-12 col-md-3">
-                        <button class="button button-superwide" type="button">Vos questions</button>
-                        <button class="button button-superwide" type="button">Créer une question</button>
+                    <div class="col-12 col-md-3 help-instructions">
+                        <button class="button" type="button">Vos questions</button>
+                        <button class="button button-free" type="button">Créer une question</button>
                     </div>
                 </div>
+                <br>
                 <div class="row">
                     <div class="col-12 col-md-9">
                         N'oubliez pas de <span class="font-weight-bold">publier</span> vos questions <span class="font-weight-bold">et</span> vos réponses pour qu'elles soient proposées aux participants qui répondront au quiz (cochez le champ <span class="font-weight-bold">Publier</span>).
@@ -344,9 +359,9 @@
                     <div class="col-12 col-md-9">
                         Pour créer un quiz cliquez successivement sur les boutons suivants :                       
                     </div>
-                    <div class="col-12 col-md-3">
-                        <button class="button button-superwide" type="button">Vos quiz</button>
-                        <button class="button button-superwide" type="button">Créer un quiz</button>
+                    <div class="col-12 col-md-3 help-instructions">
+                        <button class="button" type="button">Vos quiz</button>
+                        <button class="button" type="button">Créer un quiz</button>
                     </div>
                 </div>
                 <div class="row">
@@ -364,25 +379,28 @@
                         Il est possible d’associer des questions dès la création du quiz (Ctrl clic dans la liste).
                         <br>Mais il est plus pratique de les ajouter dans l'écran de modification :
                     </div>
-                    <div class="col-12 col-md-3">
-                        <button class="button button-superwide" type="button">Vos quiz</button>
+                    <div class="col-12 col-md-3 help-instructions">
+                        <button class="button" type="button">Vos quiz</button>
                         <br>Puis lien <span class="font-weight-bold">Maj</span> du quiz.
                     </div>
                 </div>
+                <br>
                 <div class="row mt-md-3">
                     <div class="col-12 col-md-9">
                         Pour un quiz donné, vous pouvez, pour chaque question, définir un <span class="font-weight-bold">ordre</span> (de 0 à 4) et un <span class="font-weight-bold">poids</span> (de 1 à 3) :
                     </div>
-                    <div class="col-12 col-md-3">
-                        <button class="button button-superwide" type="button">Vos quiz</button>
+                    <div class="col-12 col-md-3 help-instructions">
+                        <button class="button" type="button">Vos quiz</button>
                         <br>Puis lien <span class="font-weight-bold">Maj</span> du quiz
                         <br>Champs <span class="font-weight-bold">Ordre</span> et <span class="font-weight-bold">Poids</span><div class=""></div>
                     </div>
                 </div>
+                <br>
                 <div class="row">
                     <div class="col-12 col-md-9">
                         <span class="font-weight-bold">Poids</span> : une réponse exacte est multipliée par son poids pour définir le nombre de points rapportés par la question. Par défaut le poids vaut 1 (une réponse juste rapporte 1 point).
                         <br>On peut par exemple surpondérer des questions relativement simples mais qui font appel à des notions importantes.
+                        <br>
                         <br><span class="font-weight-bold">Ordre</span> : toutes les questions ont par défaut portent le numéro d'ordre 0. On peut définir des paquets de questions, chaque paquet portant un numéro d'ordre différent. Les questions portant le même numéro sont présentées dans un ordre aléatoire au sein du paquet. Mais les paquets sont présentés en respectant l’ordre (0 en premier, 4 en dernier). 
                         <br>On peut par exemple rassembler les questions difficiles (boites à cocher) pour la fin en donnant un poids de 1 à ces questions et en laissant les autres à 0.
                         <br><br>Remarque : dans tous les cas, les <span class="font-weight-bold">réponses</span> à une question sont proposées dans un ordre aléatoire.
@@ -396,29 +414,29 @@
                     <div class="col-12 col-md-9">
                         Pour créer un compte de type '<span class="font-weight-bold">user</span>', cliquez successivement sur les boutons suivants :                       
                     </div>
-                    <div class="col-12 col-md-3">
-                        <button class="button button-superwide" type="button">Vos comptes</button>
-                        <button class="button button-superwide" type="button">Créer un compte</button>
+                    <div class="col-12 col-md-3 help-instructions">
+                        <button class="button" type="button">Vos comptes</button>
+                        <button class="button button-free" type="button">Créer un compte</button>
                     </div>
                 </div>
-                
+                <br>
                 <div class="row mt-md-3">
                     <div class="col-12 col-md-9">
                         Il est possible d’associer des sessions dès la création du compte (Ctrl clic dans la liste).
                         <br>Mais il est plus pratique de les ajouter dans l'écran de modification du compte :
                     </div>
-                    <div class="col-12 col-md-3">
-                        <button class="button button-superwide" type="button">Vos comptes</button>
+                    <div class="col-12 col-md-3 help-instructions">
+                        <button class="button" type="button">Vos comptes</button>
                         <br>Puis lien <span class="font-weight-bold">Maj</span> du compte.
                     </div>
                 </div>
                 <div class="row mt-md-3">
                     <div class="col-12 col-md-9">
-                        Cependant, il est encore plus simple d'ajouter les comptes créés à une session, en utilisant l'écran de mise à jour de la session : 
+                        Cependant, il est encore plus simple d'ajouter les comptes créés à une session, en utilisant l'écran de mise à jour de la session. 
                         <br>Pour cela, associez vos comptes à une <span class="font-weight-bold">société</span>, même fictive, afin de les retrouver facilement (filtre) lorsque vous les associerez à la session.
                     </div>
-                    <div class="col-12 col-md-3">
-                        <button class="button button-superwide" type="button">Vos sessions</button>
+                    <div class="col-12 col-md-3 help-instructions">
+                        <button class="button" type="button">Vos sessions</button>
                         <br>Puis lien <span class="font-weight-bold">Maj</span> de la session.
                     </div>
                 </div>
@@ -432,31 +450,32 @@
                 </div>
                 <div class="row">
                     <div class="col-12 col-md-9">
-                        L’administrateur peut <span class="font-weight-bold">réinitialiser un mot de passe</span> 'user' oublié, avec 'quiztiti'.
+                        L’administrateur peut <span class="font-weight-bold">réinitialiser à 'quiztiti', un mot de passe</span> 'user' oublié.
                     </div>
-                    <div class="col-12 col-md-3">
-                        <button class="button button-superwide" type="button">Vos comptes</button>
+                    <div class="col-12 col-md-3 help-instructions">
+                        <button class="button" type="button">Vos comptes</button>
                         <br>Puis lien <span class="font-weight-bold">Maj</span> du compte
                         <br>Puis champ <span class="font-weight-bold">RAZ mot de passe</span>
-                        <br><button class="button button-superwide" type="button">Envoyer toutes les modifications de la page</button>
+                        <br>Puis validez avec le bouton :
+                        <br><button class="button button-free" type="button">Envoyer toutes les modifications de la page</button>
                     </div>
                 </div>
-
+                <br>
                 <h4 id="h4-create-session" class="h5">5. Créez une session</h4>
                 <div class="row">
                     <div class="col-12 col-md-9">
                         Pour <span class="font-weight-bold">créer une session</span>, cliquez successivement sur les boutons suivants :                       
                     </div>
-                    <div class="col-12 col-md-3">
-                        <button class="button button-superwide" type="button">Vos sessions</button>
-                        <button class="button button-superwide" type="button">Créer une session</button>
+                    <div class="col-12 col-md-3 help-instructions">
+                        <button class="button" type="button">Vos sessions</button>
+                        <button class="button button-free" type="button">Créer une session</button>
                     </div>
                 </div>
                 <div class="row mt-md-3">
                     <div class="col-12 col-md-9">
                         Puis <span class="font-weight-bold">modifiez la session</span> :
                     </div>
-                    <div class="col-12 col-md-3">
+                    <div class="col-12 col-md-3 help-instructions">
                         Lien <span class="font-weight-bold">Maj</span> de la session
                     </div>
                 </div>
@@ -464,25 +483,29 @@
                     <div class="col-12 col-md-9">
                         Pour y <span class="font-weight-bold">ajouter des comptes</span> :
                     </div>
-                    <div class="col-12 col-md-3">
-                        <button class="button button-superwide" type="button">Ajouter un compte</button>                   
+                    <div class="col-12 col-md-3 help-instructions">
+                        <button class="button button-free" type="button">Ajouter un compte</button>                   
                     </div>
                 </div>
                 <div class="row mt-md-3">
                     <div class="col-12 col-md-9">
-                        Et pour y <span class="font-weight-bold">ajouter des quiz</span> :
-                        <br>Un même quiz peut être proposé dans plusieurs de vos sessions.
+                        Et pour y <span class="font-weight-bold">ajouter des quiz</span> (un même quiz peut être proposé dans plusieurs de vos sessions) :
                     </div>
-                    <div class="col-12 col-md-3">
-                        <button class="button button-superwide" type="button">Ajouter un quiz</button>                   
+                    <div class="col-12 col-md-3 help-instructions">
+                        <button class="button button-free" type="button">Ajouter un quiz</button>                   
                     </div>
                 </div>
+                <br>
                 <div class="row mt-md-3">
                     <div class="col-12 col-md-9">
                         Dans le cadre de son rattachement à une session, un quiz dispose de données particulières :
-                        <br><span class="font-weight-bold">Durée du quiz (en minutes)</span> : il est conseillé de la définir (quiz en temps limité) afin de fournir des indicateurs plus riches et de mettre à disposition des participants, un avancement qui leur permet de ne pas se précipiter lors du déroulement du quiz. 
+                        <br>
+                        <ol>
+                        <li><span class="font-weight-bold">Durée du quiz (en minutes)</span> : il est conseillé de la définir (quiz en temps limité) afin de fournir des indicateurs plus riches et de mettre à disposition des participants, un avancement qui leur permet de ne pas se précipiter lors du déroulement du quiz. 
                         <br>Remarque : pour un quiz donné, sa durée peut être différente d’une session à l’autre (selon le niveau des participants, par exemple).
-                        <br><span class="font-weight-bold">Dates d’ouverture et de fermeture du quiz</span> : un quiz ne peut être lancé, depuis le tableau de bord d’un participant, qu’entre ces deux dates/heures (quelle que soit la durée du quiz).
+                        </li>
+                        <li><span class="font-weight-bold">Dates/heures d’ouverture et de fermeture du quiz</span> : un quiz ne peut être lancé, depuis le tableau de bord d’un participant, qu’entre ces deux dates/heures (quelle que soit la durée du quiz).
+                        </li></ol>
                         <br>Une fois lancé, le quiz est verrouillé et il n’est plus possible de le relancer si l’on en sort.
                     </div>
                     <div class="col-12 col-md-3">
@@ -492,37 +515,41 @@
                     <div class="col-12 col-md-9">
                         L'administrateur peut toutefois <span class="font-weight-bold">débloquer un quiz</span> pour un participant :
                     </div>
-                    <div class="col-12 col-md-3">
-                        <button class="button button-superwide" type="button">Vos comptes</button>                   
+                    <div class="col-12 col-md-3 help-instructions">
+                        <button class="button" type="button">Vos comptes</button>                   
                         <br>Puis lien sur le nom de la session dans la colonne "<span class="font-weight-bold">Sessions et résultats</span>"
                         <br>Puis liste "<span class="font-weight-bold">Quiz non réalisés par prénom/nom du participant</span>"
                         <br>Puis colonne "<span class="font-weight-bold">Bloqué</span>" : décocher.
-                        <br><button class="button button-superwide" type="button">Supprimer les résultats cochés et/ou débloquer les quiz décochés</button> 
+                        <br>Puis validez avec le bouton :
+                        <br><button class="button button-free" type="button">Supprimer les résultats cochés et/ou débloquer les quiz décochés</button> 
                     </div>
                 </div>
+                <br>
                 <div class="row mt-md-3">
                     <div class="col-12 col-md-9">
                         L'administrateur peut aussi <span class="font-weight-bold">supprimer un résultat</span> :
                     </div>
-                    <div class="col-12 col-md-3">
-                        <button class="button button-superwide" type="button">Vos comptes</button>                   
+                    <div class="col-12 col-md-3 help-instructions">
+                        <button class="button" type="button">Vos comptes</button>                   
                         <br>Puis lien sur le nom de la session dans la colonne <span class="font-weight-bold">Sessions et résultats</span>
                         <br>Puis liste <span class="font-weight-bold">Quiz réalisés par prénom/nom du participant</span>
                         <br>Puis colonne <span class="font-weight-bold text-alert">Supp.</span> : cocher.
-                        <br><button class="button button-superwide" type="button">Supprimer les résultats cochés et/ou débloquer les quiz décochés</button> 
+                        <br>Puis validez avec le bouton :
+                        <br><button class="button button-free" type="button">Supprimer les résultats cochés et/ou débloquer les quiz décochés</button> 
                     </div>
                 </div>
                 <br> 
                 <h4 id="h4-result" class="h5">6. Suivez les résultats d’un participant</h4>
                 <div class="row">
                     <div class="col-12 col-md-9">
-                        Pour suivre les résultats d'un participant à une session, cliquez successivement sur :                       
+                        Pour suivre les résultats d'un participant à une session :                       
                     </div>
-                    <div class="col-12 col-md-3">
-                        <button class="button button-superwide" type="button">Vos comptes</button>                   
+                    <div class="col-12 col-md-3 help-instructions">
+                        <button class="button" type="button">Vos comptes</button>                   
                         <br>Puis lien sur le nom de la session du participant, dans la colonne "<span class="font-weight-bold">Sessions et résultats</span>"
                     </div>
                 </div>
+                <br>
                 <div class="row">
                     <div class="col-12 col-md-9">
                         Les indicateurs, sont de quatre sortes :                       
@@ -539,8 +566,8 @@
                     <div class="col-12 col-md-9">
                         Pour avoir la définition exacte de chaque indicateur, cliquez sur le bouton suivant :                       
                     </div>
-                    <div class="col-12 col-md-3">
-                        <button class="button button-superwide" type="button">Explications</button>                   
+                    <div class="col-12 col-md-3 help-instructions">
+                        <button class="button" type="button">Explications</button>                   
                     </div>
                 </div>
                 <br> 
@@ -549,11 +576,12 @@
                     <div class="col-12 col-md-9">
                         Consultez l'écran de mise à jour de la question :
                     </div>
-                    <div class="col-12 col-md-3">
-                        <button class="button button-superwide" type="button">Vos questions</button>                   
+                    <div class="col-12 col-md-3 help-instructions">
+                        <button class="button" type="button">Vos questions</button>                   
                         <br>Puis lien <span class="font-weight-bold">Maj</span> de la question à auditer.
                     </div>
                 </div>
+                <br>
                 <div class="row">
                     <div class="col-12 col-md-9">
                         Les informations disponibles sont :
@@ -590,70 +618,84 @@
                         Pour qu’un participant puisse continuer à accéder à ses <span class="font-weight-bold">résultats</span>, il suffit que son compte ne soit pas supprimé. 
                         <br>Le participant n’accèdera plus aux explications (POINTS À RÉVISER) relatives à une question à laquelle il a mal répondu, si cette question est supprimée. Mais il continuera à accéder au reste du résultat. 
                         <br>Le participant continuera à accéder à son résultat même si le quiz ou la session sont supprimés.
+                        <br>
                         <br>Parcontre, si la session est supprimée, l’administrateur n’aura plus accès aux résultats.
                         <br><span class="font-weight-bold">Conservez la session tant que vous voulez pouvoir consulter des résultats.</span>
                     </div>
                     <div class="col-12 col-md-3">
                     </div>
                 </div>
+                <br>
                 <div class="row">
                     <div class="col-12 col-md-9">
-                        Lorsque vous n’avez plus besoin des résultats, vous pouvez supprimer la session de la façon suivante :
-                        <br>Vous pouvez ou non cochez l'option <span class="font-weight-bold">Supprimer aussi tous les comptes et résultats n'appartenant qu'à cette session</span>.
+                        Lorsque vous n’avez plus besoin des résultats, vous pouvez supprimer la session.
+                        <br>N. B. : vous pouvez ou non cochez l'option <span class="font-weight-bold">Supprimer aussi tous les comptes et résultats n'appartenant qu'à cette session</span>.
                         Si vous cochez cette option, les comptes inscrits à d'autres sessions que celle-ci ne seront pas supprimés.
+                        <br>vous pouvez supprimer la session de la façon suivante :
                     </div>
-                    <div class="col-12 col-md-3">
-                        <button class="button button-superwide" type="button">Vos sessions</button>                   
+                    <div class="col-12 col-md-3 help-instructions">
+                        <button class="button" type="button">Vos sessions</button>                   
                         <br>Puis lien <span class="font-weight-bold">Supp.</span> en début de ligne de la session
-                        <button class="button button-superwide" type="button">Envoyer</button>                   
+                        <br>Puis validez avec le bouton :
+                        <button class="button" type="button">Envoyer</button>                   
                     </div>
                 </div>
+                <br>
                 <h4 id="h4-delete-quiz" class="h5">La vie des quiz</h4>           
                 <div class="row">
                     <div class="col-12 col-md-9">
-                        Les quiz ont pour vocation d’être réutilisés dans différentes sessions. Aussi, la suppression d’une session n’entrainera jamais la suppression d’un quiz. Un quiz ne peut être supprimé qu’isolément de la façon suivante (si un quiz est supprimé, il l’est pour toutes les sessions qui l’utilisent) :
+                        Les quiz ont pour vocation d’être réutilisés dans différentes sessions. Aussi, la suppression d’une session n’entrainera jamais la suppression d’un quiz.
+                        <br>Un quiz ne peut être supprimé qu’isolément de la façon suivante (si un quiz est supprimé, il l’est pour toutes les sessions qui l’utilisent) :
                     </div>
-                    <div class="col-12 col-md-3">
-                        <button class="button button-superwide" type="button">Vos quiz</button>                   
+                    <div class="col-12 col-md-3 help-instructions">
+                        <button class="button" type="button">Vos quiz</button>                   
                         <br>Puis lien <span class="font-weight-bold">Supp.</span> en début de ligne du quiz
-                        <button class="button button-superwide" type="button">Envoyer</button>
+                        <br>Puis validez avec le bouton :
+                        <button class="button" type="button">Envoyer</button>
                     </div>
                 </div>
+                <br>
                 <div class="row mt-md-3">
                     <div class="col-12 col-md-9">
                         Un quiz peut être dépublié à tout moment, de la façon suivante (si un quiz est dépublié, il l’est pour toutes les sessions qui l’utilisent) :
                     </div>
-                    <div class="col-12 col-md-3">
-                        <button class="button button-superwide" type="button">Vos quiz</button>                   
+                    <div class="col-12 col-md-3 help-instructions">
+                        <button class="button" type="button">Vos quiz</button>                   
                         <br>Puis lien <span class="font-weight-bold">Maj</span> de la ligne du quiz
                         <br>Puis décochez le champ <span class="font-weight-bold">Publier</span> 
-                        <button class="button button-superwide" type="button">Envoyer toutes les modifications de la page</button>                   
+                        <br>Puis validez avec le bouton :
+                        <button class="button button-free" type="button">Envoyer toutes les modifications de la page</button>                   
                     </div>
                 </div>
+                <br>
                 <h4 id="h4-delete-question" class="h5">La vie des questions et des mots clés</h4>           
                 <div class="row">
                     <div class="col-12 col-md-9">
                         Les questions ont pour vocation d’être réutilisées dans différents quiz. Aussi, la suppression d’un quiz n’entrainera jamais la suppression d’une question. Mais si une question est supprimée, elle l’est pour tous les quiz et sessions qui l’utilisent. 
                         <br>Une question ne peut être supprimée qu’isolément, de la façon suivante :
                     </div>
-                    <div class="col-12 col-md-3">
-                        <button class="button button-superwide" type="button">Vos questions</button>                   
+                    <div class="col-12 col-md-3 help-instructions">
+                        <button class="button" type="button">Vos questions</button>                   
                         <br>Puis lien <span class="font-weight-bold">Supp.</span> en début de ligne de la question
-                        <button class="button button-superwide" type="button">Envoyer</button>
+                        <br>Puis validez avec le bouton :
+                        <button class="button" type="button">Envoyer</button>
                     </div>
                 </div>
+                <br>
                 <div class="row mt-md-3">
                     <div class="col-12 col-md-9">
                         Si une question est dépubliée, elle l’est pour tous les quiz et sessions qui l’utilisent.
                         <br>Une question peut être dépubliée à tout moment de la façon suivante :
                     </div>    
-                    <div class="col-12 col-md-3">
-                        <button class="button button-superwide" type="button">Vos quiz</button>                   
+                    <div class="col-12 col-md-3 help-instructions">
+                        <button class="button" type="button">Vos quiz</button>                   
                         <br>Puis lien <span class="font-weight-bold">Maj</span> de la ligne de la question
                         <br>Puis décochez le champ <span class="font-weight-bold">Publier</span> 
-                        <button class="button button-superwide" type="button">Envoyer toutes les modifications de la page</button>                   
+                        <br>Puis validez avec le bouton :
+                        <button class="button button-free" type="button">Envoyer toutes les modifications de la page</button>                   
                     </div>
-                </div> 
+                </div>
+                <br>
                 <div class="row">
                     <div class="col-12 col-md-9">
                         La suppression d’un mot clé n’affecte pas les questions qui l’utilisent. Vous ne pourrez simplement plus filtrer les questions sur ce mot clé.
@@ -663,23 +705,27 @@
                 </div>
                 <div class="row">
                     <div class="col-12 col-md-9">
-                        Remarque : pour information, la liste des questions qui utilisent le mot clé qu’on veut supprimer est alors automatiquement affichée dans la partie droite de l’écran.
+                        Remarque : pour information, la liste des questions qui utilisent le mot clé qu’on veut supprimer est alors automatiquement affichée dans la partie droite de l’écran (ou à la fin de la liste des mots clés, sur un petit écran).
+                        N.B. : c'est aussi le cas lorsqu'on veut modifier un mot clé. Mais cette liste peut aussi être affichée pour n’importe quel mot clé, en cliquant dans la colonne <span class="font-weight-bold">Quest.</span> sur le nombre de questions qui le concernent.
                     </div>
                     <div class="col-12 col-md-3">
                     </div>
                 </div>
+                <br>
                 <div class="row">
                     <div class="col-12 col-md-9">
-                        N.B. : c'est aussi le cas lorsqu'on veut modifier un mot clé. Et Cette liste peut être affichée pour n’importe quel mot clé, en cliquant dans la colonne <span class="font-weight-bold">Quest.</span> sur le nombre de questions qui le concernent.
-                        <br>Pour supprimer un mot clé, procédez de la façon suivante :
+                        Pour supprimer un mot clé, procédez de la façon suivante :
                     </div>
-                    <div class="col-12 col-md-3">
-                        <button class="button button-superwide" type="button">Vos mots clés</button>                   
+                    <div class="col-12 col-md-3 help-instructions">
+                        <button class="button" type="button">Vos mots clés</button>                   
                         <br>Puis lien <span class="font-weight-bold">Supp.</span> de la ligne du mot clé
-                        <button class="button button-superwide" type="button">Envoyer</button>                   
+                        <br>Puis validez avec le bouton :
+                        <button class="button" type="button">Envoyer</button>                   
                     </div>
                 </div>
+                <br><br>
             </div>
+            
             <div id="bt-leave-help-admin2" class="col-12 text-center my-2">
                 <button class="button" type="button" onclick="showDiv('div-help-admin')">Quitter l'Aide</button>
             </div>
