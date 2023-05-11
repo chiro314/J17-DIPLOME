@@ -43,7 +43,7 @@ date_default_timezone_set("Europe/Paris");
 
 <!--window to lock a quiz ://////////////////////////////////////////////////////////////////////-->
 
-<div class="row center mb-2" id="div-form-lock-quiz">
+<div class="row center mb-2 px-2" id="div-form-lock-quiz">
     <div class="col-12 offset-md-4 col-md-4 bg-warning rounded border border-primary" >
         <br>
         <p class="text-center h5">Lancer le quiz</p>  
@@ -56,7 +56,7 @@ date_default_timezone_set("Europe/Paris");
             <input type="hidden" id="quizsessionid" name="quizsessionid">
             <input type="hidden" name="form_lock_quiz" value="1">
             <div class="text-center pb-2">
-                <input type="submit" value="Commencer le quiz" class="input-basic button button-wide">
+                <input type="submit" value="Commencer le quiz" class="button button-free">
             </div>
         </form>
     </div>
@@ -66,24 +66,24 @@ date_default_timezone_set("Europe/Paris");
 
 <div class="div-of-rows">
     <div class="row font-weight-bold responsive-hide">
-        <div class="col-12 col-md-1">Form.</div> <!--Former-->
+        <div class="col-12 col-md-1 overflow-hidden">Organisateur</div> <!--Former-->
         <div class="col-12 col-md-2">Session</div> 
         <div class="col-12 col-md-2">du / au</div> <!--From to-->
         <div class="col-12 col-md-2">Quiz</div>
         <div class="col-12 col-md-1">Durée (min)</div> <!--Duration-->
         <div class="col-12 col-md-2">Ouvert du / au</div> <!--Open from to-->
-        <div class="col-12 col-md-1">Démarré le</div> <!--Begun the-->
+        <div class="col-12 col-md-1 overflow-hidden">Démarré le</div> <!--Begun the-->
         <div class="col-12 col-md-1">Note</div> <!--Result (mark)-->
     </div>
     <?php
     if ($quiz != null){ // null when the table is empty
 
         foreach($quiz as $oneQuiz){ ?>
-            <div class="row">
+            <div class="row px-2 px-md-0">
                 <!--Former name-->
                 <div class="col-12 col-md-1">
-                    <span class="font-weight-bold responsive-show">Formateur<br></span>
-                    <?php echo $oneQuiz[AFIRSTNAME] ?> <?php echo $oneQuiz[ANAME] ?>
+                    <span class="font-weight-bold responsive-show">Organisateur<br></span>
+                    <span class="d-block overflow-hidden"><?php echo $oneQuiz[AFIRSTNAME] ?> <?php echo $oneQuiz[ANAME] ?></span>
                 </div>
                 <!--Session title-->
                 <div class="col-12 col-md-2">
@@ -113,8 +113,8 @@ date_default_timezone_set("Europe/Paris");
                 <!--start date or link 'Begin' (='Commencer')-->
                 <div class="col-12 col-md-1"> <?php 
                     if (!is_null($oneQuiz[QZRSTARTDATE])) { //the startdate in the result table may be null ?>
-                        <span class="font-weight-bold responsive-show">Démarré le<br></span><?php
-                        echo date('d/m/y H:i', $oneQuiz[QZRSTARTDATE]);
+                        <span class="font-weight-bold responsive-show">Démarré le<br></span>
+                        <span class="d-block overflow-hidden"><?php echo date('d/m/y H:i', $oneQuiz[QZRSTARTDATE]) ?></span><?php
 
                        //https://www.developpez.net/forums/d984223/php/langage/definir-timezone-fonction-choix-l-utilisateur/
                        //$datetime = new DateTime('now', new DateTimeZone('UTC'));
