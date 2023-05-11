@@ -38,7 +38,7 @@ else{
             '<span class="font-weight-bold responsive-show">Nombre de réponses<br></span>'.
             ($quiz['nbresults'] ? $quiz['nbresults'] : "-").'</div>'.
             '<div class="col-12 col-md-1 text-md-center">'.
-            '<span class="font-weight-bold responsive-show">Taux de succès<br></span>'.
+            '<span class="font-weight-bold responsive-show">Taux de succès (%)<br></span>'.
             ($quiz['nbresults'] ? (100 * round($quiz['nbok'] / $quiz['nbresults'], 3)) : "-").'</div>'.
         '</div>';
     }
