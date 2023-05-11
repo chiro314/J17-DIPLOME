@@ -61,7 +61,7 @@ global $message;
 
 <!--window to delete a session ://////////////////////////////////////////////////////////////////////-->
 
-<div class="row center mb-2" id="div-form-delete-session">
+<div class="row center mb-2 px-2" id="div-form-delete-session">
     <div class="col-12 offset-md-2 col-md-8 bg-warning rounded border border-primary" >
         <br>
         <p id="p-session-supp-title" class="text-center h5">Supprimer la session</p>   
@@ -88,7 +88,7 @@ global $message;
         <br>
         <p class="text-center h5">Créer une session</p>
 
-        <form  id="form_create_session" name="form_create_session" action="index.php" method="POST">
+        <form class="pl-2" id="form_create_session" name="form_create_session" action="index.php" method="POST">
             
             <!--Session-->
             <div class="row">
@@ -120,7 +120,7 @@ global $message;
 <!--THE SESSIONS LIST : ////////////////////////////////////////////////////////////////////////////////:-->
 <div class="row"><div class="col-12 div-of-rows">
 <!--Column headings :-->
-<div class="row font-weight-bold">
+<div class="row font-weight-bold responsive-hide">
     <div class="col-12 col-md-1"></div> <!--supp-->
     <div class="col-12 col-md-1"></div> <!--Maj-->
     <div class="col-12 col-md-1 text-center">Début</div> <!--draft, inline-->
@@ -139,20 +139,38 @@ if ($sessionsList != null){ // null when the table is empty
         <div class="row session-list">
             <!--link 'delete'-->
             <div class="col-12 col-md-1">
-                <a class="text-danger a-supp" onclick="deleteSession(<?php echo $session[SESSIONID] ?>, '<?php echo $session[TITLE] ?>', '<?php echo $session[SUBTITLE] ?>', <?php echo $session[ENDDATE] ?>)">Supp.</a>      
+                <div class="px-2 px-md-0">
+                    <a class="text-danger a-supp" onclick="deleteSession(<?php echo $session[SESSIONID] ?>, '<?php echo $session[TITLE] ?>', '<?php echo $session[SUBTITLE] ?>', <?php echo $session[ENDDATE] ?>)">Supp.</a>      
+                </div>
             </div>
             <!--link 'update'-->
             <div class="col-12 col-md-1">
-                <a class="text-info a-update" href="<?php echo 'index.php?controller=session&action=update&id='.$session[SESSIONID] ?>">Maj</a>       
+                <div class="px-2 px-md-0">
+                    <a class="text-info a-update" href="<?php echo 'index.php?controller=session&action=update&id='.$session[SESSIONID] ?>">Maj</a>       
+                </div>
             </div>
-            <div class="col-12 col-md-1 text-center"><?php echo ($session[SSTARTDATE] == 0 ? "-" : date("d/m/y", $session[SSTARTDATE])) ?></div>
-            <div class="col-12 col-md-1 text-center"><?php echo ($session[ENDDATE] == 0 ? "-" : date("d/m/y", $session[ENDDATE])) ?></div>
-            <div class="col-12 col-md-1 text-center"><?php echo $session[NBUSERS] ?></div>
-            <div class="col-12 col-md-4"><?php echo $session[TITLE].($session[SUBTITLE]=="" ? "" : " - ".$session[SUBTITLE]) ?></div>
-            <!--Quiz-->
-            <div class="col-12 col-md-3"><?php
+            <div class="col-12 col-md-1 text-md-center">
+                <span class="px-2 font-weight-bold responsive-show">Début<br></span>
+                <div class="px-2 px-md-0"><?php echo ($session[SSTARTDATE] == 0 ? "-" : date("d/m/y", $session[SSTARTDATE])) ?></div>
+            </div>
+            <div class="col-12 col-md-1 text-md-center">
+                <span class="px-2 font-weight-bold responsive-show">Fin<br></span>
+                <div class="px-2 px-md-0"><?php echo ($session[ENDDATE] == 0 ? "-" : date("d/m/y", $session[ENDDATE])) ?></div>
+            </div>
+            <div class="col-12 col-md-1 text-md-center">
+                <span class="px-2 font-weight-bold responsive-show">Users<br></span>
+                <div class="px-2 px-md-0"><?php echo $session[NBUSERS] ?></div>
+            </div>
+            <div class="col-12 col-md-4">
+                <span class="px-2 font-weight-bold responsive-show">Titre<br></span>
+                <div class="px-2 px-md-0"><?php echo $session[TITLE].($session[SUBTITLE]=="" ? "" : " - ".$session[SUBTITLE]) ?></div>
+            </div>
+                <!--Quiz-->
+            <div class="col-12 col-md-3">
+                <span class="px-2 font-weight-bold responsive-show">Quiz<br></span>
+                <?php
                 foreach($session[SESSIONQUIZ] as $sessionQuiz){ ?>   
-                    <li><?php echo $sessionQuiz[STATUS]." - ".$sessionQuiz[TITLE] ?></li><?php
+                    <li class="px-2 px-md-0"><?php echo $sessionQuiz[STATUS]." - ".$sessionQuiz[TITLE] ?></li><?php
             } ?> 
             </div>
         </div><?php 
