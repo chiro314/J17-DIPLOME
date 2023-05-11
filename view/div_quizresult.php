@@ -52,7 +52,7 @@
     private const QUESTIONKO = 0, EXPLANATIONTITLE = 1, EXPLANATION = 2;
 */
 ?>
-<div id="div-quiz-title"> <?php 
+<div id="div-quiz-title px-2"> <?php 
     if ($quizresult == null) echo "<span class='text-danger'>Le résultat de ce quiz n'est pas opérationnel.<br>Consultez votre formateur.</span>";
     else {
         //$duration = $quizresult['quizMaxDuration']; ?>
@@ -66,8 +66,9 @@
     } ?>
 </div>
 
-<div class="div-alert"></div> <?php
+<div class="div-alert px-2"></div> 
 
+<div class="px-2"><?php
 if ($quizresult != null){ ?>
     <div class="div-quiz-order"> <?php 
         if($quizresult['quizMaxDuration']) {
@@ -85,12 +86,6 @@ if ($quizresult != null){ ?>
     echo "Vous avez réalisé ce quiz en <span class='font-weight-bold'>".$strDuration."</span>";
     
     if($quizresult['quizMaxDuration']) {
-        /*
-        $timeUsedPerCent = 100 * round($durationInSec / (60 * $quizresult['quizMaxDuration']), 2);
-        echo " : vous avez donc utilisé <span class='font-weight-bold'>"
-            .$timeUsedPerCent
-            ." %</span> du temps disponible.";
-        */
         echo " : vous avez donc utilisé <span class='font-weight-bold'>"
             .timeusedpercent($durationInSec, $quizresult['quizMaxDuration'])
             ." %</span> du temps disponible.";
@@ -169,3 +164,4 @@ if ($failedquestions != null){ /////////////////////////////////////////////////
         } ?>
     </div><?php
 } ?>
+</div>
