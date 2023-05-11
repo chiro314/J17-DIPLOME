@@ -113,6 +113,9 @@ function carnationAlternationForClass(myClass){
     var lines = document.getElementsByClassName(myClass);
     var iWhite = 2;
     for(i=0;i<lines.length;i++) {
+
+//alert(myClass+".length: "+lines.length);
+
         if(lines[i].hidden == false){ 
 
             if(iWhite % 2 == 0) lines[i].style.background = "white";
@@ -177,6 +180,7 @@ function selectQuizConsistency(){
         }
     }
     carnationAlternationForClass("quiz-list"); 
+    
 }
 
 //init 
@@ -211,32 +215,38 @@ function selectAddUpdateSessionCreateQuiz(){
     
         numSelectSessionQuiz++; //index of the new quiz
 
-        div = '<div class="row" id="quiz_'+numSelectSessionQuiz+'_new">'; //no 'up_' but '_new'
-        div+= '<div class="col-12 col-md-2"><div class="row"><div class="col-12 col-md-3">';
-        div+= '<button class="border-0 bg-danger text-white rounded-circle" type="button"';
-        div+= ' onclick="supNewBind(\'quiz_'+numSelectSessionQuiz+'_new\');"';
-        div+= ' >X</button></div><div class="col-12 col-md-9">'; 
-        div+= '<label class="label" for="quiz_quiz_'+numSelectSessionQuiz+'_new">Quiz</label></div></div></div>';
+        div = '<div class="row py-2" id="quiz_'+numSelectSessionQuiz+'_new">'; //no 'up_' but '_new'
+        div+=   '<div class="col-12 col-md-2">';
+        div+=     '<button class="mr-2 border-0 bg-danger text-white rounded-circle" type="button"';
+        div+=     ' onclick="supNewBind(\'quiz_'+numSelectSessionQuiz+'_new\');"';
+        div+=     ' >X</button>Quiz';
+        div+=   '</div>';
 
-        div+= '<div class="col-12 col-md-10">';
-        div+= '<div class="row" onchange="updateSessionUpdateQuiz('+numSelectSessionQuiz+')">';
-        div+= '<div class="col-12 col-md-4">';
-        div+= '<input disabled="disabled" class="input-quiz" id="quiz_quiz_'+numSelectSessionQuiz+'_new"';
-        div+= ' name="quiz_quiz_'+numSelectSessionQuiz+'_new" type="text" value="'+quiz+'">';
-        div+= '<input id="quiz_id_'+numSelectSessionQuiz+'_new"';
-        div+= ' name="quiz_id_'+numSelectSessionQuiz+'_new" type="hidden" value="'+idquiz+'">';
-        div+= '</div>'; 
+        div+=   '<div class="col-12 col-md-10">';
+        div+=     '<div class="row" onchange="updateSessionUpdateQuiz('+numSelectSessionQuiz+')">';
+        div+=       '<div class="col-12 col-md-4">';
+        div+=         '<span class="font-weight-bold responsive-show">Statut - Titre<br></span>';                                                   
+        div+=         '<input disabled="disabled" class="input-quiz" id="quiz_quiz_'+numSelectSessionQuiz+'_new"';
+        div+=         ' name="quiz_quiz_'+numSelectSessionQuiz+'_new" type="text" value="'+quiz+'">';
+        div+=         '<input id="quiz_id_'+numSelectSessionQuiz+'_new"';
+        div+=         ' name="quiz_id_'+numSelectSessionQuiz+'_new" type="hidden" value="'+idquiz+'">';
+        div+=       '</div>'; 
 
-        div+= '<div class="col-12 col-md-2 text-right">';  
-        div+= '<input class="session_quiz_minutesduration" id="session_quiz_minutesduration'+numSelectSessionQuiz+'_new" name="session_quiz_minutesduration'+numSelectSessionQuiz+'_new" type="time" value=""></div>';                   
+        div+=       '<div class="col-12 col-md-2 text-md-right">';
+        div+=         '<span class="font-weight-bold responsive-show">Durée (minutes)<br></span>';                                      
+        div+=         '<input class="session_quiz_minutesduration" id="session_quiz_minutesduration'+numSelectSessionQuiz+'_new" name="session_quiz_minutesduration'+numSelectSessionQuiz+'_new" type="time" value=""></div>';                   
 
-        div+= '<div class="col-12 col-md-3 text-center">';   
-        div+= '<input class="session_quiz_openingdate" id="session_quiz_openingdate'+numSelectSessionQuiz+'_new" name="session_quiz_openingdate'+numSelectSessionQuiz+'_new" type="datetime-local" value=""></div>';
+        div+=       '<div class="col-12 col-md-3 text-md-center">';
+        div+=         '<span class="font-weight-bold responsive-show">Date d\'ouverture<br></span>';                              
+        div+=         '<input class="session_quiz_openingdate" id="session_quiz_openingdate'+numSelectSessionQuiz+'_new" name="session_quiz_openingdate'+numSelectSessionQuiz+'_new" type="datetime-local" value=""></div>';
 
-        div+= '<div class="col-12 col-md-3 text-left">';
-        div+= '<input class="session_quiz_closingdate" id="session_quiz_closingdate'+numSelectSessionQuiz+'_new" name="session_quiz_closingdate'+numSelectSessionQuiz+'_new" type="datetime-local" value=""></div>';
-    
-        div+= '</div></div></div>';
+        div+=       '<div class="col-12 col-md-3 text-left">';
+        div+=         '<span class="font-weight-bold responsive-show">Date de fermeture)<br></span>';                                   
+        div+=         '<input class="session_quiz_closingdate mb-2" id="session_quiz_closingdate'+numSelectSessionQuiz+'_new" name="session_quiz_closingdate'+numSelectSessionQuiz+'_new" type="datetime-local" value=""></div>';
+        div+=     '</div>';
+        div+=   '</div>';
+        div+= '</div>';
+
         div+= '</div>'; //I don't understand why this closing div is needed to align on the right !?
 
         //Add the div (string div) after the div title with id='div-titleUpdateSessionCreateQuiz'
@@ -248,6 +258,8 @@ function selectAddUpdateSessionCreateQuiz(){
 
 function supNewBind(divid){ 
     $("#"+divid).remove();
+    $("#div-select-quiz").prop('hidden', true);
+    $("#div-select-account").prop('hidden', true);
 }
 
 function up_supUpdateSessionCreateQuiz(num){ //existing quiz to unbind 
@@ -255,9 +267,10 @@ function up_supUpdateSessionCreateQuiz(num){ //existing quiz to unbind
     $("#up_quiz_action_"+num).val("delete");
 
     $("#up_quiz_"+num).hide();
-
+    $("#up_quiz_"+num).css("display","none");
+    $("#up_quiz_"+num).attr("style", "display:none")
+    
     //hide the select list of quiz
-    //$("#div-addUpdateQuizCreatequestionShowQuestions").prop('hidden', true);
     $("#div-select-quiz").prop('hidden', true);
 }
 
@@ -413,23 +426,24 @@ function selectAddUpdateSessionCreateAccount(){
     
         numSelectSessionAccount++; //index of the new account
 
-        div = '<div class="row" id="account_'+numSelectSessionAccount+'_new">'; //no 'up_' but '_new'
-        div+= '<div class="col-12 col-md-2"><div class="row"><div class="col-12 col-md-3">';
-        div+= '<button class="border-0 bg-danger text-white rounded-circle" type="button"';
-        div+= ' onclick="supNewBind(\'account_'+numSelectSessionAccount+'_new\');"';
-        div+= ' >X</button></div><div class="col-12 col-md-9">'; 
-        div+= '<label class="label" for="account_account_'+numSelectSessionAccount+'_new">Compte</label></div></div></div>';
+        div = '<div class="row py-2" id="account_'+numSelectSessionAccount+'_new">'; //no 'up_' but '_new'
+        div+=   '<div class="col-12 col-md-2">';
+        div+=     '<button class="mr-2 border-0 bg-danger text-white rounded-circle" type="button"';
+        div+=     ' onclick="supNewBind(\'account_'+numSelectSessionAccount+'_new\');"';
+        div+=     ' >X</button>Compte';
+        div+=   '</div>';
 
-        div+= '<div class="col-12 col-md-10">';
-        div+= '<div class="row" onchange="updateSessionUpdateAccount('+numSelectSessionAccount+')">';
-        div+= '<div class="col-12 col-md-12">';
-        div+= '<input disabled="disabled" class="input-account" id="account_account_'+numSelectSessionAccount+'_new"';
-        div+= ' name="account_account_'+numSelectSessionAccount+'_new" type="text" value="'+account+'">';
-        div+= '<input id="account_id_'+numSelectSessionAccount+'_new"';
-        div+= ' name="account_id_'+numSelectSessionAccount+'_new" type="hidden" value="'+idaccount+'">';
-        div+= '</div>'; 
-
-        div+= '</div></div></div>';
+        div+=   '<div class="col-12 col-md-10">';
+        div+=     '<div class="row" onchange="updateSessionUpdateAccount('+numSelectSessionAccount+')">';
+        div+=       '<div class="col-12 col-md-12">';
+        div+=         '<input disabled="disabled" class="input-account" id="account_account_'+numSelectSessionAccount+'_new"';
+        div+=         ' name="account_account_'+numSelectSessionAccount+'_new" type="text" value="'+account+'">';
+        div+=         '<input id="account_id_'+numSelectSessionAccount+'_new"';
+        div+=         ' name="account_id_'+numSelectSessionAccount+'_new" type="hidden" value="'+idaccount+'">';
+        div+=       '</div>'; 
+        div+=     '</div>';
+        div+=   '</div>';
+        div+= '</div>';
         div+= '</div>'; //I don't understand why this closing div (a priori supernumerary) is needed to align on the right !?
 
         //Add the div (string div) after the div of the 2 buttons with id='div-addUpdateSessionCreateAccount'
@@ -446,7 +460,6 @@ function up_supUpdateSessionCreateAccount(num){ //existing quiz to unbind
     $("#up_account_"+num).hide();
 
     //hide the select list of accounts
-    //$("#div-addUpdateQuizCreatequestionShowQuestions").prop('hidden', true);
     $("#div-select-account").prop('hidden', true);
 }
 
@@ -664,9 +677,9 @@ $("#bt-create-quiz").click(
 );
 
 ///////////////////////////////div_questions_list.php : filter////////////////////////////////////////////////////
-
+/*
 function carnationAlternation(){
-    //white-grey alternation
+    //white-grey alternation (CSS ".div-of-rows" cann't be used because of the filter)
     var lines = document.getElementsByClassName("question-list");
     var iWhite = 2;
     for(i=0;i<lines.length;i++) {
@@ -679,7 +692,9 @@ function carnationAlternation(){
         }  
     }
 }
-///carnationAlternation();
+*/
+//carnationAlternation();
+carnationAlternationForClass("question-list");
 
 //Questions filtering
 function selectFilter(){
@@ -760,31 +775,35 @@ function addCreateQuestionCreateAnswer(){  //create an empty shell
     if(numAddCreateQuestionCreateAnswer <NBRESPONSESMAX){
         numAddCreateQuestionCreateAnswer++; //index of the new answer
 
-        divAnswer = '<div class="row" id="answer_';
-        divAnswer+= numAddCreateQuestionCreateAnswer+'"><div class="col-12 col-md-2"><div class="row"><div class="col-12 col-md-3">';
-        divAnswer+= '<button class="border-0 bg-danger text-white rounded-circle" type="button" onclick="supCreateQuestionCreateAnswer(\'';
-        divAnswer+= 'answer_'+numAddCreateQuestionCreateAnswer + '\');">X</button></div><div class="col-12 col-md-9">'; 
-        divAnswer+= '<label class="label" for="answer_answer_';
-        divAnswer+= numAddCreateQuestionCreateAnswer+'">Réponse</label></div></div></div>';
+        divAnswer = '<div class="row py-2" id="answer_';
+        divAnswer+=  numAddCreateQuestionCreateAnswer+'">';
+        divAnswer+=   '<div class="col-12 col-md-2">';
+        divAnswer+=     '<button class="mr-2 border-0 bg-danger text-white rounded-circle" type="button" onclick="supCreateQuestionCreateAnswer(\'';
+        divAnswer+=     'answer_'+numAddCreateQuestionCreateAnswer + '\');">X</button>'; 
+        divAnswer+=     'Réponse';
+        divAnswer+=   '</div>';
 
-        divAnswer+= '<div class="col-12 col-md-10"><div class="row"><div class="col-12 col-md-7">';
-        divAnswer+= '<input class="input-answer" id="answer_answer_';
-        divAnswer+= numAddCreateQuestionCreateAnswer+'" name="answer_answer_';
-        divAnswer+= numAddCreateQuestionCreateAnswer+'" type="text" value="" required></div>';
-        divAnswer+= '<div class="col-12 col-md-2">';
-        divAnswer+= '<label for="answer_ok_';
-        divAnswer+= numAddCreateQuestionCreateAnswer+'">Bonne réponse</label></div>';
-        divAnswer+= '<div class="col-12 col-md-1">';
-        divAnswer+= '<input class="text-left" id="answer_ok_';
-        divAnswer+= numAddCreateQuestionCreateAnswer+'" name="answer_ok_';
-        divAnswer+= numAddCreateQuestionCreateAnswer+'" type="checkbox"></div>';
-        divAnswer+= '<div class="col-12 col-md-1">';
-        divAnswer+= '<label class="label-answer" for="answer_status_';
-        divAnswer+= numAddCreateQuestionCreateAnswer+'">Publier</label></div>';
-        divAnswer+= '<div class="col-12 col-md-1">';   
-        divAnswer+= '<input id="answer_status_';
-        divAnswer+= numAddCreateQuestionCreateAnswer+'" name="answer_status_';
-        divAnswer+= numAddCreateQuestionCreateAnswer+'" type="checkbox"></div></div></div></div>';
+        divAnswer+=   '<div class="col-12 col-md-10"><div class="row">';
+        divAnswer+=     '<div class="col-12 col-md-7">';
+        divAnswer+=       '<input class="input-answer" id="answer_answer_';
+        divAnswer+=       numAddCreateQuestionCreateAnswer+'" name="answer_answer_';
+        divAnswer+=       numAddCreateQuestionCreateAnswer+'" type="text" value="" required></div>';
+        
+        divAnswer+=   '<div class="col-12 col-md-3">';
+        divAnswer+=     '<label class="d-inline-block mr-2" for="answer_ok_';
+        divAnswer+=     numAddCreateQuestionCreateAnswer+'">Bonne réponse</label>';
+        divAnswer+=     '<input class="text-left" id="answer_ok_';
+        divAnswer+=     numAddCreateQuestionCreateAnswer+'" name="answer_ok_';
+        divAnswer+=     numAddCreateQuestionCreateAnswer+'" type="checkbox"></div>';
+
+        divAnswer+=   '<div class="col-12 col-md-2">';
+        divAnswer+=     '<label class="d-inline-block mr-2" for="answer_status_';
+        divAnswer+=     numAddCreateQuestionCreateAnswer+'">Publier</label>';
+        divAnswer+=     '<input id="answer_status_';
+        divAnswer+=     numAddCreateQuestionCreateAnswer+'" name="answer_status_';
+        divAnswer+=     numAddCreateQuestionCreateAnswer+'" type="checkbox"></div>';
+        divAnswer+= '</div>';
+        //</div></div>';
 
         //Add the div after the div with id='div-addCreateQuestionCreateAnswer'
         $(divAnswer).insertAfter("#div-addCreateQuestionCreateAnswer");
@@ -809,30 +828,37 @@ function addUpdateQuestionCreateAnswer(){
         numAddUpdateQuestionCreateAnswer++; //index of the new answer
 
         divAnswer = '<div class="row" id="answer_';
-        divAnswer+= numAddUpdateQuestionCreateAnswer+'_new"><div class="col-12 col-md-2"><div class="row"><div class="col-12 col-md-3">';
-        divAnswer+= '<button class="border-0 bg-danger text-white rounded-circle" type="button" onclick="supCreateQuestionCreateAnswer(\'';
-        divAnswer+= 'answer_'+numAddUpdateQuestionCreateAnswer + '_new\');">X</button></div><div class="col-12 col-md-9">'; 
-        divAnswer+= '<label class="label" for="answer_answer_';
-        divAnswer+= numAddUpdateQuestionCreateAnswer+'_new">Réponse</label></div></div></div>';
+        divAnswer+=  numAddUpdateQuestionCreateAnswer+'_new">';
+        divAnswer+=    '<div class="col-12 col-md-2">';
+        divAnswer+=      '<button class="mr-2 border-0 bg-danger text-white rounded-circle" type="button" onclick="supCreateQuestionCreateAnswer(\'';
+        divAnswer+=      'answer_'+numAddUpdateQuestionCreateAnswer + '_new\');">X</button>';
+        divAnswer+=      'Réponse';
+        divAnswer+=    '</div>';
 
-        divAnswer+= '<div class="col-12 col-md-10"><div class="row"><div class="col-12 col-md-7">';
-        divAnswer+= '<input class="input-answer" id="answer_answer_';
-        divAnswer+= numAddUpdateQuestionCreateAnswer+'_new" name="answer_answer_';
-        divAnswer+= numAddUpdateQuestionCreateAnswer+'_new" type="text" value="" required></div>'; //
-        divAnswer+= '<div class="col-12 col-md-2">';
-        divAnswer+= '<label for="answer_ok_';
-        divAnswer+= numAddUpdateQuestionCreateAnswer+'_new">Bonne réponse</label></div>';
-        divAnswer+= '<div class="col-12 col-md-1">';
-        divAnswer+= '<input class="text-left" id="answer_ok_';
-        divAnswer+= numAddUpdateQuestionCreateAnswer+'_new" name="answer_ok_';
-        divAnswer+= numAddUpdateQuestionCreateAnswer+'_new" type="checkbox"></div>';
-        divAnswer+= '<div class="col-12 col-md-1">';
-        divAnswer+= '<label class="label-answer" for="answer_status_';
-        divAnswer+= numAddUpdateQuestionCreateAnswer+'_new">Publier</label></div>';
-        divAnswer+= '<div class="col-12 col-md-1">';   
-        divAnswer+= '<input id="answer_status_';
-        divAnswer+= numAddUpdateQuestionCreateAnswer+'_new" name="answer_status_';
-        divAnswer+= numAddUpdateQuestionCreateAnswer+'_new" type="checkbox"></div></div></div></div>';
+        divAnswer+=    '<div class="col-12 col-md-10">';
+        divAnswer+=      '<div class="row">';
+        divAnswer+=        '<div class="col-12 col-md-7">';
+        divAnswer+=          '<input class="input-answer" id="answer_answer_';
+        divAnswer+=           numAddUpdateQuestionCreateAnswer+'_new" name="answer_answer_';
+        divAnswer+=           numAddUpdateQuestionCreateAnswer+'_new" type="text" value="" required>';
+        divAnswer+=        '</div>'; //
+        divAnswer+=        '<div class="col-12 col-md-3">';
+        divAnswer+=          '<label for="answer_ok_';
+        divAnswer+=           numAddUpdateQuestionCreateAnswer+'_new">Bonne réponse</label>';
+        divAnswer+=          '<input class="d-inline-block ml-1" id="answer_ok_';
+        divAnswer+=           numAddUpdateQuestionCreateAnswer+'_new" name="answer_ok_';
+        divAnswer+=           numAddUpdateQuestionCreateAnswer+'_new" type="checkbox">';
+        divAnswer+=        '</div>';
+        divAnswer+=        '<div class="col-12 col-md-2">';
+        divAnswer+=          '<label class="label-answer" for="answer_status_';
+        divAnswer+=           numAddUpdateQuestionCreateAnswer+'_new">Publier</label>';   
+        divAnswer+=          '<input class="d-inline-block ml-1" id="answer_status_';
+        divAnswer+=           numAddUpdateQuestionCreateAnswer+'_new" name="answer_status_';
+        divAnswer+=           numAddUpdateQuestionCreateAnswer+'_new" type="checkbox">';
+        divAnswer+=        '</div>';
+        divAnswer+=      '</div>';
+        divAnswer+=   '</div>';
+        divAnswer+= '</div>';
 
         //Add the div after the div with id='div-addUpdateQuestionCreateAnswer'
         $(divAnswer).insertAfter("#div-addUpdateQuestionCreateAnswer");
@@ -993,6 +1019,9 @@ function onChangeDivAccountData(){
 
 function crea_supUpdateAccountCreateSession(divid){ //supp. a new binded session
     $("#"+divid).remove();
+
+    $("#div-addUpdateAccountCreatesessionShowSessions").prop('hidden', true);
+    ///
 }
 
 function up_supUpdateAccountExistingSession(num){ //supp. an old binded session 
@@ -1003,6 +1032,7 @@ function up_supUpdateAccountExistingSession(num){ //supp. an old binded session
 
     //hide the select list of sessions (update account)
     $("#div-addUpdateAccountCreatesessionShowSessions").prop('hidden', true);
+    //$("#div-addUpdateAccountCreatesessionShowSessions").hide();
 }
 //?/ not used
 /*
@@ -1054,7 +1084,10 @@ function selectSessionConsistency(){
         }
     }
 
-    carnationAlternation();
+    //carnationAlternation();
+    carnationAlternationForClass("add-session-list");
+    $("#addCreateAccountSessions option").prop('selected', false); 
+    
 }
 
 
@@ -1101,14 +1134,14 @@ function addUpdateAccountCreatesession(){
         numAddUpdateAccountCreatesession++; //index of the new session
 
         divAnswer = '<div class="row" id="session_'+numAddUpdateAccountCreatesession+'_new">';
-        divAnswer+= '<div class="col-12 col-md-2"><div class="row"><div class="col-12 col-md-3">';
-        divAnswer+= '<button class="border-0 bg-danger text-white rounded-circle" type="button"';
+        divAnswer+= '<div class="col-12 col-md-2">';
+        divAnswer+= '<button class="mr-2 border-0 bg-danger text-white rounded-circle" type="button"';
         divAnswer+= ' onclick="crea_supUpdateAccountCreateSession(\'session_'+numAddUpdateAccountCreatesession+'_new\');"';
-        divAnswer+= ' >X</button></div><div class="col-12 col-md-9">'; 
-        divAnswer+= '<label class="label" for="session_session_'+numAddUpdateAccountCreatesession+'_new">Session</label></div></div></div>';
+        divAnswer+= ' >X</button>'; 
+        divAnswer+= 'Session</div>';
 
         divAnswer+= '<div class="col-12 col-md-10"><div class="row"><div class="col-12">';  //class="col-12 col-md-7"
-        divAnswer+= '<input disabled="disabled" class="input" id="session_session_'+numAddUpdateAccountCreatesession+'_new"';
+        divAnswer+= '<input disabled="disabled" class="mb-1 input" id="session_session_'+numAddUpdateAccountCreatesession+'_new"';
         divAnswer+= ' name="session_session_'+numAddUpdateAccountCreatesession+'_new" type="text" value="'+session+'">';
         divAnswer+= '<input id="session_id_'+numAddUpdateAccountCreatesession+'_new"';
         divAnswer+= ' name="session_id_'+numAddUpdateAccountCreatesession+'_new" type="hidden" value="'+idsession+'">';
@@ -1168,6 +1201,7 @@ function onChangeDivQuizData(){
 
 function crea_supUpdateQuizCreateQuestion(divid){ //new answer (à coder)
     $("#"+divid).remove();
+    $("#div-addUpdateQuizCreatequestionShowQuestions").prop('hidden', true);
 }
 
 function up_supUpdateQuizExistingQuestion(num){ //existing question 
@@ -1279,37 +1313,38 @@ function addUpdateQuizCreatequestion(){ //div_quiz.php
     if(numAddUpdateQuizCreatequestion < NBQUESTIONSMAX){
         numAddUpdateQuizCreatequestion++; //index of the new question
 
-        divAnswer = '<div class="row" id="question_'+numAddUpdateQuizCreatequestion+'_new">';
-        divAnswer+= '<div class="col-12 col-md-2"><div class="row"><div class="col-12 col-md-3">';
-        divAnswer+= '<button class="border-0 bg-danger text-white rounded-circle" type="button"';
-        divAnswer+= ' onclick="crea_supUpdateQuizCreateQuestion(\'question_'+numAddUpdateQuizCreatequestion+'_new\');"';
-        divAnswer+= ' >X</button></div><div class="col-12 col-md-9">'; 
-        divAnswer+= '<label class="label" for="question_question_'+numAddUpdateQuizCreatequestion+'_new">Question</label></div></div></div>';
+        divAnswer = '<div class="py-2 row" id="question_'+numAddUpdateQuizCreatequestion+'_new">';
+        divAnswer+=   '<div class="col-12 col-md-2">';
+        divAnswer+=     '<button class="mr-2 border-0 bg-danger text-white rounded-circle" type="button"';
+        divAnswer+=     ' onclick="crea_supUpdateQuizCreateQuestion(\'question_'+numAddUpdateQuizCreatequestion+'_new\');"';
+        divAnswer+=     ' >X</button>Question';
+        divAnswer+=   '</div>';
 
-        divAnswer+= '<div class="col-12 col-md-10"><div class="row"><div class="col-12 col-md-7">';
-        divAnswer+= '<input disabled="disabled" class="input-question" id="question_question_'+numAddUpdateQuizCreatequestion+'_new"';
-        divAnswer+= ' name="question_question_'+numAddUpdateQuizCreatequestion+'_new" type="text" value="'+question+'">';
-        divAnswer+= '<input id="question_id_'+numAddUpdateQuizCreatequestion+'_new"';
-        divAnswer+= ' name="question_id_'+numAddUpdateQuizCreatequestion+'_new" type="hidden" value="'+idquestion+'">';
-        divAnswer+= '</div>'; 
+        divAnswer+=   '<div class="col-12 col-md-10"><div class="row"><div class="col-12 col-md-7">';
+        divAnswer+=     '<input disabled="disabled" class="input-question" id="question_question_'+numAddUpdateQuizCreatequestion+'_new"';
+        divAnswer+=     ' name="question_question_'+numAddUpdateQuizCreatequestion+'_new" type="text" value="'+question+'">';
+        divAnswer+=     '<input id="question_id_'+numAddUpdateQuizCreatequestion+'_new"';
+        divAnswer+=     ' name="question_id_'+numAddUpdateQuizCreatequestion+'_new" type="hidden" value="'+idquestion+'">';
+        divAnswer+=   '</div>'; 
 
-        divAnswer+= '<div class="col-12 col-md-1 ml-md-3">';
-        divAnswer+= '<label for="quiz_question_numorder_'+numAddUpdateQuizCreatequestion+'_new">Ordre</label></div>';
+        divAnswer+=   '<div class="col-12 col-md-2 ml-md-3">';
+        divAnswer+=     '<span class="d-inline-block mr-1">Ordre</span>';
+        divAnswer+=     '<select class="d-inline-block my-1 my-md-0" name="quiz_question_numorder_'+numAddUpdateQuizCreatequestion+'_new" id="quiz_question_numorder_'+numAddUpdateQuizCreatequestion+'_new" value="0">';
+        divAnswer+=       '<option value="0" selected>0</option>';
+        divAnswer+=       '<option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option>';
+        divAnswer+=     '</select>';
+        divAnswer+=   '</div>';
 
-        divAnswer+= '<div class="col-12 col-md-1">';
-        divAnswer+= '<select name="quiz_question_numorder_'+numAddUpdateQuizCreatequestion+'_new" id="quiz_question_numorder_'+numAddUpdateQuizCreatequestion+'_new" value="0">';
-        divAnswer+= '<option value="0" selected>0</option>';
-        divAnswer+= '<option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option>';
-        divAnswer+= '</select></div>';
+        divAnswer+=   '<div class="col-12 col-md-2 ml-md-3">';
+        divAnswer+=     '<span class="d-inline-block mr-1">Poids</span>';
+        divAnswer+=     '<select class="d-inline-block my-1 my-md-0" name="quiz_question_weight_'+numAddUpdateQuizCreatequestion+'_new" id="quiz_question_weight_'+numAddUpdateQuizCreatequestion+'_new" value="1">';
+        divAnswer+=       '<option value="1" selected>1</option>';
+        divAnswer+=       '<option value="2">2</option><option value="3">3</option>';
+        divAnswer+=     '</select>';
+        divAnswer+=   '</div>';
+        divAnswer+= '</div>';
 
-        divAnswer+= '<div class="col-12 col-md-1 ml-md-3">';
-        divAnswer+= '<label for="quiz_question_weight_'+numAddUpdateQuizCreatequestion+'_new">Poids</label></div>';
-
-        divAnswer+= '<div class="col-12 col-md-1">';
-        divAnswer+= '<select name="quiz_question_weight_'+numAddUpdateQuizCreatequestion+'_new" id="quiz_question_weight_'+numAddUpdateQuizCreatequestion+'_new" value="1">';
-        divAnswer+= '<option value="1" selected>1</option>';
-        divAnswer+= '<option value="2">2</option><option value="3">3</option>';
-        divAnswer+= '</select></div></div></div></div>';
+    
 
         //Add the div after the div with id='div-addUpdateQuizCreatequestion'
         $(divAnswer).insertAfter("#div-addUpdateQuizCreatequestion");
