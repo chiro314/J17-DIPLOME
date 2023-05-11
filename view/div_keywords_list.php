@@ -141,7 +141,7 @@ global $message;
 </div>
 
 <!--List : Keywords and their questions :-->
-<div class="row">
+<div class="row px-2">
     <!--Keywords :-->
     <div class="col-12 col-md-5 div-of-rows">
         <!--Keyword headings :-->
