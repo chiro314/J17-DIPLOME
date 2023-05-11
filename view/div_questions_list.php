@@ -53,7 +53,7 @@
 global $message;
 ?>
 <br>
-<p class="text-center h4 mt-2"><?php echo $title ?></p>
+<p class="text-center h4 mt-2 mx-2"><?php echo $title ?></p>
 
 <!-- The 2 buttons : /////////////////////////////////////////////////////////////////////////////////-->
 <div class="row">
@@ -78,7 +78,7 @@ global $message;
 
 <!--window to delete a question ://////////////////////////////////////////////////////////////////////-->
 
-<div class="row center mb-2" id="div-form-delete-question">
+<div class="row center mb-2 px-2" id="div-form-delete-question">
     <div class="col-12 offset-md-4 col-md-4 bg-warning rounded border border-primary" >
         <br>
         <p class="text-center h5">Supprimer la question</p>   
@@ -103,7 +103,7 @@ global $message;
         <br>
         <p class="text-center h5">Créer la question</p>
 
-        <form  id="form_create_question" name="form_create_question" action="index.php" method="POST">
+        <form class="pl-2" id="form_create_question" name="form_create_question" action="index.php" method="POST">
             
             <!--Question-->
             <div class="row">
@@ -152,30 +152,20 @@ global $message;
 
             <div class="row" id="answer_0">            
                 <div class="col-12 col-md-2">
-                    <div class="row">
-                        <div class="col-12 col-md-3">
-                            <button class="border-0 bg-danger text-white rounded-circle" type="button" onclick="supCreateQuestionCreateAnswer('answer_0');">X</button>
-                        </div>
-                        <div class="col-12 col-md-9">
-                            <label class="label" for="answer_answer_0">Réponse</label>
-                        </div>
-                    </div>               
+                    <button class="mr-1 border-0 bg-danger text-white rounded-circle" type="button" onclick="supCreateQuestionCreateAnswer('answer_0');">X</button>
+                    Réponse
                 </div>
                 <div class="col-12 col-md-10">
                     <div class="row">
                         <div class="col-12 col-md-7">
                             <input class="input-answer" id="answer_answer_0" name="answer_answer_0" type="text" value="" required>
                         </div>
-                        <div class="col-12 col-md-2">
-                            <label for="answer_ok_0">Bonne réponse</label>
-                        </div>
-                        <div class="col-12 col-md-1">   
+                        <div class="col-12 col-md-3">
+                            <label class="d-inline-block mr-1" for="answer_ok_0">Bonne réponse</label>
                             <input id="answer_ok_0" name="answer_ok_0" type="checkbox">
                         </div>
-                        <div class="col-12 col-md-1">
-                            <label for="answer_status_0">Publier</label>
-                        </div>
-                        <div class="col-12 col-md-1">
+                        <div class="col-12 col-md-2">
+                            <label class="d-inline-block mr-1" for="answer_status_0">Publier</label>
                             <input id="answer_status_0" name="answer_status_0" type="checkbox">
                         </div>
                     </div>
@@ -245,7 +235,7 @@ if ($questionsList != null){ // null when the table is empty
     $i=0;
     foreach($questionsList as $question){ ?>
         <!--JS can display only rows with class matching a chosen keyword-->
-        <div id="<?php echo 'div-question-list-'.$i ?>" class="row question-list<?php foreach($question[qKEYWORDID] as $keywordid) {echo " ".$keywordid;} ?>">
+        <div id="<?php echo 'div-question-list-'.$i ?>" class="px-2 row question-list<?php foreach($question[qKEYWORDID] as $keywordid) {echo " ".$keywordid;} ?>">
             <!--link 'delete'-->
             <div class="col-12 col-md-1">
                 <a class="text-danger a-supp" onclick="deleteQuestion(<?php echo $question[QUESTIONID] ?>, '<?php echo $question[QUESTION] ?>', '<?php echo $question[STATUS] ?>', '<?php echo $question[WIDGETID] ?>')">Supp.</a>      
