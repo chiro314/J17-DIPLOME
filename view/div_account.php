@@ -67,7 +67,7 @@ var_dump($opensessions);
         <br>
         <p id="up_p-account-maj" class="text-center h6"><span class="font-weight-bold"><?php echo $account[PROFILE]." ".$account[LOGIN]." (".$account[FIRSTNAME]." ".$account[NAME].")" ?></span></p>
 
-        <form id="form_update_account" name="form_update_account" action="index.php" method="POST">
+        <form class="px-2" id="form_update_account" name="form_update_account" action="index.php" method="POST">
             
             <!--Account : ///////////////////-->
 
@@ -129,19 +129,13 @@ var_dump($opensessions);
                 foreach($accountsessions as $session){  ?>  
                     <div class="row" id="up_session_<?php echo $i ?>">            
                         <div class="col-12 col-md-2">
-                            <div class="row">
-                                <div class="col-12 col-md-3">
-                                    <button class="border-0 bg-danger text-white rounded-circle" type="button" onclick="up_supUpdateAccountExistingSession('<?php echo $i ?>');">X</button>
-                                </div>
-                                <div class="col-12 col-md-9">
-                                    <label class="label" for="session_session_<?php echo $i ?>">Session</label>
-                                </div>
-                            </div>               
+                            <button class="mr-2 border-0 bg-danger text-white rounded-circle"  onclick="up_supUpdateAccountExistingSession('<?php echo $i ?>');">X</button>
+                            Session
                         </div>
                         <div class="col-12 col-md-10">
                             <div class="row"> <!--onchange="updateQuizUpdateQuestion(<?php //echo $i ?>);">-->
                                 <div class="col-12">
-                                    <input class="input" id="session_session_<?php echo $i ?>" name="session_session_<?php echo $i ?>" type="text" value="<?php echo ($session[ENDDATE]==0 ? "Pas de fin" : date("d/m/y", $session[ENDDATE]))." : ".$session[TITLE] ?>">
+                                    <input class="input mb-1" id="session_session_<?php echo $i ?>" name="session_session_<?php echo $i ?>" type="text" value="<?php echo ($session[ENDDATE]==0 ? "Pas de fin" : date("d/m/y", $session[ENDDATE]))." : ".$session[TITLE] ?>">
                                     <input id="session_id_<?php echo $i ?>" name="session_id_<?php echo $i ?>" type="hidden" value="<?php echo $session[SESSIONID] ?>">
                                     <input id="up_session_action_<?php echo $i ?>" name="up_session_action_<?php echo $i ?>" type="hidden" value="">
                                 </div>
@@ -166,7 +160,7 @@ var_dump($opensessions);
                                 $i=0;
                                 $session=[];
                                 foreach($opensessions as $session){ ?>
-                                    <option id="option-select-session_<?php echo $i ?>" class="text-wrap question-list" value="<?php echo $session[SESSIONID]."_" ?>"><?php echo ($session[ENDDATE]==0 ? "Pas de fin" : date("d/m/y", $session[ENDDATE]))." : ".$session[TITLE] ?></option>    <?php
+                                    <option id="option-select-session_<?php echo $i ?>" class="text-wrap add-session-list" value="<?php echo $session[SESSIONID]."_" ?>"><?php echo ($session[ENDDATE]==0 ? "Pas de fin" : date("d/m/y", $session[ENDDATE]))." : ".$session[TITLE] ?></option>    <?php
                                     $i++;
                                 }
                                 $nbsessionsdb = $i ?>
