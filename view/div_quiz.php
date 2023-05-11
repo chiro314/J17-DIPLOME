@@ -142,23 +142,38 @@ var_dump($questionList);
                 } 
                 else{ ?>
                     <div class="row sessions-list">
-                        <div class="col-12 col-md-5">---------</div>
-                        <div class="col-12 col-md-2 text-center">-</div>
-                        <div class="col-12 col-md-1 text-center">-</div> 
-                        <div class="col-12 col-md-2 text-center">-</div>
-                        <div class="col-12 col-md-2 text-center">-</div>
-                    </div>      <?php
+                        <div class="col-12 col-md-5">
+                            <span class="font-weight-bold responsive-show">Session<br></span>
+                            ---------
+                        </div>
+                        <div class="col-12 col-md-2 text-md-center">
+                            <span class="font-weight-bold responsive-show">du / au<br></span>
+                            -
+                        </div>
+                        <div class="col-12 col-md-1 text-md-center">
+                            <span class="font-weight-bold responsive-show">Durée du quiz<br></span>
+                            -
+                        </div> 
+                        <div class="col-12 col-md-2 text-md-center">
+                            <span class="font-weight-bold responsive-show">Ouverture du quiz<br></span>
+                            -
+                        </div>
+                        <div class="col-12 col-md-2 text-md-center">
+                            <span class="font-weight-bold responsive-show">Fermeture du quiz<br></span>
+                            -
+                        </div>
+                    </div> <?php
                 }  ?>
             </div>
         </div><br>
 
-        <form id="form_update_quiz" name="form_update_quiz" action="index.php" method="POST">
+        <form class="px-2" id="form_update_quiz" name="form_update_quiz" action="index.php" method="POST">
             
             <!--Quiz : ///////////////////-->
 
             <div class="row mb-2 mt-3">
                 <div class="col-12 col-md-2">
-                    <p><span class="font-weight-bold">Quiz</span></p>
+                    <p><span class="font-weight-bold">QUIZ</span></p>
                 </div>
                 <div class="col-12 col-md-3">
                     <button class="button button-max" type="button" onclick="up_quizRestor('<?php echo $quiz[STATUS] ?>')">Rétablir les données du quiz</button>
@@ -168,7 +183,7 @@ var_dump($questionList);
             <!--data-->
 
             <div onchange="onChangeDivQuizData()">
-                <div class="row">
+                <div class="row mt-3">
                     <div class="col-12">
                         <div class="row">
                             <div class="col-12 col-md-2">
@@ -182,12 +197,12 @@ var_dump($questionList);
                     </div>
                 </div>
 
-                <div class="row">
+                <div class="row mt-3">
                     <div class="col-12 col-md-2"><label class="label" for="up_quiz_subtitle">Soustitre</label></div>
                     <div class="col-12 col-md-10"><input class="input" id="up_quiz_subtitle" name="quiz_subtitle" type="text" value="<?php echo $quiz[SUBTITLE] ?>"></div>
                     <input id="quiz_subtitle_old" name="quiz_subtitle_old" type="hidden" value="<?php echo $quiz[SUBTITLE] ?>"> 
                 </div>
-                <div class="row">
+                <div class="row mt-3">
                     <div class="col-12 col-md-2 "><label id="l-quiz_status" for="up_quiz_status">Publier</label></div>
                     <div class="col-12 col-md-1 text-left"><input id="up_quiz_status" name="quiz_status" type="checkbox" <?php echo ($quiz[STATUS] == 'inline' ? ' checked' : '') ?>></div>
                     <input id="up_quiz_status_old" name="quiz_status_old" type="hidden" value="<?php echo $quiz[STATUS] ?>"> 
@@ -200,7 +215,7 @@ var_dump($questionList);
 
             <div class="row mb-2 mt-3" id="div-addUpdateQuizCreatequestion">
                 <div class="col-0 col-md-2">
-                    <p><span class="font-weight-bold">Questions du quiz</p>
+                    <p><span class="font-weight-bold">QUESTIONS DU QUIZ</p>
                 </div>
                 <div class="col-12 col-md-3">
                     <button class="button button-max" type="button" onclick="addUpdateQuizCreatequestionShowQuestions();">Ajouter une question</button>
@@ -211,16 +226,10 @@ var_dump($questionList);
             if($questions != null){  
                 $i=0;                      
                 foreach($questions as $question){  ?>  
-                    <div class="row" id="up_question_<?php echo $i ?>">            
+                    <div class="row py-2" id="up_question_<?php echo $i ?>">            
                         <div class="col-12 col-md-2">
-                            <div class="row">
-                                <div class="col-12 col-md-3">
-                                    <button class="border-0 bg-danger text-white rounded-circle" type="button" onclick="up_supUpdateQuizExistingQuestion('<?php echo $i ?>');">X</button>
-                                </div>
-                                <div class="col-12 col-md-9">
-                                    <label class="label" for="question_question_<?php echo $i ?>">Question</label>
-                                </div>
-                            </div>               
+                            <button class="mr-2 border-0 bg-danger text-white rounded-circle" type="button" onclick="up_supUpdateQuizExistingQuestion('<?php echo $i ?>');">X</button>
+                            Question            
                         </div>
                         <div class="col-12 col-md-10">
                             <div class="row" onchange="updateQuizUpdateQuestion(<?php echo $i ?>);">
@@ -229,11 +238,10 @@ var_dump($questionList);
                                     <input id="question_id_<?php echo $i ?>" name="question_id_<?php echo $i ?>" type="hidden" value="<?php echo $question[QUESTIONID] ?>">
                                     <input id="up_question_action_<?php echo $i ?>" name="up_question_action_<?php echo $i ?>" type="hidden" value="">
                                 </div>
-                                <div class="col-12 col-md-1 ml-md-3">
-                                    <label for="quiz_question_numorder_<?php echo $i ?>">Ordre</label>
-                                </div>
-                                <div class="col-12 col-md-1">   
-                                    <select name="quiz_question_numorder_<?php echo $i ?>" id="quiz_question_numorder_<?php echo $i ?>" value="<?php echo $question[NUMORDER] ?>">
+
+                                <div class="col-12 col-md-2 ml-md-3">
+                                    <span class="d-inline-block mr-0">Ordre</span>
+                                    <select class="d-inline-block my-1 my-md-0" name="quiz_question_numorder_<?php echo $i ?>" id="quiz_question_numorder_<?php echo $i ?>" value="<?php echo $question[NUMORDER] ?>">
                                         <option value="0" <?php echo $question[NUMORDER] == 0 ? " selected" : "" ?>>0</option>
                                         <option value="1" <?php echo $question[NUMORDER] == 1 ? " selected" : "" ?>>1</option>
                                         <option value="2" <?php echo $question[NUMORDER] == 2 ? " selected" : "" ?>>2</option>
@@ -241,11 +249,10 @@ var_dump($questionList);
                                         <option value="4" <?php echo $question[NUMORDER] == 4 ? " selected" : "" ?>>4</option>
                                     </select>
                                 </div>
-                                <div class="col-12 col-md-1 ml-md-3">
-                                    <label for="quiz_question_weight_<?php echo $i ?>">Poids</label>
-                                </div>
-                                <div class="col-12 col-md-1">   
-                                    <select name="quiz_question_weight_<?php echo $i ?>" id="quiz_question_weight_<?php echo $i ?>" value="<?php echo $question[QUESTIONWEIGHT] ?>">
+                                
+                                <div class="col-12 col-md-2 ml-md-3">
+                                    <span class="d-inline-block mr-0">Poids</span>   
+                                    <select class="d-inline-block my-1 my-md-0" name="quiz_question_weight_<?php echo $i ?>" id="quiz_question_weight_<?php echo $i ?>" value="<?php echo $question[QUESTIONWEIGHT] ?>">
                                         <option value="1" <?php echo $question[QUESTIONWEIGHT] == 1 ? " selected" : "" ?>>1</option>
                                         <option value="2" <?php echo $question[QUESTIONWEIGHT] == 2 ? " selected" : "" ?>>2</option>
                                         <option value="3" <?php echo $question[QUESTIONWEIGHT] == 3 ? " selected" : "" ?>>3</option>
