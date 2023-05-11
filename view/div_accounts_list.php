@@ -56,7 +56,7 @@
 //var_dump($accountsList);
 ?>
 <br>
-<p class="text-center h4 mt-2"><?php echo $title ?></p>
+<p class="text-center h4 mt-2 mx-2"><?php echo $title ?></p>
 
 <!-- The 2 buttons : /////////////////////////////////////////////////////////////////////////////////-->
 <div class="row">  <div class="col-12">
@@ -67,7 +67,7 @@
 
 <div class="row">  <div class="col-12">
     <div class="text-center">
-        <button class="button button-wide mb-2" id="bt-delete-account" type="button">Abandonner la Supp.</button>
+        <button class="mx-2 mb-2" id="bt-delete-account" type="button"><span class="d-block">Abandonner la Supp.</span></button>
     </div>
 </div></div>
 
@@ -77,7 +77,7 @@
 
 <!--window to delete an account (and its quiz results) ://////////////////////////////////////////////////////////////////////-->
 
-<div class="row center mb-2" id="div-form-delete-account">
+<div class="row center mb-2 px-2" id="div-form-delete-account">
     <div class="col-12 offset-md-4 col-md-4 bg-warning rounded border border-primary" >
         <br>
         <p id="p-account-supp-title" class="text-center h5">Supprimer le compte</p>   
@@ -102,11 +102,11 @@
         <br>
         <p class="text-center h5">Créer un compte</p>
 
-        <form  id="form_create_account" name="form_create_account" action="index.php" method="POST">
+        <form class="pl-2" id="form_create_account" name="form_create_account" action="index.php" method="POST">
             
             <!--Account-->
             <div class="row">
-                <div class="col-12 col-md-2 "><label class="label" for="account_login">login*</label></div>
+                <div class="col-12 col-md-2 "><label class="label " for="account_login">login*</label></div>
                 <div class="col-12 col-md-10"><input class="input" id="account_login" name="account_login" type="text" maxlength="SECURITY" value="" required></div>
             </div>
             <div class="row">    
@@ -161,46 +161,67 @@
 </div>
 
 <!--THE ACCOUNTS LIST : ////////////////////////////////////////////////////////////////////////////////:-->
-<div class="row"><div class="col-12 div-of-rows">
-<!--Column headings :-->
-<div class="row font-weight-bold">
-    <div class="col-12 col-md-1"></div> <!--supp-->
-    <div class="col-12 col-md-1"></div> <!--Maj-->
-    <div class="col-12 col-md-1">Login</div> <!--draft, inline-->
-    <div class="col-12 col-md-1">Profil</div>
-    <div class="col-12 col-md-2">Nom</div> <!--radio, checkbox-->
-    <div class="col-12 col-md-2">prénom</div> 
-    <div class="col-12 col-md-4">Sessions et résultats</div>
-</div><?php
+<div class="row">
+    <div class="col-12 div-of-rows">
+        <!--Column headings :-->
+        <div class="row font-weight-bold responsive-hide">
+            <div class="col-12 col-md-1"></div> <!--supp-->
+            <div class="col-12 col-md-1"></div> <!--Maj-->
+            <div class="col-12 col-md-1">Login</div> <!--draft, inline-->
+            <div class="col-12 col-md-1">Profil</div>
+            <div class="col-12 col-md-2">Nom</div> <!--radio, checkbox-->
+            <div class="col-12 col-md-2">prénom</div> 
+            <div class="col-12 col-md-4">Sessions et résultats</div>
+        </div><?php
 
-//The list :
+        //The list :
 
-if ($accountsList != null){ // null when the table is empty
-    $i=0;
-    foreach($accountsList as $account){ ?>
+        if ($accountsList != null){ // null when the table is empty
+            $i=0;
+            foreach($accountsList as $account){ ?>
 
-        <div class="row account-list">
-            <!--link 'delete'-->
-            <div class="col-12 col-md-1">
-                <a class="text-danger a-supp" onclick="deleteAccount('<?php echo $account[LOGIN] ?>', '<?php echo $account[PROFILE] ?>', '<?php echo $account[NAME] ?>', '<?php echo $account[FIRSTNAME] ?>', '<?php echo $account[COMPANY] ?>')">Supp.</a>      
-            </div>
-            <!--link 'update'-->
-            <div class="col-12 col-md-1">
-                <a class="text-info a-update" href="<?php echo 'index.php?controller=account&action=update&id='.$account[LOGIN] ?>">Maj</a>       
-            </div>
-            <div class="col-12 col-md-1"><?php echo $account[LOGIN] ?></div>
-            <div class="col-12 col-md-1"><?php echo $account[PROFILE] ?></div>
-            <div class="col-12 col-md-2"><?php echo $account[NAME] ?></div>
-            <div class="col-12 col-md-2"><?php echo $account[FIRSTNAME] ?></div>
-            <!--sessions-->
-            <div class="col-12 col-md-4"><?php
-                foreach($account[ACCOUNTSESSIONS] as $accountSession){ ?>   
-                    <li>Du <?php echo ($accountSession[SSTARTDATE] == 0 ? "-" : date('d/m/y',$accountSession[SSTARTDATE])) ?> au <?php echo ($accountSession[ENDDATE] == 0 ? "-" : date('d/m/y', $accountSession[ENDDATE])) ?> : 
-                    <?php echo ($accountSession[TITLE] == 0 ? "pas de session" : '<a class="text-info a-update" href="index.php?controller=account&action=reporting&ida='.$account[LOGIN].'&ids='.$accountSession[SESSIONID].'">'.$accountSession[TITLE].'</a>') ?></li><?php
-                } ?> 
-            </div>
-        </div><?php 
-        $i++;
-    }
-} ?>
-</div></div>
+                <div class="row account-list">
+                    <!--link 'delete'-->
+                    <div class="col-12 col-md-1">
+                        <div class="px-2 px-md-0">
+                            <a class="text-danger a-supp" onclick="deleteAccount('<?php echo $account[LOGIN] ?>', '<?php echo $account[PROFILE] ?>', '<?php echo $account[NAME] ?>', '<?php echo $account[FIRSTNAME] ?>', '<?php echo $account[COMPANY] ?>')">Supp.</a>      
+                        </div>
+                    </div>
+                    <!--link 'update'-->
+                    <div class="col-12 col-md-1">
+                        <div class="px-2 px-md-0">
+                            <a class="text-info a-update" href="<?php echo 'index.php?controller=account&action=update&id='.$account[LOGIN] ?>">Maj</a>       
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-1">
+                        <span class="px-2 font-weight-bold responsive-show">Login<br></span>
+                        <div class="px-2 px-md-0"><?php echo $account[LOGIN] ?></div>
+                    </div>
+                    <div class="col-12 col-md-1">
+                        <span class="px-2 font-weight-bold responsive-show">Profil<br></span>            
+                        <div class="px-2 px-md-0"><?php echo $account[PROFILE] ?></div>
+                    </div>    
+                    <div class="col-12 col-md-2">
+                        <span class="px-2 font-weight-bold responsive-show">Nom<br></span>            
+                        <div class="px-2 px-md-0"><?php echo $account[NAME] ?></div>
+                    </div>
+                    <div class="col-12 col-md-2">
+                        <span class="px-2 font-weight-bold responsive-show">Prénom<br></span>            
+                        <div class="px-2 px-md-0"><?php echo $account[FIRSTNAME] ?></div>
+                    </div>
+                    <!--sessions-->
+                    <div class="col-12 col-md-4">
+                        <span class="px-2 font-weight-bold responsive-show">Sessions et résultats<br></span>            
+                        <div class="px-2 px-md-0">
+                            <?php foreach($account[ACCOUNTSESSIONS] as $accountSession){ ?>   
+                                <li>Du <?php echo ($accountSession[SSTARTDATE] == 0 ? "-" : date('d/m/y',$accountSession[SSTARTDATE])) ?> au <?php echo ($accountSession[ENDDATE] == 0 ? "-" : date('d/m/y', $accountSession[ENDDATE])) ?> : 
+                                <?php echo ($accountSession[TITLE] == 0 ? "pas de session" : '<a class="text-info a-update" href="index.php?controller=account&action=reporting&ida='.$account[LOGIN].'&ids='.$accountSession[SESSIONID].'">'.$accountSession[TITLE].'</a>') ?></li><?php
+                            } ?> 
+                        </div>
+                    </div>
+                </div><?php 
+                $i++;
+            }
+        } ?>
+    </div>
+</div>
