@@ -120,12 +120,12 @@ if($session !=null){
         <br>
         <p id="up_p-session-maj" class="text-center h6"><span class="font-weight-bold"><?php echo $session[STITLE] ?></span></p> <!--id not used-->
         <br>
-        <form id="form_update_session" name="form_update_session" action="index.php" method="POST">  <!--not used by JS-->
+        <form class="px-2" id="form_update_session" name="form_update_session" action="index.php" method="POST">  <!--not used by JS-->
             
             <!--session : ///////////////////-->
             <div class="row mb-2 mt-3">
                 <div class="col-12 col-md-2">
-                    <p><span class="font-weight-bold">Session</span></p>
+                    <p><span class="font-weight-bold">SESSION</span></p>
                 </div>
                 <div class="col-12 col-md-3">
                     <button class="button button-max" type="button" id="up_session-restor" onclick="up_sessionRestor();">Rétablir les données d'origine</button> <!--id not used--> 
@@ -171,7 +171,7 @@ if($session !=null){
             
             <div class="row mb-2 mt-3">
                 <div class="col-12 col-md-2">
-                    <p><span class="font-weight-bold">Quiz</span></p>
+                    <p><span class="font-weight-bold">QUIZ</span></p>
                 </div>
                 <div class="col-12 col-md-3">
                     <button class="button button-max" id="button-quiz" type="button" onclick="up_sessionQuizRestor()">Rétablir les quiz d'origine</button>
@@ -214,12 +214,12 @@ if($session !=null){
             <!--Bound quiz-->
 
             <!--columns titles-->
-            <div class="row mb-2 mt-3" id="div-titleUpdateSessionCreateQuiz">
+            <div class="row mt-3 responsive-hide" id="div-titleUpdateSessionCreateQuiz">
                 <div class="col-12 col-md-2">
-                    <br>
+                    
                 </div>
                 <div class="col-12 col-md-4">
-                    <p><span class="font-weight-bold">Statut : Titre</span></p>
+                    <p><span class="font-weight-bold">Statut - Titre</span></p>
                 </div>
                 <div class="col-12 col-md-1">
                     <p><span class="font-weight-bold">Durée</span></p>
@@ -236,36 +236,34 @@ if($session !=null){
             if($sessionQuiz != null){
                 $i=0;                      
                 foreach($sessionQuiz as $oneQuiz){  ?>  
-                    <div class="row" id="up_quiz_<?php echo $i ?>">  
+                    <div class="row py-2" id="up_quiz_<?php echo $i ?>">  
                         <!--button 'X' (supp.)-->          
                         <div class="col-12 col-md-2">
-                            <div class="row">
-                                <div class="col-12 col-md-3">
-                                    <button class="border-0 bg-danger text-white rounded-circle" type="button" onclick="up_supUpdateSessionCreateQuiz('<?php echo $i ?>');">X</button>
-                                </div>
-                                <div class="col-12 col-md-9">
-                                    <label class="label" for="quiz_quiz_<?php echo $i ?>">Quiz</label>
-                                </div>
-                            </div>               
+                            <button class="mr-2 border-0 bg-danger text-white rounded-circle" type="button" onclick="up_supUpdateSessionCreateQuiz('<?php echo $i ?>');">X</button>
+                            Quiz              
                         </div>
                         <!--data-->
                         <div class="col-12 col-md-10">
                             <div class="row" onchange="updateSessionUpdateQuiz(<?php echo $i ?>);">
                                 <div class="col-12 col-md-4">
-                                    <input disabled="disabled" class="input-quiz" id="quiz_quiz_<?php echo $i ?>" name="quiz_quiz_<?php echo $i ?>" type="text" value="<?php echo $oneQuiz[STATUS]." : ".$oneQuiz[TITLE] ?>">
-                                    <input id="quiz_quiz_<?php echo $i ?>_old" name="quiz_quiz_<?php echo $i ?>_old" type="hidden" value="<?php echo $oneQuiz[STATUS]." : ".$oneQuiz[TITLE] ?>">
+                                    <span class="font-weight-bold responsive-show">Statut - Titre<br></span>                        
+                                    <input disabled="disabled" class="input-quiz" id="quiz_quiz_<?php echo $i ?>" name="quiz_quiz_<?php echo $i ?>" type="text" value="<?php echo $oneQuiz[STATUS]." - ".$oneQuiz[TITLE] ?>">   
+                                    <input id="quiz_quiz_<?php echo $i ?>_old" name="quiz_quiz_<?php echo $i ?>_old" type="hidden" value="<?php echo $oneQuiz[STATUS]." - ".$oneQuiz[TITLE] ?>">
                                     <input id="quiz_id_<?php echo $i ?>" name="quiz_id_<?php echo $i ?>" type="hidden" value="<?php echo $oneQuiz[QUIZID] ?>">
                                     <input id="up_quiz_action_<?php echo $i ?>" name="up_quiz_action_<?php echo $i ?>" type="hidden" value="">
                                 </div>
-                                <div class="col-12 col-md-2 text-right">   
+                                <div class="col-12 col-md-2 text-md-right">   
+                                    <span class="font-weight-bold responsive-show">Durée (minutes)<br></span>                        
                                     <input class="session_quiz_minutesduration" id="session_quiz_minutesduration<?php echo $i ?>" name="session_quiz_minutesduration<?php echo $i ?>" type="time" value="<?php echo $oneQuiz[DURATION] ? date('H:i',60 * $oneQuiz[DURATION]) : '' ?>">
                                     <input id="session_quiz_minutesduration<?php echo $i ?>_old" name="session_quiz_minutesduration<?php echo $i ?>_old" type="hidden" value="<?php echo $oneQuiz[DURATION] ? date('H:i',60 * $oneQuiz[DURATION]) : '' ?>">
                                 </div>
-                                <div class="col-12 col-md-3 text-center">   
+                                <div class="col-12 col-md-3 text-md-center">   
+                                    <span class="font-weight-bold responsive-show">Date d'ouverture<br></span>                        
                                     <input class="session_quiz_openingdate" id="session_quiz_openingdate<?php echo $i ?>" name="session_quiz_openingdate<?php echo $i ?>" type="datetime-local" value="<?php echo $oneQuiz[SQZOPENINGDATE] ? str_replace(' ','T',date('Y-m-d H:i',$oneQuiz[SQZOPENINGDATE])) :"" ?>" >
                                     <input id="session_quiz_openingdate<?php echo $i ?>_old" name="session_quiz_openingdate<?php echo $i ?>_old" type="hidden" value="<?php echo $oneQuiz[SQZOPENINGDATE] ? str_replace(' ','T',date('Y-m-d H:i',$oneQuiz[SQZOPENINGDATE])) :"" ?>">
                                 </div>
                                 <div class="col-12 col-md-3 text-left">   
+                                    <span class="font-weight-bold responsive-show">Date de fermeture<br></span>                        
                                     <input class="session_quiz_closingdate" id="session_quiz_closingdate<?php echo $i ?>" name="session_quiz_closingdate<?php echo $i ?>" type="datetime-local" value="<?php echo $oneQuiz[SQZCLOSINGDATE] ? str_replace(' ','T',date('Y-m-d H:i',$oneQuiz[SQZCLOSINGDATE])) :"" ?>" >
                                     <input id="session_quiz_closingdate<?php echo $i ?>_old" name="session_quiz_closingdate<?php echo $i ?>_old" type="hidden" value="<?php echo $oneQuiz[SQZCLOSINGDATE] ? str_replace(' ','T',date('Y-m-d H:i',$oneQuiz[SQZCLOSINGDATE])) :"" ?>">
                                 </div>
@@ -285,7 +283,7 @@ if($session !=null){
             <!--Button "Ajouter un compte"-->
             <div class="row mb-2 mt-3" id="div-addUpdateSessionCreateAccount">
                 <div class="col-12 col-md-2 pb-2">
-                    <p><span class="font-weight-bold">Comptes</span></p>
+                    <p><span class="font-weight-bold">COMPTES</span></p>
                 </div>
                 <div class="col-12 col-md-3">
                     <button class="button button-max" id="button-account" type="button" onclick="up_sessionAccountsRestor()">Rétablir les comptes d'origine</button>
@@ -332,17 +330,11 @@ if($session !=null){
             if($sessionAccounts != null){
                 $i=0;                      
                 foreach($sessionAccounts as $oneAccount){  ?>  
-                    <div class="row" id="up_account_<?php echo $i ?>">  
+                    <div class="row py-2" id="up_account_<?php echo $i ?>">  
                         <!--button 'X' (supp.)-->          
                         <div class="col-12 col-md-2">
-                            <div class="row">
-                                <div class="col-12 col-md-3">
-                                    <button class="border-0 bg-danger text-white rounded-circle" type="button" onclick="up_supUpdateSessionCreateAccount('<?php echo $i ?>');">X</button>
-                                </div>
-                                <div class="col-12 col-md-9">
-                                    <label class="label" for="account_account_<?php echo $i ?>">Compte</label>
-                                </div>
-                            </div>               
+                            <button class="mr-2 border-0 bg-danger text-white rounded-circle" type="button" onclick="up_supUpdateSessionCreateAccount('<?php echo $i ?>');">X</button>
+                            Compte               
                         </div>
                         <!--data-->
                         <div class="col-12 col-md-10">
