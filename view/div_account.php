@@ -114,7 +114,7 @@ var_dump($opensessions);
 
             <!--Already binded sessions (already created)-->
 
-            <div class="row mb-2 mt-3" id="div-addUpdateAccountCreatesession">
+            <div class="row mb-2 mt-3">
                 <div class="col-12 col-md-2">
                     <p><span class="font-weight-bold">Sessions du compte</p>
                 </div>
@@ -123,13 +123,37 @@ var_dump($opensessions);
                 </div>
             </div>
 
+            <!--Select of the list of open sessions, to add one session or more :-->
+
+            <div id="div-addUpdateAccountCreatesessionShowSessions"><?php
+                 
+                if ($opensessions != null){ // null when the table is empty ?>
+                    <div class="row">
+                        <div class="col-12 offset-md-2 col-md-10">
+                            <p><span class="responsive-show">Sessions (cliquer pour afficher la liste)<br></span>
+                                <select name="addCreateAccountSessions[]" id="addCreateAccountSessions" onchange="addUpdateAccountCreatesession()" size="<?php echo min(count($opensessions), SIZESESSIONS) ?>"><?php 
+                                    $i=0;
+                                    $session=[];
+                                    foreach($opensessions as $session){ ?>
+                                        <option id="option-select-session_<?php echo $i ?>" class="text-wrap add-session-list" value="<?php echo $session[SESSIONID]."_" ?>"><?php echo ($session[ENDDATE]==0 ? "Pas de fin" : date("d/m/y", $session[ENDDATE]))." : ".$session[TITLE] ?></option>    <?php
+                                        $i++;
+                                    }
+                                    $nbsessionsdb = $i ?>
+                                </select>
+                            </p>
+                        </div>
+                    </div>  <?php
+                }
+                else $nbsessionsdb = 0 ?>
+            </div>
+
             <!--Already binded sessions"--> <?php
             if($accountsessions != null){  
                 $i=0;                      
                 foreach($accountsessions as $session){  ?>  
                     <div class="row" id="up_session_<?php echo $i ?>">            
                         <div class="col-12 col-md-2">
-                            <button class="mr-2 border-0 bg-danger text-white rounded-circle"  onclick="up_supUpdateAccountExistingSession('<?php echo $i ?>');">X</button>
+                            <button class="mr-2 border-0 bg-danger text-white rounded-circle" type="button" onclick="up_supUpdateAccountExistingSession('<?php echo $i ?>');">X</button>
                             Session
                         </div>
                         <div class="col-12 col-md-10">
@@ -148,28 +172,6 @@ var_dump($opensessions);
             } 
             else $nbsessions = 0;
             ?>
-
-            <!--Select list of open sessions, to add one session or more :-->
-
-            <div id="div-addUpdateAccountCreatesessionShowSessions"><?php
-                 
-                if ($opensessions != null){ // null when the table is empty ?>
-                    <div class="row">
-                        <div class="col-12 offset-md-2 col-md-10">
-                            <select name="addCreateAccountSessions[]" id="addCreateAccountSessions" onchange="addUpdateAccountCreatesession()" size="<?php echo min(count($opensessions), SIZESESSIONS) ?>"><?php 
-                                $i=0;
-                                $session=[];
-                                foreach($opensessions as $session){ ?>
-                                    <option id="option-select-session_<?php echo $i ?>" class="text-wrap add-session-list" value="<?php echo $session[SESSIONID]."_" ?>"><?php echo ($session[ENDDATE]==0 ? "Pas de fin" : date("d/m/y", $session[ENDDATE]))." : ".$session[TITLE] ?></option>    <?php
-                                    $i++;
-                                }
-                                $nbsessionsdb = $i ?>
-                            </select>
-                        </div>
-                    </div>  <?php
-                }
-                else $nbsessionsdb = 0 ?>
-            </div>
 
             <!--update or not-->
             <input type="hidden" id="up_account" name="up_account" value="0"> <!-- 1 means at least one change in the data account-->
