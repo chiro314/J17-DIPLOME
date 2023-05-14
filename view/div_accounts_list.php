@@ -67,7 +67,8 @@
 
 <div class="row">  <div class="col-12">
     <div class="text-center">
-        <button class="mx-2 mb-2" id="bt-delete-account" type="button"><span class="d-block">Abandonner la Supp.</span></button>
+        <!--<button class="mx-2 mb-2" id="bt-delete-account" type="button"><span class="d-block">Abandonner la Supp.</span></button>-->
+        <button class="button button-wide mb-2" id="bt-delete-account" type="button">Abandonner la Supp.</button>
     </div>
 </div></div>
 
@@ -184,7 +185,7 @@
                     <!--link 'delete'-->
                     <div class="col-12 col-md-1">
                         <div class="px-2 px-md-0">
-                            <a class="text-danger a-supp" onclick="deleteAccount('<?php echo $account[LOGIN] ?>', '<?php echo $account[PROFILE] ?>', '<?php echo $account[NAME] ?>', '<?php echo $account[FIRSTNAME] ?>', '<?php echo $account[COMPANY] ?>')">Supp.</a>      
+                            <a class="text-danger a-supp" href="#bt-delete-account" onclick="deleteAccount('<?php echo $account[LOGIN] ?>', '<?php echo $account[PROFILE] ?>', '<?php echo $account[NAME] ?>', '<?php echo $account[FIRSTNAME] ?>', '<?php echo $account[COMPANY] ?>')">Supp.</a>      
                         </div>
                     </div>
                     <!--link 'update'-->
