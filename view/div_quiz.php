@@ -62,7 +62,7 @@ var_dump($questionList);
 */
 ?>
 <br>
-<p class="text-center h4 mt-2"><?php echo $title ?></p>
+<p class="text-center h4 mt-2 px-2"><?php echo $title ?></p>
 
 <!-- The 2 buttons : /////////////////////////////////////////////////////////////////////////////////-->
 
@@ -77,7 +77,7 @@ var_dump($questionList);
 
 <!-- The div message : /////////////////////////////////////////////////////////////////////////////////-->
 
-<div class="col-12 div-alert text-center"> 
+<div class="col-12 div-alert text-center px-2"> 
     <?php echo $message ?>
 </div>
 
@@ -90,7 +90,7 @@ var_dump($questionList);
     const QUESTIONWEIGHT = 6;
 -->
 
-<div class="row center mb-2" id="div-form-update-quiz">
+<div class="row center mb-2 px-2" id="div-form-update-quiz">
     <div class="col-12 bg-warning rounded border border-primary" >
         <br>
         <p id="up_p-quiz-maj" class="text-center h5 font-weight-bold"><?php echo $quiz[TITLE] ?></p>
@@ -213,13 +213,47 @@ var_dump($questionList);
 
             <!--Existing questions-->
 
-            <div class="row mb-2 mt-3" id="div-addUpdateQuizCreatequestion">
+            <div class="row mb-2 mt-3">
                 <div class="col-0 col-md-2">
                     <p><span class="font-weight-bold">QUESTIONS DU QUIZ</p>
                 </div>
                 <div class="col-12 col-md-3">
                     <button class="button button-max" type="button" onclick="addUpdateQuizCreatequestionShowQuestions();">Ajouter une question</button>
                 </div>
+            </div>
+
+            <!--The 'select' list of questions, to add one question or more : -->
+            
+            <div id="div-addUpdateQuizCreatequestionShowQuestions">
+                <div class="row">
+                    <div class="col-12 offset-md-2 col-md-10 pb-2">
+                        <p>Filtre sur les questions<br> <!--p class="d-inline"-->
+                            <select id="select-filter" name="keyword" class="text-center">
+                                <?php foreach($keywordList as $keyword) {echo '<option value="'.$keyword[KEYWORDID].'">'.$keyword[KEYWORD].'</option>';} ?>
+                            </select>
+                        </p>
+                    </div>   
+                </div>   <?php 
+
+                if ($questionList != null){ // null when the table is empty ?>
+                    <div class="row">
+                        <div class="col-12 offset-md-2 col-md-10 pr-5">
+                            <p><span class="responsive-show">Questions (cliquer pour afficher la liste)<br></span>
+                                <select class="w-100" name="addCreateQuizQuestions[]" id="addCreateQuizQuestions" onchange="addUpdateQuizCreatequestion()" size="<?php echo min(count($questionList), SIZEQUESTIONS) ?>"><?php 
+                                    $i=0;
+                                    $question=[];
+                                    foreach($questionList as $question){ ?>
+                                        <option id="option-select-question_<?php echo $i ?>" class="text-wrap question-list <?php foreach($question[qKEYWORDID] as $keywordid) {echo " ".$keywordid;} ?>" value="<?php echo $question[QUESTIONID]."_" ?>"><?php echo $question[STATUS]." - ".$question[WIDGETID]." - ".$question[QUESTION] ?></option>    <?php
+                                        $i++;
+                                    }
+                                    $nbquestionsdb = $i; 
+                                    //Get the values : https://forum.phpfrance.com/php-debutant/recuperer-valeurs-select-multiple-t4448.html#:~:text=%24keywords%20%3D%20%24_POST%5B'keywords'%5D%3B
+                                    ?>
+                                </select>
+                            </p>
+                        </div>
+                    </div>  <?php
+                } ?>
             </div>
 
             <!--Existing Questions"--> <?php
@@ -268,37 +302,7 @@ var_dump($questionList);
             else $nbquestions = 0;
             ?>
 
-            <!--The 'select' list of questions, to add one question or more : -->
-            
-            <div id="div-addUpdateQuizCreatequestionShowQuestions">
-                <div class="row">
-                    <div class="col-12 offset-md-2 col-md-10 pb-2">
-                        <p>Filtre sur les questions<br> <!--p class="d-inline"-->
-                            <select id="select-filter" name="keyword" class="text-center">
-                                <?php foreach($keywordList as $keyword) {echo '<option value="'.$keyword[KEYWORDID].'">'.$keyword[KEYWORD].'</option>';} ?>
-                            </select>
-                        </p>
-                    </div>   
-                </div>   <?php 
 
-                if ($questionList != null){ // null when the table is empty ?>
-                    <div class="row">
-                        <div class="col-12 offset-md-2 col-md-10">
-                            <select name="addCreateQuizQuestions[]" id="addCreateQuizQuestions" onchange="addUpdateQuizCreatequestion()" size="<?php echo min(count($questionList), SIZEQUESTIONS) ?>"><?php 
-                                $i=0;
-                                $question=[];
-                                foreach($questionList as $question){ ?>
-                                    <option id="option-select-question_<?php echo $i ?>" class="text-wrap question-list <?php foreach($question[qKEYWORDID] as $keywordid) {echo " ".$keywordid;} ?>" value="<?php echo $question[QUESTIONID]."_" ?>"><?php echo $question[STATUS]." - ".$question[WIDGETID]." - ".$question[QUESTION] ?></option>    <?php
-                                    $i++;
-                                }
-                                $nbquestionsdb = $i; 
-                                //Get the values : https://forum.phpfrance.com/php-debutant/recuperer-valeurs-select-multiple-t4448.html#:~:text=%24keywords%20%3D%20%24_POST%5B'keywords'%5D%3B
-                                ?>
-                            </select>
-                        </div>
-                    </div>  <?php
-                } ?>
-            </div>
 
             <!--update or not-->
             <input type="hidden" id="up_quiz" name="up_quiz" value="0"> <!-- 1 means at least one change in the data quiz-->
