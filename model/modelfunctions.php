@@ -155,11 +155,21 @@ function deleteQuestion($question_id){
     $conn->query($sql);
 }
 */
+/*
 function deleteQuestion($question_id){
     global $conn;
     $sql = "DELETE from question WHERE question_id = ?";
     $stmt = $conn->prepare ($sql);
     $stmt -> bind_param ("i", $question_id);
+    $stmt ->execute();
+    $stmt -> close();
+}
+*/
+function deleteQuestion($question_id){
+    global $conn, $login;
+    $sql = "DELETE from question WHERE question_id = ? AND question_loginadmin = ?";
+    $stmt = $conn->prepare ($sql);
+    $stmt -> bind_param ("is", $question_id, $login);
     $stmt ->execute();
     $stmt -> close();
 }
@@ -535,7 +545,7 @@ function createAccount($accountLoginadmin, $accountLogin, $accountName, $account
             $sql.= " VALUES (?, ?)";
             $stmt = $conn->prepare ($sql);
             for($i=0;$i<count($addCreateAccountSessions);$i++){
-                $stmt -> bind_param ("ss", $accountLogin, $addCreateAccountSessions[$i]);
+                $stmt -> bind_param ("is", $addCreateAccountSessions[$i], $accountLogin);
                 $stmt ->execute();
             }
             $stmt -> close();
