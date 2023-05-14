@@ -140,7 +140,7 @@ if ($sessionsList != null){ // null when the table is empty
             <!--link 'delete'-->
             <div class="col-12 col-md-1">
                 <div class="px-2 px-md-0">
-                    <a class="text-danger a-supp" onclick="deleteSession(<?php echo $session[SESSIONID] ?>, '<?php echo $session[TITLE] ?>', '<?php echo $session[SUBTITLE] ?>', <?php echo $session[ENDDATE] ?>)">Supp.</a>      
+                    <a class="text-danger a-supp" href="#bt-delete-session" onclick="deleteSession(<?php echo $session[SESSIONID] ?>, '<?php echo $session[TITLE] ?>', '<?php echo $session[SUBTITLE] ?>', <?php echo $session[ENDDATE] ?>)">Supp.</a>      
                 </div>
             </div>
             <!--link 'update'-->
