@@ -118,14 +118,16 @@ global $message;
 
             if ($questionList != null){ // null when the table is empty ?>
                 <div class="row">
-                    <div class="col-12 offset-md-2 col-md-10">
-                        <select multiple name="addCreateQuizQuestions[]" id="addCreateQuizQuestions"><?php //size="<?php echo count($questionList)
-                            foreach($questionList as $question){ ?>
-                                <option class="text-wrap question-list <?php foreach($question[qKEYWORDID] as $keywordid) {echo " ".$keywordid;} ?>" value="<?php echo $question[QUESTIONID] ?>"><?php echo $question[STATUS] ?> - <?php echo $question[WIDGETID] ?> - <?php echo $question[QUESTION] ?></option>    <?php
-                            } 
-                            //Get the values : https://forum.phpfrance.com/php-debutant/recuperer-valeurs-select-multiple-t4448.html#:~:text=%24keywords%20%3D%20%24_POST%5B'keywords'%5D%3B
-                            ?>
-                        </select>
+                    <div class="col-12 offset-md-2 col-md-10 pr-5">
+                        <p class="d-inline">Questions<br>
+                            <select class="w-100" multiple name="addCreateQuizQuestions[]" id="addCreateQuizQuestions"><?php //size="<?php echo count($questionList)
+                                foreach($questionList as $question){ ?>
+                                    <option class="text-wrap question-list <?php foreach($question[qKEYWORDID] as $keywordid) {echo " ".$keywordid;} ?>" value="<?php echo $question[QUESTIONID] ?>"><?php echo $question[STATUS] ?> - <?php echo $question[WIDGETID] ?> - <?php echo $question[QUESTION] ?></option>    <?php
+                                } 
+                                //Get the values : https://forum.phpfrance.com/php-debutant/recuperer-valeurs-select-multiple-t4448.html#:~:text=%24keywords%20%3D%20%24_POST%5B'keywords'%5D%3B
+                                ?>
+                            </select>
+                        </p>
                     </div>
                 </div>  <?php
             } ?>
@@ -186,7 +188,7 @@ global $message;
                     <!--link 'delete'-->
                     <div class="col-12 col-md-1">
                         <div class="px-2 px-md-0">
-                            <a class="text-danger a-supp" onclick="deleteQuiz(<?php echo $quiz[QUIZID] ?>, '<?php echo $quiz[TITLE] ?>', '<?php echo $quiz[STATUS] ?>')">Supp.</a>      
+                            <a class="text-danger a-supp" href="#bt-delete-quiz"  onclick="deleteQuiz(<?php echo $quiz[QUIZID] ?>, '<?php echo $quiz[TITLE] ?>', '<?php echo $quiz[STATUS] ?>')">Supp.</a>      
                         </div>
                     </div>
                     <!--link 'update'-->
