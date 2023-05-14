@@ -27,7 +27,7 @@
 *                           carnationAlternationForClass("quiz-list")
 *               o Add a quiz and collect Session-Quiz link data (Click on one of the quizzes offered)
 *                   - JS:   $("#select-filter-quiz").change(function(){ selectQuizConsistency(); });
-*                           <select multiple onchange="selectAddUpdateSessionCreateQuiz()"
+*                           <select onchange="selectAddUpdateSessionCreateQuiz()"
 *               o Remove a quiz (click on the cross)
 *                   - JS:  o onclick="up_supUpdateSessionCreateQuiz(…): supp. an old binded quiz
 *                          o onclick="supNewBind(divid): supp. a new binded quiz
@@ -198,14 +198,16 @@ if($session !=null){
                 if ($allQuiz != null){ // null when the table is empty ?>
                     <div class="row">
                         <div class="col-12 offset-md-2 col-md-10">
-                            <select multiple name="addCreateSessionQuiz[]" id="addCreateSessionQuiz" onchange="selectAddUpdateSessionCreateQuiz()"><?php
-                                $i=0;
-                                foreach($allQuiz as $oneQuiz){  ?>
-                                    <option id="option-select-quiz_<?php echo $i ?>" class="text-wrap quiz-list <?php echo ($oneQuiz[STATUS]=='draft' ? ' draft' : ' inline') ?>" value="<?php echo $oneQuiz[QUIZID] ?>"><?php echo $oneQuiz[STATUS] ?> : <?php echo $oneQuiz[TITLE] ?><?php echo $oneQuiz[QSUBTITLE] ? ' ('.$oneQuiz[QSUBTITLE].')' : "" ?></option>    <?php
-                                    $i++;
-                                } 
-                                $nbquizdb = $i; ?>
-                            </select>
+                            <p><span class="responsive-show">Quiz (cliquer pour afficher la liste)<br></span>
+                                <select size="<?php echo min(count($allQuiz), SIZEQUIZ) ?>" name="addCreateSessionQuiz[]" id="addCreateSessionQuiz" onchange="selectAddUpdateSessionCreateQuiz()"><?php
+                                    $i=0;
+                                    foreach($allQuiz as $oneQuiz){  ?>
+                                        <option id="option-select-quiz_<?php echo $i ?>" class="text-wrap quiz-list <?php echo ($oneQuiz[STATUS]=='draft' ? ' draft' : ' inline') ?>" value="<?php echo $oneQuiz[QUIZID] ?>"><?php echo $oneQuiz[STATUS] ?> : <?php echo $oneQuiz[TITLE] ?><?php echo $oneQuiz[QSUBTITLE] ? ' ('.$oneQuiz[QSUBTITLE].')' : "" ?></option>    <?php
+                                        $i++;
+                                    } 
+                                    $nbquizdb = $i; ?>
+                                </select>
+                            </p>
                         </div>
                     </div>  <?php
                 }
@@ -312,14 +314,16 @@ if($session !=null){
                 if ($allAccounts != null){ // null when the table is empty ?>
                     <div class="row">
                         <div class="col-12 offset-md-2 col-md-10">
-                            <select multiple name="addCreateSessionAccounts[]" id="addCreateSessionAccounts" onchange="selectAddUpdateSessionCreateAccount()"><?php
-                                $i=0;
-                                foreach($allAccounts as $account){ ?>
-                                    <option id="option-select-account_<?php echo $i ?>" class="text-wrap accounts-list <?php echo className($account[ACOMPANY]) ?>" value="<?php echo $account[LOGIN] ?>"><?php echo $account[LOGIN] ?> (<?php echo $account[NAME] ?> <?php echo $account[FIRSTNAME] ?>)<?php echo $account[ACOMPANY] ? " - ".$account[ACOMPANY] : "" ?></option>    <?php
-                                    $i++;
-                                } 
-                                $nbaccountsdb = $i; ?>
-                            </select>
+                            <p><span class="responsive-show">Comptes (cliquer pour afficher la liste)<br></span>    
+                                <select size="<?php echo min(count($allAccounts), SIZEACCOUNTS) ?>" name="addCreateSessionAccounts[]" id="addCreateSessionAccounts" onchange="selectAddUpdateSessionCreateAccount()"><?php
+                                    $i=0;
+                                    foreach($allAccounts as $account){ ?>
+                                        <option id="option-select-account_<?php echo $i ?>" class="text-wrap accounts-list <?php echo className($account[ACOMPANY]) ?>" value="<?php echo $account[LOGIN] ?>"><?php echo $account[LOGIN] ?> (<?php echo $account[NAME] ?> <?php echo $account[FIRSTNAME] ?>)<?php echo $account[ACOMPANY] ? " - ".$account[ACOMPANY] : "" ?></option>    <?php
+                                        $i++;
+                                    } 
+                                    $nbaccountsdb = $i; ?>
+                                </select>
+                            </p>
                         </div>
                     </div>  <?php
                 } ?>
