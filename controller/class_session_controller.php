@@ -42,6 +42,8 @@ class class_session_controller {
                     $j++;
                 }
             }
+            $allCompaniesData = array_unique($allCompaniesData);
+            $allCompaniesData = array_values($allCompaniesData);
             sort($allCompaniesData);
         }
         $allCompanies0[0] = 'Aucun';
