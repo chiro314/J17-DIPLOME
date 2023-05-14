@@ -101,13 +101,13 @@ function buttonAddUpdateSessionCreateQuiz(){
         //and hide other lists
         $("#div-select-account").prop('hidden', true);
         //and get all the options of the select unselected
-        $("#addCreateSessionQuiz option").prop('selected', false); ///!!!!!!!!!!!!!!!
+        //$("#addCreateSessionQuiz option").prop('selected', false);
         //!!!!!!!!à corriger au moins pour le menu Quiz
 
         selectQuizConsistency();
     }
 }
-
+/*
 function carnationAlternationForClass(myClass){
     //white-grey alternation
     var lines = document.getElementsByClassName(myClass);
@@ -125,6 +125,19 @@ function carnationAlternationForClass(myClass){
         }  
     }
 }
+*/
+function carnationAlternationForClass(myClass){
+    //white-grey alternation
+    var iWhite = 2;
+    $("."+myClass).each(function( index ) {
+        if (!$( this ).is(":hidden")) {
+            if(iWhite % 2 == 0) $( this ).css('background-color', 'white');
+            else $( this ).css('background-color', 'lightgrey');
+
+            iWhite++;
+        }
+    });  
+}
 carnationAlternationForClass("quiz-list");
 
 //Quiz filtering
@@ -139,9 +152,10 @@ function selectFilterQuiz(){
     //white-grey alternation
     carnationAlternationForClass("quiz-list"); 
 }
-    $("#select-filter-quiz").change(function(){
-        selectQuizConsistency();
-    });
+
+$("#select-filter-quiz").change(function(){
+    selectQuizConsistency();
+});
 
 function selectQuizConsistency(){
     //Hide the options of the select quiz, already choosen :
@@ -163,7 +177,7 @@ function selectQuizConsistency(){
         var idquiz = $("#option-select-quiz_"+i).val();
         //idquiz = idquiz.slice(0, -1);
         var goon = true;
-        for(j=0;j<jStop;j++){  //quiz already choosen
+        for(j=0;j<jStop;j++){  //quizzes already choosen
             if(!$('#up_quiz_'+j).is(":hidden") && $('#quiz_id_'+j).val() == idquiz) {
                 $("#option-select-quiz_"+i).prop('hidden', true);
                 goon = false;
@@ -171,7 +185,7 @@ function selectQuizConsistency(){
             }
         }
         if(goon){
-            for(k=0;k<kStop;k++){  //new quiz added
+            for(k=0;k<kStop;k++){  //new quizes added
                 if($('#quiz_id_'+k+'_new')[0] && $('#quiz_id_'+k+'_new').val() == idquiz) {
                     $("#option-select-quiz_"+i).prop('hidden', true);
                     break;
@@ -179,8 +193,8 @@ function selectQuizConsistency(){
             }
         }
     }
-    carnationAlternationForClass("quiz-list"); 
-    
+    carnationAlternationForClass("quiz-list");
+    $("#addCreateSessionQuiz option").prop('selected', false);
 }
 
 //init 
@@ -447,7 +461,8 @@ function selectAddUpdateSessionCreateAccount(){
         div+= '</div>'; //I don't understand why this closing div (a priori supernumerary) is needed to align on the right !?
 
         //Add the div (string div) after the div of the 2 buttons with id='div-addUpdateSessionCreateAccount'
-        $(div).insertAfter("#div-addUpdateSessionCreateAccount");
+        //$(div).insertAfter("#div-addUpdateSessionCreateAccount");
+        $(div).insertAfter("#div-select-account");
 
         $('#nb-max-accounts-new').val(numSelectSessionAccount + 1); //number of the next new account
     }
@@ -633,7 +648,7 @@ function deleteQuiz($quizid, $quiz, $status){
     if( $("#div-form-delete-quiz").prop('hidden')==true && //true
         $("#div-form-create-quiz").prop('hidden')==true) { //true
 
-        $("#bt-delete-quiz").prop('hidden', false); //'Abandonner...' (give up)
+        $("#bt-delete-quiz").prop('hidden', false); //= 'Abandonner la suppression' (give up)
         $("#div-form-delete-quiz").prop('hidden', false);
         $(".div-alert").html("");
         $("#bt-create-quiz").prop('hidden', true);
@@ -667,6 +682,7 @@ $("#bt-create-quiz").click(
             $("#div-form-create-quiz").prop('hidden', false);
             $("#bt-create-quiz").html("Abandonner la création");
             $(".div-alert").html("");
+            carnationAlternationForClass("question-list");
         }
         else { 
             $("#div-form-create-quiz").prop('hidden', true);
@@ -677,23 +693,7 @@ $("#bt-create-quiz").click(
 );
 
 ///////////////////////////////div_questions_list.php : filter////////////////////////////////////////////////////
-/*
-function carnationAlternation(){
-    //white-grey alternation (CSS ".div-of-rows" cann't be used because of the filter)
-    var lines = document.getElementsByClassName("question-list");
-    var iWhite = 2;
-    for(i=0;i<lines.length;i++) {
-        if(lines[i].hidden == false){ 
 
-            if(iWhite % 2 == 0) lines[i].style.background = "white";
-            else lines[i].style.background = "lightgrey";
-
-            iWhite++;
-        }  
-    }
-}
-*/
-//carnationAlternation();
 carnationAlternationForClass("question-list");
 
 //Questions filtering
@@ -1034,12 +1034,6 @@ function up_supUpdateAccountExistingSession(num){ //supp. an old binded session
     $("#div-addUpdateAccountCreatesessionShowSessions").prop('hidden', true);
     //$("#div-addUpdateAccountCreatesessionShowSessions").hide();
 }
-//?/ not used
-/*
-function updateQuizUpdateQuestion(num){ //existing session : onchange
-    $("#up_question_action_"+num).val("update");
-}
-*/
 
 /////Add a new session///////////
 //init :
@@ -1148,7 +1142,7 @@ function addUpdateAccountCreatesession(){
         divAnswer+= '</div></div></div></div>';
 
         //Add the div after the div with id='div-addUpdateAccountCreatesession'
-        $(divAnswer).insertAfter("#div-addUpdateAccountCreatesession");
+        $(divAnswer).insertAfter("#div-addUpdateAccountCreatesessionShowSessions");
 
         $('#nb-max-sessions-new').val(numAddUpdateAccountCreatesession + 1); //number of new sessions
     }
@@ -1199,7 +1193,7 @@ function onChangeDivQuizData(){
     $("#up_quiz").val('1');
 }
 
-function crea_supUpdateQuizCreateQuestion(divid){ //new answer (à coder)
+function crea_supUpdateQuizCreateQuestion(divid){ //new question
     $("#"+divid).remove();
     $("#div-addUpdateQuizCreatequestionShowQuestions").prop('hidden', true);
 }
@@ -1260,18 +1254,17 @@ function selectQuestionConsistency(){
         }
     }
     carnationAlternationForClass("question-list"); //class of the options in the select of questions
-    ///carnationAlternation();
+    $("#addCreateQuizQuestions option").prop('selected', false);
 }
-
-
 
 function addUpdateQuizCreatequestionShowQuestions(){
     //show or mask the list (button 'Ajouter une question')
-    if($("#div-addUpdateQuizCreatequestionShowQuestions").is(":hidden"))
+    if($("#div-addUpdateQuizCreatequestionShowQuestions").is(":hidden")){
         $("#div-addUpdateQuizCreatequestionShowQuestions").prop('hidden', false);
+        //$("#addCreateQuizQuestions option").prop('selected', false);
+        selectQuestionConsistency();
+    }
     else $("#div-addUpdateQuizCreatequestionShowQuestions").prop('hidden', true);
-
-    selectQuestionConsistency();
 }
 
 //init
@@ -1344,10 +1337,8 @@ function addUpdateQuizCreatequestion(){ //div_quiz.php
         divAnswer+=   '</div>';
         divAnswer+= '</div>';
 
-    
-
         //Add the div after the div with id='div-addUpdateQuizCreatequestion'
-        $(divAnswer).insertAfter("#div-addUpdateQuizCreatequestion");
+        $(divAnswer).insertAfter("#div-addUpdateQuizCreatequestionShowQuestions");
 
         $('#nb-max-questions-new').val(numAddUpdateQuizCreatequestion + 1); //number of new answers
     }
