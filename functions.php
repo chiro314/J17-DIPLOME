@@ -151,8 +151,9 @@ function inQuestionsAnswersChecked($Qid)
 
 function className($wording)
 function disconnect($message)
-function testStrs($operation, $strsTransmises)
+function testStrs($operation, $strsTransmises) //test string ok & not empty : only used to treat form_login, form_createadmin, form_password, form_create_keyword, form_update_keyword. 
 function testStrsOnly($operation, $strsTransmises)
+function testStrsOnlyWhiteList($operation, $strsTransmises, $whiteList)
 function testNotEmpty($operation, $strsTransmises)
 function validerCaptcha()
 
@@ -260,6 +261,32 @@ function testStrsOnly($operation, $strsTransmises){
         //Tous les contrôles sont négatif (= sont OK) :
         return "";
     }
+}
+
+//Control there is no html introduced except the whiteLis:
+function testStrsOnlyWhiteList ($operation, $strsTransmises, $whiteList){
+    $replace=[];
+    for($i=0;$i<count($whiteList);$i++) $replace[]="";
+
+    for($i=0;$i<count($strsTransmises);$i++){
+        $strsTransmises[$i] = str_replace($whiteList, $replace, $strsTransmises[$i]);
+    }
+
+    $strsTestees = [];
+    for($i=0;$i<count($strsTransmises);$i++) $strsTestees[]=strip_tags($strsTransmises[$i]);
+    
+    //$adjOrdinal = ["" ou : " 1ère", " 2e", " 3e", etc.] :
+    $adjOrdinal[0] = count($strsTransmises) <=1 ? "" : " 1ère";
+    for($i=1;$i<count($strsTransmises);$i++) $adjOrdinal[]= " ".($i +1)."e";
+    
+    //Contrôles de chaque zone de saisie : 
+    for($i=0;$i<count($strsTransmises);$i++) { 
+        if ($strsTestees[$i] != $strsTransmises[$i]) {
+            return "L'information de la".$adjOrdinal[$i]." zone n'était pas valide.<br>".$operation." n'a pas eu lieu.";
+        }
+    }
+    //Tous les contrôles sont négatif (= sont OK) :
+    return "";
 }
 
 //Control mandatory field are not empty :
