@@ -569,7 +569,10 @@ require "header.php";
                     }
                 }
                 
-                $message = testStrsOnly("La création", $givenStrs);
+                //$message = testStrsOnly("La création", $givenStrs);
+                $whiteList=["<br>"];
+                $message = testStrsOnlyWhiteList("La création", $givenStrs, $whiteList);
+
                 if($message!="") {
                     session_destroy();
                     require "view/form_login.php";
@@ -770,7 +773,11 @@ require "header.php";
                 }
 
                 //control input strings :
-                $message = testStrsOnly("La mise à jour", $givenStrs);
+                //$message = testStrsOnly("La mise à jour", $givenStrs);
+                $whiteList=["<br>"];
+                $message = testStrsOnlyWhiteList("La mise à jour", $givenStrs, $whiteList);
+
+
                 if($message!="") {
                     session_destroy();
                     require "view/form_login.php";
