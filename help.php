@@ -342,7 +342,14 @@
                     <div class="col-12 col-md-9">
                         N'oubliez pas de <span class="font-weight-bold">publier</span> vos questions <span class="font-weight-bold">et</span> vos réponses pour qu'elles soient proposées aux participants qui répondront au quiz (cochez le champ <span class="font-weight-bold">Publier</span>).
                         <br>N'oubliez pas non plus de cocher la case <span class="font-weight-bold">Bonne réponse</span> pour indiquer s'il s'agit d'une bonne réponse : une seule "bonne réponse" si le <span class="font-weight-bold">widget</span> choisi est le bouton radio ("<span class="font-weight-bold">radio</span>"), 0 à n bonnes réponses si le widget choisi est la boîte à cocher ("<span class="font-weight-bold">checkbox</span>").
-                        <br><br>Gardez à l'esprit qu'il est beaucoup plus difficile de trouver la bonne réponse avec des boîtes à cocher.
+                        <br>Le statut draft/inline (brouillon/publié) est disponible pour quiz, questions et réponses.
+                        <br>La <span class="font-weight-bold">cohérence des statuts</span> est assurée automatiquement lors de la création d’une question, sa mise à jour et sa destruction, ainsi que lors de la création et de la mise à jour d’un quiz.
+                        <br>Les règles appliquées sont les suivantes : 
+                        <ul><li>Un quiz ne peut être ou rester 'inline' que s’il possède au moins une question 'inline'.</li>
+                        <li>Un question 'bouton radio' ne peut être ou rester 'inline' que si elle possède au moins 2 réponses 'inline' dont une et une seule 'bonne réponse'.</li>
+                        <li>Un question 'boîte à cocher' ne peut être ou rester 'inline' que si elle possède au moins 1 réponse 'inline'.</li>
+                        </ul>
+                        Gardez à l'esprit qu'il est beaucoup plus difficile de trouver la bonne réponse avec des boîtes à cocher.
                         <br>En effet, une question sous forme de <span class="font-weight-bold">n boutons radio</span> a <span class="font-weight-bold">n</span> réponses possibles (1 chance sur n de trouver la bonne réponse).
                         <br>En revanche, une question sous forme de <span class="font-weight-bold">n boîtes à cocher</span> a <span class="font-weight-bold">2<sup>n</sup></span> réponses possibles : on peut ne rien cocher, tout cocher, ou cocher une ou plusieurs cases (1 chance sur 2<sup>n</sup> de trouver la bonne réponse).
                         <br>
