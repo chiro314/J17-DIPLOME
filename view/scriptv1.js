@@ -752,7 +752,8 @@ function deleteQuestion($questionid, $question, $status, $widget){
         
         //update the supp form
         $("#deletedquestionid").val($questionid); 
-        $("#deletedquestion").val($question); 
+        $("#deletedquestion").val($question);
+        $("#deletedquestionstatus").val($status);
     }
 } 
 
@@ -1345,9 +1346,9 @@ function addUpdateQuizCreatequestion(){ //div_quiz.php
 }
 
 
+//////////////////////////////div_keywords_list.php ////////////////////////////////////////////////////////////////
 
-
-//////////////////////////////div_keywords_list.php : update a Keyword////////////////////////////////////////////////////
+//////////////////////div_keywords_list.php : update a Keyword////////////////////////////////////////////////////
 
 $("#bt-update-keyword").prop('hidden', true); //'Abandonner...' (give up)
 $("#div-form-update-keyword").prop('hidden', true);
@@ -1516,6 +1517,7 @@ quizNbanswersaskedNames = 0;
 
 hideQuestions();
 //clic on the button "Commencer" and "Question suivante"
+/*
 $("#bt-taken-quiz").click(
     function(){
 
@@ -1587,6 +1589,122 @@ $("#bt-taken-quiz").click(
                     
                     cumulateQuizNbanswersaskedNames(numQuestion);
                   
+                    //udate information before submitting the form
+                    $("#quizMaxnbquest").val(nbQuestions);
+                    $("#quizNbquestasked").val(numQuestion+1);
+                    $("#quizEnddate").val(Math.round(Date.now()/1000)); //the curent date in seconds
+                    $("#quizNbanswersaskedNames").val(parseInt(quizNbanswersaskedNames));
+
+                    //submit the form
+                    $("#form_taken_quiz").submit();
+                }
+            break;
+        }
+    }
+);
+*/
+$("#bt-taken-quiz").click(
+    function(){
+
+        switch(click) {
+
+            case'first':
+                //Update quizStartdate
+                $("#quizStartdate").val(Math.round(Date.now()/1000)); //the curent date (in seconds)
+
+                numQuestion++;
+                displayQuestion(numQuestion);
+
+                if(numQuestion == nbQuestions - 1) { //this is the last question
+                    displayButtonWording ("lastQuestion");
+                    click = "last";
+                }
+                else {
+                    displayButtonWording ("nextQuestion");
+                    click = "ongoing";
+                }
+            break;
+
+            case'ongoing':
+                if(duration){
+                    nowDate = Date.now();
+                    progressTime = (nowDate - beginDate) / (duration * 1000 * 60);
+                    progressTime = Math.min(100, Math.round(progressTime*100));
+                
+                    if(progressTime == 100){
+                        updateInfoBeforeSubmit();
+                        $("#form_taken_quiz").submit();
+                    }
+                    else{ 
+                        updateDivProgress();
+
+                        cumulateQuizNbanswersaskedNames(numQuestion);
+                    
+                        numQuestion++;
+                        displayQuestion(numQuestion);           
+
+                        if(numQuestion == nbQuestions - 1) { //this is the last question
+                            displayButtonWording ("lastQuestion");
+                            click = "last";
+                        }
+                        else {
+                            displayButtonWording ("nextQuestion");
+                            click = "ongoing";
+                        }
+                    }
+                }
+                else{ //duration ==0
+
+                    cumulateQuizNbanswersaskedNames(numQuestion);
+                    
+                    numQuestion++;
+                    displayQuestion(numQuestion);           
+
+                    if(numQuestion == nbQuestions - 1) { //this is the last question
+                        displayButtonWording ("lastQuestion");
+                        click = "last";
+                    }
+                    else {
+                        displayButtonWording ("nextQuestion");
+                        click = "ongoing";
+                    }                    
+                }
+            break;
+            
+            case'last':
+                if(duration){
+                    nowDate = Date.now();
+                    progressTime = (nowDate - beginDate) / (duration * 1000 * 60);
+                    progressTime = Math.min(100, Math.round(progressTime*100));
+                
+                    if(progressTime == 100){
+
+                        updateInfoBeforeSubmit();
+                            
+                        //submit the form
+                        $("#form_taken_quiz").submit();
+                    }
+                    else {
+                        //updateDivProgress();
+
+                        //hideQuestions();
+                        
+                        cumulateQuizNbanswersaskedNames(numQuestion);
+                    
+                        //udate information before submitting the form
+                        $("#quizMaxnbquest").val(nbQuestions);
+                        $("#quizNbquestasked").val(numQuestion+1);
+                        $("#quizEnddate").val(Math.round(Date.now()/1000)); //the curent date in seconds
+                        $("#quizNbanswersaskedNames").val(parseInt(quizNbanswersaskedNames));
+
+                        //submit the form
+                        $("#form_taken_quiz").submit();
+                    }
+                }
+                else{ //duration ==0
+                        
+                    cumulateQuizNbanswersaskedNames(numQuestion);
+                    
                     //udate information before submitting the form
                     $("#quizMaxnbquest").val(nbQuestions);
                     $("#quizNbquestasked").val(numQuestion+1);
