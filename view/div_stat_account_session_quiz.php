@@ -221,7 +221,7 @@ global $message;
         <div class="row"><div class="col-12 bg-white"><?php echo $session[NBACCOUNTS] ?></div></div>
     </div> 
     <div class="col-12 col-md-1 text-center">
-        <div class="row"><div class="col-12 font-weight-bold">Participat°</div></div>
+        <div class="row"><div class="col-12 font-weight-bold">Particip°</div></div>
         <div class="row"><div class="col-12 bg-white"><?php echo $session[SPARTICIPRATE]=='' ? "-" : ($session[SPARTICIPRATE]*100)." %" ?></div></div>
     </div> 
     <div class="col-12 col-md-1 text-center">
@@ -253,7 +253,7 @@ global $message;
         <div class="row"><div class="col-12 bg-white"><br></div></div>
     </div> 
     <div class="col-12 col-md-1 text-center">
-        <div class="row"><div class="col-12 font-weight-bold">Participat°</div></div>
+        <div class="row"><div class="col-12 font-weight-bold">Particip°</div></div>
         <div class="row"><div class="col-12 bg-white"><?php echo $account[APARTICIPRATE]=='' ? "-" : ($account[APARTICIPRATE]*100)." %" ?></div></div>
     </div> 
     <div class="col-12 col-md-1 text-center">
@@ -311,7 +311,7 @@ if( $sessionQuizAccountResults != null){
                 <div class="row"><div class="col-12 bg-white text-danger"><?php echo intdiv($SesQuizActResult[SQAQRDURATION],60)." min" ?></div></div>
             </div> 
             <div class="col-12 col-md-1 text-center">
-                <div class="row"><div class="col-12 font-weight-bold">Questions</div></div>
+                <div class="row"><div class="col-12 font-weight-bold">Quest<sup>s</sup></div></div>
                 <div class="row"><div class="col-12 bg-white text-info"><?php echo $SesQuizActResult[NBQUIZQUESTIONS] ?></div></div>
                 <div class="row"><div class="col-12 bg-white text-danger"><?php echo $SesQuizActResult[QRNBQUESTASKED] ?></div></div>
             </div>
@@ -321,7 +321,7 @@ if( $sessionQuizAccountResults != null){
                 <div class="row"><div class="col-12 bg-white text-danger"><?php echo $SesQuizActResult[SQAQRNBQUESTRATE] ? ($SesQuizActResult[SQAQRNBQUESTRATE]*100)." %" : "-" ?></div></div>
             </div>
             <div class="col-12 col-md-1 text-center">
-                <div class="row"><div class="col-12 font-weight-bold">Participat°</div></div>
+                <div class="row"><div class="col-12 font-weight-bold">Particip°</div></div>
                 <div class="row"><div class="col-12 bg-white text-info"><?php echo $SesQuizActResult[QPARTICIPATIONRATE] ? ($SesQuizActResult[QPARTICIPATIONRATE]*100)." %" : "-" ?></div></div>
                 <div class="row"><div class="col-12 bg-white text-danger">oui</div></div>
             </div> 
@@ -372,7 +372,7 @@ foreach ($sessionQuizWithoutAccountResult as $SesQuizActResult){ //$SesQuizWITHO
             <div class="row"><div class="col-12 bg-white"><?php echo $SesQuizActResult[AVGDURSEC] ? intdiv($SesQuizActResult[AVGDURSEC],60)." min" : "-" ?></div></div>
         </div> 
         <div class="col-12 col-md-1 text-center">
-            <div class="row"><div class="col-12 font-weight-bold">Questions</div></div>
+            <div class="row"><div class="col-12 font-weight-bold">Quest<sup>s</sup></div></div>
             <div class="row"><div class="col-12 bg-white"><?php echo $SesQuizActResult[NBQUIZQUESTIONS] ?></div></div>
         </div>
         <div class="col-12 col-md-1 text-center">
@@ -380,7 +380,7 @@ foreach ($sessionQuizWithoutAccountResult as $SesQuizActResult){ //$SesQuizWITHO
             <div class="row"><div class="col-12 bg-white"><?php echo $SesQuizActResult[QTREATEDQUESTRATE] ? ($SesQuizActResult[QTREATEDQUESTRATE]*100)." %" : "-" ?></div></div>
         </div>
         <div class="col-12 col-md-1 text-center">
-            <div class="row"><div class="col-12 font-weight-bold">Participat°</div></div>
+            <div class="row"><div class="col-12 font-weight-bold">Particip°</div></div>
             <div class="row"><div class="col-12 bg-white"><?php echo $SesQuizActResult[QPARTICIPATIONRATE] ? ($SesQuizActResult[QPARTICIPATIONRATE]*100)." %" : "-" ?></div></div>
         </div> 
         <div class="col-12 col-md-1 text-center">
