@@ -33,7 +33,7 @@ const dqrOKKOQUESTION = 2;
   
     //Récupérer toutes les W-Q-A cochées (1) : isset
     //Récupérer toutes les W-Q posées (2)
-    //En déduire les W-Q-0 sans réponses (2) - (2) = > (3)
+    //En déduire les W-Q-0 sans réponses (2) - (1) = > (3)
     //Constituer le tableau $questionsAnswersResults des W-Q-A/0 (1) + (3) = (4)
 
     //1) list the checked answers of the answered questions (1) :
@@ -141,6 +141,9 @@ const dqrOKKOQUESTION = 2;
     }
     $inQuestions = substr($inQuestions, 0, -1); //get the last ',' away
 
+    //TEST:
+    $select = null;
+
     $sql = "SELECT question_idwidget, question_id , answer_id FROM question, answer";
     $sql.= " WHERE answer_idquestion = question_id AND answer_status = 'inline' AND answer_ok = 1";
     $sql.= " AND question_id IN (".$inQuestions.") ORDER BY question_id , answer_id";
@@ -154,6 +157,14 @@ const dqrOKKOQUESTION = 2;
             $select[$i][dqrANSWERID] = $row['answer_id'];
 
             $i++;
+        }
+    }
+    ////TEST: Si uniquement question(s) checkbox, sans « bonne réponse » définie
+    if($select == null){
+        for($i=0;$i<count($questionsAnswered);$i++){
+            $select[$i][dqrWIDGETID] = 'checkbox';
+            $select[$i][dqrQUESTIONID] = $questionsAnswered[$i][dqrQUESTIONID];
+            $select[$i][dqrANSWERID] = '0';
         }
     }
 
