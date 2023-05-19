@@ -14,6 +14,11 @@ $question_explanationtitle, $question_explanation, $question_status,
 $question_creationdate, $question_lastmodificationdate, 
 $question_idwidget, $question_loginadmin)
 
+function inlineQuestionIntegrity($questionId) //TEST (to test the integrity of a question getting 'inline' status, in relation to answers)
+function draftQuestionIntegrity($questionId) //TEST (to test the integrity of quezzes 'inline', in relation to a question getting 'draft' status)
+function questionToStatusDraft($questionId) //TEST (used before deleting a question to be able to test the consequences on quezzes status)
+function draftQuestionIntegrityMessage($questionId) //TEST (draftQuestionIntegrity + update of the global $message)
+
 function updateQuestion($updatedquestiondid, $question_question, $question_guideline,$question_explanationtitle,
                         $question_explanation, $question_status, $date,
                         $question_idwidget, $login)
@@ -36,6 +41,7 @@ function createQuiz($quiz_title, $quiz_subtitle,
 function deleteQuiz($quiz_id)
 function updateQuiz($quizid, $quizTitle, $quizSubtitle, $quizStatus, $date)
 function bindQuestions ($quiz_id, $questions)
+function inlineQuizIntegrity($quizId) //TEST (to test the integrity of a quiz getting 'inline' status, in relation to its questions)
 function bindQuizQuestions($questionsToBind, $quizid)
 function unbindQuestions($questionsToUnbind, $quizid)
 function updateQuizQuestions($questionsToUpdate, $quizid)
@@ -145,6 +151,125 @@ $question_idwidget, $question_loginadmin){
         return null;
     }
 }
+
+function inlineQuestionIntegrity($questionId, $widget){ //TEST
+    /*Controls :
+    Si demande de publication de la question (statut « inline ») alors contrôler :
+        Si widget « radio », la question sera Maj avec un statut « draft » dans les cas suivants :
+            Si Nombre de réponses publiées < 2
+            Sinon si Nombre de bonnes réponses publiées différent de 1
+        Si widget « checkbox », la question sera Maj avec un statut « draft » dans le cas suivant :
+            Si pas de réponse publiée
+    
+    Translation : if(question status == « inline ») then control:
+        If widget == radio, the status question is updated with 'draft' when:
+            Number of inline answers < 2
+            Number of inline 'good answer' != 1
+        If widget == checkbox, the status question is updated with 'draft' when:
+            Number of inline answers == 0
+    */
+
+    global $conn;
+    $sql = "SELECT COUNT(*) AS nbInlineAnswers FROM answer";
+    $sql.= " WHERE answer_idquestion = $questionId AND answer_status = 'inline'";
+    $result = $conn->query($sql);
+    $row = $result->fetch_assoc();
+
+    switch($widget){
+        case 'checkbox':
+            if($row['nbInlineAnswers'] == '0'){
+                $sql = "UPDATE question SET question_status = 'draft' WHERE question_id =$questionId";
+                $conn->query($sql);
+            }
+            return $row['nbInlineAnswers'];
+        break;
+        case 'radio':
+            if($row['nbInlineAnswers'] < '2'){
+                $sql = "UPDATE question SET question_status = 'draft' WHERE question_id =$questionId";
+                $conn->query($sql);
+                return "ko-2";
+            }
+            else{
+                $sql = "SELECT COUNT(*) AS nbInlineGoodAnswers FROM answer";
+                $sql.= " WHERE answer_idquestion = $questionId AND answer_ok = 1";
+                $result = $conn->query($sql);
+                $row = $result->fetch_assoc();
+
+                if($row['nbInlineGoodAnswers'] != '1'){
+                    $sql = "UPDATE question SET question_status = 'draft' WHERE question_id =$questionId";
+                    $conn->query($sql);
+                    return "ko-1";
+                }
+                else return "ok";
+            }
+        break;
+    }
+}
+
+function draftQuestionIntegrity($questionId){ //TEST
+    /*Controls :
+    Après Maj/dépublication (ou inline/Supp.) de la question (statut 'draft') alors contrôler :
+        si l'un des quiz inline utilisant cette question
+            a moins de 1 question inline (==0) alors il prend le statut 'draft'
+
+    Translation : After Update/depublication (or inline/Supp.) of the question (status 'draft') the check:
+        if one of the inline quizzes using this question
+            has less than 1 inline question (==0) then it takes the status 'draft'
+    */
+
+    global $conn, $login;
+    
+    //quiz with unless 1 question inline:
+    $sql ="SELECT DISTINCT quiz_question_idquiz, quiz_title";
+    $sql.=" FROM quiz_question";
+    $sql.=" LEFT JOIN quiz ON quiz_id = quiz_question_idquiz";
+    $sql.=" WHERE quiz_status = 'inline'";
+    $sql.=" AND quiz_loginadmin = '$login'";
+    //only quizzes with the question (Maj/draft or inline/Supp.):
+    $sql.=" AND quiz_question_idquiz IN";
+    $sql.=" (SELECT DISTINCT quiz_question_idquiz";
+    $sql.=" FROM quiz_question";
+    $sql.=" WHERE quiz_question_idquestion = $questionId)";
+    //only quizzes without inline question:
+    $sql.=" AND quiz_question_idquiz NOT IN";
+    $sql.=" (SELECT DISTINCT quiz_question_idquiz";
+    $sql.=" FROM quiz_question";
+    $sql.=" LEFT JOIN question ON question_id = quiz_question_idquestion";
+    $sql.=" WHERE question_status = 'inline'";
+    $sql.=" AND question_loginadmin = '$login')";
+
+    $result = $conn->query($sql);
+    $myReturn = [];
+    if($result != null){
+        while($row = $result->fetch_assoc()){
+            $quizid = $row['quiz_question_idquiz'];
+            $sql2 = "";
+            $sql2 = "UPDATE quiz SET quiz_status = 'draft' WHERE quiz_id = $quizid";
+            $conn->query($sql2);
+
+            //$myReturn[] = $quizid;
+            $myReturn[] = $row['quiz_title'];  
+        }
+    }
+var_dump($myReturn);
+    return $myReturn;
+}
+function draftQuestionIntegrityMessage($questionId){
+    global $message;
+    
+    //$draftQuestionIntegrity = draftQuestionIntegrity($_POST['updatedquestiondid']);
+    $draftQuestionIntegrity = draftQuestionIntegrity($questionId);
+    if($draftQuestionIntegrity != null){
+        $message.="<br>Quiz passé(s) à l'état 'draft' : ";
+        $message.=implode(", ", $draftQuestionIntegrity).".";
+    }
+}
+function questionToStatusDraft($questionId){
+    global $conn;
+    $sql = "UPDATE question SET question_status = 'draft' WHERE question_id =$questionId";
+    $conn->query($sql);
+}
+
 //https://www.php.net/manual/en/mysqli-stmt.bind-param.php
 
 /* SELECT without 'prepare'
@@ -437,7 +562,7 @@ function updateQuiz($quizid, $quizTitle, $quizSubtitle, $quizStatus, $date){
 
 ////////Questions//////////////
 
-function bindQuestions ($quiz_id, $questions){
+function bindQuestions($quiz_id, $questions){
     //maj de la base :
     global $conn;
     $sql = "INSERT INTO quiz_question (quiz_question_idquiz, quiz_question_idquestion)";
@@ -449,6 +574,26 @@ function bindQuestions ($quiz_id, $questions){
         $stmt ->execute();
     }
     $stmt -> close();
+}
+
+function inlineQuizIntegrity($quizId){
+    //Controls :
+    //Si demande de publication du quiz (statut « inline ») alors contrôler :
+    //si pas de question publiée alors le quiz sera Maj avec un statut « draft »
+    //Translation : if(quiz status == « inline ») then control that the quiz has at least one inline question.
+    global $conn;
+    $sql = "SELECT COUNT(*) AS nbInlineQuestions";
+    $sql.= " FROM quiz_question INNER JOIN question ON question_id = quiz_question_idquestion";
+    $sql.= " WHERE quiz_question_idquiz = $quizId AND question_status = 'inline'";
+    $result = $conn->query($sql);
+    $row = $result->fetch_assoc();
+
+    if($row['nbInlineQuestions'] == "0"){
+        $sql = "UPDATE quiz SET quiz_status= 'draft' WHERE quiz_id=$quizId";
+        $conn->query($sql);
+    }
+
+    return $row['nbInlineQuestions'];
 }
 
 function bindQuizQuestions($questionsToBind, $quizid){
