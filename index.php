@@ -1,4 +1,4 @@
-<?php //http://quiztiti/index.php
+<?php      //http://quiztiti/index.php
 /*
 There are 3 main files : index.php, view/scriptv1.js, view/style.css.
 All other files are required by index.php when needed.
@@ -23,7 +23,6 @@ Each form is treated by index.php below using :
 
 At any time, a click on a menu button stops the current process to initialize a new process.
 */
-
 require "header.php";
 //<div id="container">
     //<header></header>
@@ -31,7 +30,8 @@ require "header.php";
     <main class="row">    
         <div class="col-12 col-md-1">
         </div>
-        <div class="col-12 col-md-10"><?php 
+        <div class="col-12 col-md-10">       
+            <?php 
             //////////////////////////////////MENU or LINK INPUTS/////////////////////////////////////////////
 
             if (isset($_REQUEST['controller']) and isset($_REQUEST['action'])){ 
@@ -292,11 +292,11 @@ require "header.php";
                         break;
                         case'2':
                             $_SESSION["login"] = $_POST['login']; //ou $givenStrs[0];
-                            //$_SESSION["mypassword"] = sha1($_POST['psw']);
                             $_SESSION["profile"] = $ctrl->getProfile();
                             $_SESSION["firstname"] = $ctrl->getFirstname();
-                            //header("Location: http://localhost/exo/J17-DIPLOME/index.php");
-                            //header("Location: http://quiztiti/index.php");
+                            //ok (but ko on webhost): header("Location: http://localhost/exo/J17-DIPLOME/index.php");
+                            //ok (but ko on webhost): header("Refresh:0");
+                            //idem webhost :
                             echo '<meta http-equiv="refresh" content="0">';
                         break;
                     }
@@ -419,7 +419,7 @@ require "header.php";
                 require "questionsanswered.php"; //server treatment versus client treatment
 
                 $questionsResults = $questionsAnswered;
-
+//var_dump($questionsResults);
                 //require "model/connexionbdd.php";
                 require "model/class_accountresult.php";
                 require "controller/class_accountresult_controller.php";
@@ -572,7 +572,7 @@ require "header.php";
                 //$message = testStrsOnly("La création", $givenStrs);
                 $whiteList=["<br>"];
                 $message = testStrsOnlyWhiteList("La création", $givenStrs, $whiteList);
-
+                
                 if($message!="") {
                     session_destroy();
                     require "view/form_login.php";
@@ -598,6 +598,7 @@ require "header.php";
                     }
                     else{ //Controls are over, continue the treatment :
 
+                        /*
                         //update the DB :
 
                         //Create the question :
@@ -628,6 +629,62 @@ require "header.php";
                                 $message.= ", avec le ou les mots clés rattachés.";
                             }
                         }
+                        */
+
+                        //update the DB :
+
+                        //Create the question :
+
+                        $bAnswersToBind = ($answers != null) ? true : false ;
+                        
+                        $statusAsked = (isset($_POST['question_status']) ? "inline" : "draft");
+                        $status = $bAnswersToBind ? $statusAsked : 'draft';
+          
+                        $widget = $_POST['question_idwidget'];
+
+                        $date = time();
+
+                        $question_id = createQuestion($_POST['question_question'], $_POST['question_guideline'],
+                            $_POST['question_explanationtitle'], $_POST['question_explanation'],
+                            $status,
+                            $date, $date, $widget, $login
+                        );
+                        if ($question_id == null){
+                            $message = "ATTENTION : suite à un problème technique, la question n'a pas pu être créé.";
+                        }
+                        else { //Create the answers and bind the keywords :
+                            $message = ".";
+
+                            //Create the answers
+                            if($answers != null){
+                                createAnswers ($answers, $date, $question_id);
+                                $message = "La question a été créée avec succès, ainsi que ses réponses.";
+                            
+                                if($statusAsked == 'inline'){
+                                    $integrity = inlineQuestionIntegrity($question_id, $widget);
+                                
+                                    switch($widget){
+                                        case"radio":
+                                            if($integrity == "ko-2") $message.="<br>La question est au statut 'draft' car il y a moins de 2 réponses au statut 'inline'.";
+                                            else if($integrity == "ko-1") $message.="<br>La question est au statut 'draft' car il n'y a pas une et une seule bonne réponse.";
+                                        break;
+                                        case"checkbox":
+                                            if($integrity == '0') $message.="<br>La question est au statut 'draft' car pas de réponse 'inline'";
+                                        break;
+                                    }
+                                }
+                            }
+                            else{ //no answers  
+                                if($statusAsked == 'inline') $message.= "La question a été créée avec succès (au statut 'draft' car sans réponse)."; 
+                                else $message = "La question a été créée avec succès.";
+                            }
+                            //Bind the keywords
+                            if(isset($_POST['addCreateQuestionKeywords'])){
+                                bindKeywords($question_id, $_POST['addCreateQuestionKeywords']);
+                                $message.= "<br>Le ou les mots clés ont été rattachés.";
+                            }
+                        }
+
                         //Display the list of the questions :
                         require "model/class_questions_list.php";
                         require "controller/class_questions_list_controller.php";
@@ -635,7 +692,7 @@ require "header.php";
                         $ctrl->displayAll();
                     }
                 }
-            }
+            }//END TEST
             
             //////////////////////////form_delete_question (delete a question) ///////////////////////////////////////////////////
             //submited by the admin screen div_questions_list.php/button 'Envoyer'
@@ -643,13 +700,21 @@ require "header.php";
             if (isset($_POST['form_delete_question']) and $_POST['form_delete_question'] ==1) {
     
                 require "model/connexionbdd.php";
-                deleteQuestion($_POST['deletedquestionid']);   
+                $message = "La question '".$_POST['deletedquestion']."' a été supprimée avec succès !";
+        
+                if($_POST['deletedquestionstatus'] == 'inline'){   
+                    //maj question with status 'draft' before deletion:
+                    questionToStatusDraft($_POST['deletedquestionid']);
+                    //maj quezzes status:
+                    draftQuestionIntegrityMessage($_POST['deletedquestionid']);
+                }
 
+                deleteQuestion($_POST['deletedquestionid']);             
+                                    
                 //Display the questions list
                 require "model/class_questions_list.php";
                 require "controller/class_questions_list_controller.php";
                 $ctrl = new class_questions_list_controller($login);
-                $message = "La question '".$_POST['deletedquestion']."' a été supprimée avec succès !";
                 $ctrl->displayAll();
             }
 
@@ -777,7 +842,6 @@ require "header.php";
                 $whiteList=["<br>"];
                 $message = testStrsOnlyWhiteList("La mise à jour", $givenStrs, $whiteList);
 
-
                 if($message!="") {
                     session_destroy();
                     require "view/form_login.php";
@@ -863,7 +927,44 @@ require "header.php";
                             updateAnswers($answersToUpdate, $date, $_POST['updatedquestiondid']);
                             $message.= " Réponse(s) mise(s) à jour : ".count($answersToUpdate).".";
                         }
-                 
+
+                        //TEST:
+                        $statusAsked = (isset($_POST['question_status']) ? "inline" : "draft");
+                        if($statusAsked == 'inline'){
+                            $widget = $_POST['question_idwidget'];
+                            $integrity = inlineQuestionIntegrity($_POST['updatedquestiondid'], $widget);
+                            
+                            switch($widget){
+                                case"radio":
+                                    if($integrity == "ko-2") {
+                                        $message.="<br>La question est au statut 'draft' car il y a moins de 2 réponses au statut 'inline'.";
+                                        draftQuestionIntegrityMessage($_POST['updatedquestiondid']);
+                                    }
+                                    else if($integrity == "ko-1"){
+                                        $message.="<br>La question est au statut 'draft' car il n'y a pas une et une seule bonne réponse.";
+                                        draftQuestionIntegrityMessage($_POST['updatedquestiondid']);
+                                    }
+                                break;
+                                case"checkbox":
+                                    if($integrity == '0'){
+                                        $message.="<br>La question est au statut 'draft' car pas de réponse 'inline'";
+                                        draftQuestionIntegrityMessage($_POST['updatedquestiondid']);
+                                    }
+                                break;
+                            }
+                        } 
+                        else{ //$statusAsked == 'draft'
+                            /*
+                            $draftQuestionIntegrity = draftQuestionIntegrity($_POST['updatedquestiondid']);
+                            if($draftQuestionIntegrity != null){
+                                $message.="<br>Quiz passé(s) à l'état 'draft' : ";
+                                $message.=implode(", ", $draftQuestionIntegrity).".";
+                            }
+                            */
+                            draftQuestionIntegrityMessage($_POST['updatedquestiondid']);
+                        }
+                        //END TEST
+
                         //Display the list of the questions :
                         require "model/class_questions_list.php";
                         require "controller/class_questions_list_controller.php";
@@ -936,7 +1037,7 @@ require "header.php";
                         $ctrl->displayAll();
                     }
                     else{ //Controls are over, continue the treatment :
-
+                        /*
                         //update the DB :
 
                         //Create the quiz :
@@ -945,11 +1046,12 @@ require "header.php";
                             (isset($_POST['quiz_status']) ? "inline" : "draft"),
                             $date, $date, $login
                         );
+
                         if ($quiz_id == null){
                             $message = "ATTENTION : suite à un problème technique, le quiz n'a pas pu être créé.";
                         }
                         else { //Bind the questions :
-                            $message = "Le quiz a été créé avec succès.";
+                            //TEST: $message = "Le quiz a été créé avec succès.";
 
                             //Bind the Questions
                             if(isset($_POST['addCreateQuizQuestions'])){
@@ -960,6 +1062,48 @@ require "header.php";
                                 $message.= ", avec la ou les questions rattachées.";
                             }
                         }
+                        */
+                        //TEST:
+                        //update the DB :
+
+                        //Create the quiz :
+
+                        $bQuestionsToBind = isset($_POST['addCreateQuizQuestions']);
+                        
+                        $statusAsked = (isset($_POST['quiz_status']) ? "inline" : "draft");
+                        $status = $bQuestionsToBind ? $statusAsked : 'draft';
+                        
+                        $date = time();
+
+                        $quiz_id = createQuiz($_POST['quiz_title'], $_POST['quiz_subtitle'],
+                            $status,
+                            $date, $date, $login
+                        );
+                        //END TEST
+
+                        if ($quiz_id == null){
+                            $message = "ATTENTION : suite à un problème technique, le quiz n'a pas pu être créé.";
+                        }
+                        else { //Bind the questions :
+                            if($bQuestionsToBind){
+                                bindQuestions($quiz_id, $_POST['addCreateQuizQuestions']);
+                                
+                                if($statusAsked == 'inline'){
+                                    $nbInlineQuestions = inlineQuizIntegrity($quiz_id);
+                                    $message= "Le quiz a été créé avec succès avec la ou les questions rattachées.";
+                                    if(!$nbInlineQuestions) $message.="<br>Le quiz est au statut 'draft' car toutes ses questions sont au statut 'draft'.";
+                                }
+                                else{
+                                    $message= "Le quiz a été créé avec succès avec la ou les questions rattachées.";
+                                }
+                            }
+                            else{ //no question bound
+                                if($statusAsked == 'draft') $message = "Le quiz a été créé avec succès.";
+                                else $message = "Le quiz a été créé avec succès (au statut 'draft' car sans question).";
+                            }
+                        }
+                        //END TEST
+
                         //Display the list of the quiz :
                         require "model/class_questions_list.php";
                         require "model/class_quiz_list.php";
@@ -1061,13 +1205,13 @@ require "header.php";
                     $message = testNotEmpty("La mise à jour", $givenStrs);
                     if($message!="") {
                         //Display the update quiz screen :
-                        header("Location: http://quiztiti/index.php/index.php?controller=quiz&action=update&id=".$_POST['updatedquizdid']."&from=this");
+                        header("Location: http://quiztiti/index.php?controller=quiz&action=update&id=".$_POST['updatedquizdid']."&from=this");
                     }
                     else{ //Controls are over, continue the treatment :
 
                         $message = "";
                         $date = time();
-
+                        
                         //update the DB :
                         require "model/connexionbdd.php";
 
@@ -1130,7 +1274,11 @@ require "header.php";
                             updateQuizQuestions($questionsToUpdate, $_POST['updatedquizdid']);
                             $message.= " Question(s) mise(s) à jour : ".count($questionsToUpdate).".";
                         }
-                 
+                        
+                        //TEST:
+                        $statusAsked = (isset($_POST['quiz_status']) ? "inline" : "draft");
+                        if($statusAsked == 'inline' and !inlineQuizIntegrity($_POST['updatedquizdid'])) $message.= "<br>Le quiz est au statut 'draft' car sans question au statut 'inline'.";
+
                         //Display the list of the quiz :                    
                         require "model/class_questions_list.php"; //to add a question to the quiz
                         require "model/class_quiz_list.php";
@@ -1922,7 +2070,7 @@ require "header.php";
         </div>
     </main>
 
-    <footer>
+    <footer id="footer">
 
         <?php require "help.php"; ?>
 
