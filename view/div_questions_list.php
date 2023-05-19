@@ -86,6 +86,7 @@ global $message;
         <p id="p-question-status-supp" class="text-center"></p>
         
         <form class="text-center" id="form_delete_question" name="form_delete_question" action="index.php" method="POST">
+            <input type="hidden" id="deletedquestionstatus" name="deletedquestionstatus">
             <input type="hidden" id="deletedquestionid" name="deletedquestionid">
             <input type="hidden" id="deletedquestion" name="deletedquestion">
             <input type="hidden" name="form_delete_question" value="1">
