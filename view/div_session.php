@@ -224,7 +224,7 @@ if($session !=null){
                     <p><span class="font-weight-bold">Statut - Titre</span></p>
                 </div>
                 <div class="col-12 col-md-1">
-                    <p><span class="font-weight-bold">Durée</span></p>
+                    <p><span class="font-weight-bold">Durée<br>(h:min)</span></p>
                 </div>
                 <div class="col-12 col-md-2 ml-md-4">
                     <p><span class="font-weight-bold">Ouverture</span></p>
@@ -255,9 +255,9 @@ if($session !=null){
                                     <input id="up_quiz_action_<?php echo $i ?>" name="up_quiz_action_<?php echo $i ?>" type="hidden" value="">
                                 </div>
                                 <div class="col-12 col-md-2 text-md-right">   
-                                    <span class="font-weight-bold responsive-show">Durée (minutes)<br></span>                        
-                                    <input class="session_quiz_minutesduration" id="session_quiz_minutesduration<?php echo $i ?>" name="session_quiz_minutesduration<?php echo $i ?>" type="time" value="<?php echo $oneQuiz[DURATION] ? date('H:i',60 * $oneQuiz[DURATION]) : '' ?>">
-                                    <input id="session_quiz_minutesduration<?php echo $i ?>_old" name="session_quiz_minutesduration<?php echo $i ?>_old" type="hidden" value="<?php echo $oneQuiz[DURATION] ? date('H:i',60 * $oneQuiz[DURATION]) : '' ?>">
+                                    <span class="font-weight-bold responsive-show">Durée (heures:minutes)<br></span>                        
+                                    <input class="session_quiz_minutesduration" id="session_quiz_minutesduration<?php echo $i ?>" name="session_quiz_minutesduration<?php echo $i ?>" type="time" value="<?php echo $oneQuiz[DURATION] ? gmdate('H:i',60 * $oneQuiz[DURATION]) : '' ?>">
+                                    <input id="session_quiz_minutesduration<?php echo $i ?>_old" name="session_quiz_minutesduration<?php echo $i ?>_old" type="hidden" value="<?php echo $oneQuiz[DURATION] ? gmdate('H:i',60 * $oneQuiz[DURATION]) : '' ?>">
                                 </div>
                                 <div class="col-12 col-md-3 text-md-center">   
                                     <span class="font-weight-bold responsive-show">Date d'ouverture<br></span>                        
