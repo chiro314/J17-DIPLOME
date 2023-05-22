@@ -2,6 +2,7 @@
 //Various constants
     const DEFAULTPSW = "quiztiti"; //modelfunctions.php / function createAccount
     const NP1 = 163, NP2 = 181;
+    const TIMEZONE = "Europe/Paris"; date_default_timezone_set(TIMEZONE);
 
 //Sizes :
     const TEXTAREA = 500, NBRESPONSESMAX = 20, NBQUESTIONSMAX = 100, NBQUIZMAX = 30, NBACCOUNTSMAX= 50;
