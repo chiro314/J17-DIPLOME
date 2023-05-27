@@ -44,8 +44,7 @@ class class_quiz_userlist {
        
         $result = $conn->query($sql);
 
-        if($result != null){ // null when the table is empty
-    
+        if($result != null and $result->num_rows !== 0){ // null when the table is empty
             $i=0;
             while($row = $result-> fetch_assoc()){
                 $this->quiz_userlist[$i][self::ANAME] = $row['account_name'];
