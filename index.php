@@ -378,11 +378,18 @@ require "header.php";
                         
                         $ctrl = new account_controller($_POST['login'], $_POST['psw']);
                         if ($ctrl->checkExists()){
-                            //update password :
-                
-                            $ctrl->updatePassword($_POST['login'], $_POST['newpsw']);
-                            $messageHeader="Le mot de passe a été changé, reconnectez-vous.";
-                            disconnect($messageHeader);
+                            $result = $ctrl->controlPassword($_POST['newpsw']);
+                            if($result == ""){
+                                //update password :
+                                $ctrl->updatePassword($_POST['login'], $_POST['newpsw']);
+                                $messageHeader="Le mot de passe a été changé, reconnectez-vous.";
+                                disconnect($messageHeader);
+                            }
+                            else{
+                                $message = $result;
+                                $title = "Changer de mot de passe";
+                                require "view/form_password.php";
+                            }
                         }
                         else{
                             $messageHeader = "Login ou mot de passe incorrect.";
@@ -864,8 +871,8 @@ require "header.php";
                     $message = testNotEmpty("La mise à jour", $givenStrs);
                     if($message!="") {
                         //Display the update question screen :
-                        header("Location: http://quiztiti/index.php?controller=question&action=update&id=".$_POST['updatedquestiondid']."&from=this");
-                        
+                        //header("Location: http://localhost/exo/J17-DIPLOME/index.php?controller=question&action=update&id=".$_POST['updatedquestiondid']."&from=this"); 
+                        header("Location: ".HTTP."/index.php?controller=question&action=update&id=".$_POST['updatedquestiondid']."&from=this"); 
                     }
                     else{ //Controls are over, continue the treatment :
 
@@ -1205,7 +1212,8 @@ require "header.php";
                     $message = testNotEmpty("La mise à jour", $givenStrs);
                     if($message!="") {
                         //Display the update quiz screen :
-                        header("Location: http://quiztiti/index.php?controller=quiz&action=update&id=".$_POST['updatedquizdid']."&from=this");
+                        //header("Location: http://localhost/exo/J17-DIPLOME/index.php?controller=quiz&action=update&id=".$_POST['updatedquizdid']."&from=this");
+                        header("Location: ".HTTP."/index.php?controller=quiz&action=update&id=".$_POST['updatedquizdid']."&from=this");
                     }
                     else{ //Controls are over, continue the treatment :
 
@@ -1616,7 +1624,8 @@ require "header.php";
                     $message = testNotEmpty("La mise à jour", $givenStrs);
                     if($message!="") {
                         //Display the update quiz screen :
-                        header("Location: http://quiztiti/index.php?controller=account&action=update&id=".$_POST['updatedaccountdid']."&from=this");
+                        //header("Location: http://localhost/exo/J17-DIPLOME/index.php?controller=account&action=update&id=".$_POST['updatedaccountdid']."&from=this");
+                        header("Location: ".HTTP."/index.php?controller=account&action=update&id=".$_POST['updatedaccountdid']."&from=this");
                     }
                     else{ //Controls are over, continue the treatment :
 
@@ -1833,7 +1842,8 @@ require "header.php";
                     $message = testNotEmpty("La mise à jour", $givenStrs);
                     if($message!="") {
                         //Display the update session screen :
-                        header("Location: http://quiztiti/index.php?controller=session&action=update&id=".$_POST['updatedsessiondid']."&from=this");
+                        //header("Location: http://localhost/exo/J17-DIPLOME/index.php?controller=session&action=update&id=".$_POST['updatedsessiondid']."&from=this");
+                        header("Location: ".HTTP."/index.php?controller=session&action=update&id=".$_POST['updatedsessiondid']."&from=this");
                     }
                     else{ //Controls are over, continue the treatment :
                         $message = "";
