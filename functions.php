@@ -1,9 +1,30 @@
 <?php
 //Various constants
-    const DEFAULTPSW = "quiztiti"; //modelfunctions.php / function createAccount
     const NP1 = 163, NP2 = 181;
-    const TIMEZONE = "Europe/Paris"; date_default_timezone_set(TIMEZONE);
 
+    const TIMEZONE = "Europe/Paris"; date_default_timezone_set(TIMEZONE);
+    
+    const HTTPEXO = "http://localhost/exo/J17-DIPLOME";
+    const HTTPGITHUB = "http://quiztiti";
+    const HTTPWEBHOST = "https://exotic-curvature.000webhostapp.com";
+    const HTTP = HTTPGITHUB;
+
+    const CAPTCHASERVEREXO = "6Ldv5gAkAAAAAPFwjhV6iMKrQEbT_z3KliOPMNuB";
+    const CAPTCHASERVERGITHUB = "6LfpDcElAAAAACcuM13fkgKOxuOIvV7EZpD6_Ycl";
+    const CAPTCHASERVERWEBHOST = "6LfHwcIlAAAAAFMxILRrjPXsRMn_u2yGuTUZKdcK";
+    const CAPTCHASERVER = CAPTCHASERVERGITHUB;
+
+    const CAPTCHACLIENTEXO = "6Ldv5gAkAAAAAIRTSDJqz2RY-DqswWEkqJBYlTOE";
+    const CAPTCHACLIENTGITHUB = "6LfpDcElAAAAAKPtFW3f12NIfxCRA9xZDwJ3ZntW";
+    const CAPTCHACLIENTWEBHOST = "6LfHwcIlAAAAAKEavneR7xIXRT3ukHbZC6Iy1u3Z";
+    const CAPTCHACLIENT = CAPTCHACLIENTGITHUB;
+
+    const DEFAULTPSW = "quiztiti"; //modelfunctions.php / function createAccount
+    const PSWMINLENGTH = 12-1; //12 chars needed but 11 set up
+    //const PSWMAXLENGTH = 16-1;
+    const SPECIALCHARS = "#?!@$%^&*-,=.+;|:{>}"; //éè_çµù£
+
+    
 //Sizes :
     const TEXTAREA = 500, NBRESPONSESMAX = 20, NBQUESTIONSMAX = 100, NBQUIZMAX = 30, NBACCOUNTSMAX= 50;
     const SIZESESSIONS = 10, SIZEQUESTIONS = 10, SIZEQUIZ = 10, SIZEACCOUNTS = 10;
@@ -144,6 +165,9 @@
 
 //FUNCTIONS :
 /*
+function pswmessage()
+function pswcontrol($inputpsw, $oldpsw, $name, $firstname)
+
 function prefix($str)
 function theEnd($str)
 function root($str)
@@ -164,6 +188,66 @@ function min_into_h_m($format, $min)
 function sec_into_h_m_s($format, $sec)
 */
 
+////////////// FUNCTIONS USED BY form_password.php and form_createadmin.php /////////////////////////
+
+function pswmessage(){
+    $myMessage = 'Mot de passe de <span class="font-weight-bold">'.(PSWMINLENGTH + 1).'</span> caractères minimum dont des <span class="font-weight-bold">majuscules</span>, des <span class="font-weight-bold">minuscules</span>, des <span class="font-weight-bold">chiffres</span> et au moins <span class="font-weight-bold">2 caractères spéciaux</span> différents, séparés et hors extrémités.';
+    $myMessage.= ' Les caractères spéciaux considérés sont '.(wordwrap(SPECIALCHARS,1," ",1))."<br>N'utilisez ni votre nom ni votre prénom.";
+    return $myMessage;
+}
+function pswcontrol($inputpsw, $oldpsw, $name, $firstname){
+    $messageKO = "";
+    //Check the new password is different from the old one:
+    if($inputpsw != $oldpsw){
+
+        $specialchars = SPECIALCHARS;
+    //var_dump($specialchars);
+        $pswminlength = PSWMINLENGTH;
+    //var_dump($pswminlength);
+
+        //Check there are at least PSWMINLENGTH characters including at least 1 uppercase, 1 lowercase, 1 number and 2 special characters located neither at the beginning nor at the end and which do not follow each other:
+        //if (preg_match('/(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?['.$specialchars.'].*?['.$specialchars.'])(^[^'.$specialchars.'])(?=.*?[^'.$specialchars.']$).{PSWMINLENGTH,}/', $inputpsw)){ //, $matches, PREG_OFFSET_CAPTURE)){
+        if (preg_match('/(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?['.$specialchars.'].*?['.$specialchars.'])(^[^'.$specialchars.'])(?=.*?[^'.$specialchars.']$).{'.$pswminlength.',}/', $inputpsw)){ //, $matches, PREG_OFFSET_CAPTURE)){
+            
+            //Check there are at least 2 different special characters:
+            $matches1 = "";
+            if (preg_match('/(['.$specialchars.']).*(\1)/', $inputpsw, $matches1, PREG_OFFSET_CAPTURE)){
+                //Duplicate found: eliminate the duplicated special character to search for another one (you need at least 2 different ones):
+        //var_dump($matches1);
+                    $newspecialchars = str_replace($matches1[1][0], "", $specialchars); 
+                if (!preg_match('/['.$newspecialchars.']/', $inputpsw)){ //, $matches2, PREG_OFFSET_CAPTURE)){
+                    $messageKO.= "Il doit y avoir au moins 2 caractères spéciaux différents.";
+                }
+            }
+            //Check there are no consecutive special characters:
+            if (preg_match('/(['.$specialchars.']['.$specialchars.'])/', $inputpsw)){ //, $matches3, PREG_OFFSET_CAPTURE)){
+                $messageKO.= "<br>Les caractères spéciaux ne doivent pas être consécutifs.";
+            }
+            //Check the surname and first name are not used in the password:
+            if($name != ""){
+                $lowerinputpsw = str_replace("-", "", mb_strtolower($inputpsw));
+                $lowersubstring = str_replace("-", "", mb_strtolower($name));
+
+                if(strpos($lowerinputpsw, $lowersubstring) !== false){
+                    $messageKO.= "<br>N'utilisez pas votre nom."; 
+                }
+            }
+            if($firstname != ""){
+                $lowerinputpsw = str_replace("-", "", mb_strtolower($inputpsw));
+                $lowersubstring = str_replace("-", "", mb_strtolower($firstname));
+                if(strpos($lowerinputpsw, $lowersubstring) !== false){
+                    $messageKO.= "<br>N'utilisez pas votre prénom."; 
+                }
+            }
+        }
+        else{
+            $messageKO.= "Il faut au moins ".($pswminlength + 1)." caractères dont au moins 1 majuscule, 1 minuscule, 1 chiffre et 2 caractères spéciaux différents situés ni au début ni à la fin et qui ne se suivent pas.";
+        }
+    }
+    else $messageKO.="Saisissez un mot de passe différent de l'ancien.";
+    
+    return $messageKO;
+}
 //////////////////////// FUNCTIONS USED BY questionanswered.php /////////////////////////
 
 function prefix($str){ //always returns the prefix - used by root($str)
@@ -208,7 +292,10 @@ function className($wording){
 
 function disconnect($message){
     session_destroy();
-    header("Location: http://quiztiti/index.php?msghdr=".$message);
+    //header("Location: http://quiztiti/index.php?msghdr=".$message);
+    //header("Location: http://localhost/exo/J17-DIPLOME/index.php?msghdr=".$message);
+    //echo '<meta http-equiv="refresh" content="0;URL=http://localhost/exo/J17-DIPLOME/index.php?msghdr='.$message.'">';
+    echo '<meta http-equiv="refresh" content="0;URL='.HTTP.'/index.php?msghdr='.$message.'">';
 }
 
 //Control there is no html introduced, and if mandatory field are not empty :
@@ -311,7 +398,8 @@ function testNotEmpty($operation, $strsTransmises){
 }
 
 function validerCaptcha(){
-    $url = "https://www.google.com/recaptcha/api/siteverify?secret=6LfpDcElAAAAACcuM13fkgKOxuOIvV7EZpD6_Ycl&response={$_POST['g-recaptcha-response']}";
+    //$url = "https://www.google.com/recaptcha/api/siteverify?secret=6Ldv5gAkAAAAAPFwjhV6iMKrQEbT_z3KliOPMNuB&response={$_POST['g-recaptcha-response']}";
+    $url = "https://www.google.com/recaptcha/api/siteverify?secret=".CAPTCHASERVER."&response={$_POST['g-recaptcha-response']}";
     
     $response = file_get_contents($url);
     
