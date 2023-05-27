@@ -27,10 +27,11 @@
     <label class="label-basic" for="login">Login</label><input class="input-basic" id="login" name="login" type="text" value="" required><br>
     <label class="label-basic" for="psw">Mot de passe</label><input class="input-basic" id="psw" name="psw" type="password" value="" required>
     <br><br>
-    <div class="row">
-        <div class="col-12 offset-md-4 col-md-5 pl-1">
+    <div class="row ">
+        <div class="col-12 offset-md-4 col-md-5"> 
             <!--clé du site-->
-            <div class="g-recaptcha" data-sitekey="6LfpDcElAAAAAKPtFW3f12NIfxCRA9xZDwJ3ZntW"></div>
+            <!--<div class="g-recaptcha" data-sitekey="6Ldv5gAkAAAAAIRTSDJqz2RY-DqswWEkqJBYlTOE"></div>-->                                           
+            <div class="g-recaptcha" data-sitekey="<?php echo CAPTCHACLIENT ?>"></div>
         </div>
     </div>
     <input type="hidden" name="form_login" value="1">
