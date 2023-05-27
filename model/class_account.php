@@ -12,19 +12,25 @@
 *******************************************************************************************/
 
 class account {
-
+    private $plaintextPassword;
     private $login;
     private $psw;
     private $profile; // (admin, user) 
     private $firstname;
+    private $name;
 
     public function __construct($login, $psw){
+        $this->plaintextPassword = $psw;
         $this->login = $login;
         $this->psw = sha1($psw);
         $this->profile = "";
         $this->firstname = "";
+        $this->name = "";
     }
     
+    public function getName(){
+        return $this->name;
+    }
     public function getFirstname(){
         return $this->firstname;
     }
@@ -50,7 +56,7 @@ class account {
     public function checkExists(){
         global $conn; 
 
-        $sql = "SELECT account_login, account_firstname, account_profile";
+        $sql = "SELECT account_login, account_firstname, account_name, account_profile";
         $sql.= " from account where account_login = '$this->login' and account_psw = '$this->psw'";
         $result = $conn->query($sql);
         $i=0;
@@ -58,6 +64,7 @@ class account {
             $i++;
             $this->profile = $row['account_profile'];
             $this->firstname = $row['account_firstname'];
+            $this->name = $row['account_name'];
         }
         if($i == 0) return 0; //ko
         else if ($this->psw == sha1(DEFAULTPSW)) return 1; //change password
@@ -85,5 +92,9 @@ class account {
         $stmt -> close();
 
         //try to disconnect() here...
+    }
+
+    public function controlPassword($inputpsw){
+        return pswcontrol($inputpsw, $this->plaintextPassword, $this->name, $this->firstname);
     }
 }
